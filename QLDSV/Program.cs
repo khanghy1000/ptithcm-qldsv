@@ -5,13 +5,14 @@ using QLDSV.Forms;
 namespace QLDSV;
 
 internal static class Program {
-    /// <summary>
-    ///     The main entry point for the application.
-    /// </summary>
+    public static MainForm MainForm;
+    public static LoginForm LoginForm;
+
     [STAThread]
     private static void Main() {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new MainForm());
+        Program.LoginForm = new LoginForm();
+        Application.Run(Program.LoginForm);
     }
 }

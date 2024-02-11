@@ -17,7 +17,6 @@ public class Database {
 
     public static SqlDataReader DataReader;
     public static string ServerName = "";
-    public static string Username = "";
     public static string LoginName = "";
     public static string LoginPassword = "";
 
@@ -27,9 +26,18 @@ public class Database {
     public static string CurrentLoginName = "";
     public static string CurrentLoginPassword = "";
 
+    public static string Username = "";
     public static string UserRole = "";
     public static string UserFullName = "";
-    public static int UserBranch = 0;
+    public static int KhoaId = 0;
+
+    // login vao server
+    public static string SinhVienLoginName = "sinhvien";
+    public static string SinhVienLoginPassword = "1";
+
+    // mssv + pass tu input
+    public static string MSSV = "";
+    public static string SinhVienPassword = "";
 
     public static BindingSource BindingSourcePhanManh = new(); // giữ bdsPM khi đăng nhập
 
@@ -50,7 +58,7 @@ public class Database {
         catch (Exception e) {
             MessageBox.Show(
                 $"Lỗi kết nối cơ sở dữ liệu.\nVui lòng kiểm tra lại username và password.\n{e.Message}",
-                "",
+                "Lỗi",
                 MessageBoxButtons.OK);
 
             return Result.Failure;
