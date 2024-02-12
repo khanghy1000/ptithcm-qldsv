@@ -70,18 +70,7 @@ namespace QLDSV.Forms {
 
             Database.DataReader.Read();
             try {
-
                 Database.Username = Database.DataReader.GetString(0);
-
-                // if (Convert.IsDBNull(Database.Username)) {
-                //     var errorMessage = "Tài khoản này không có quyền truy cập dữ liệu.";
-                //     if (checkIsSinhVien.Checked)
-                //         errorMessage = "Tài khoản hoặc mật khẩu không đúng\nvui lòng kiểm tra lại.";
-                //
-                //     MessageBox.Show(errorMessage, "", MessageBoxButtons.OK);
-                //     return;
-                // }
-
                 Database.UserFullName = Database.DataReader.GetString(1);
                 Database.UserRole = Database.DataReader.GetString(2);
                 Database.DataReader.Close();
