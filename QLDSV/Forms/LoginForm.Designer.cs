@@ -33,9 +33,11 @@
             btnCancel = new DevExpress.XtraEditors.SimpleButton();
             checkIsSinhVien = new DevExpress.XtraEditors.CheckEdit();
             comboBoxKhoa = new System.Windows.Forms.ComboBox();
+            panelComboBoxKhoaWrapper = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)textUsername.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textPassword.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)checkIsSinhVien.Properties).BeginInit();
+            panelComboBoxKhoaWrapper.SuspendLayout();
             SuspendLayout();
             // 
             // labelTitle
@@ -140,14 +142,26 @@
             // 
             // comboBoxKhoa
             // 
+            comboBoxKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comboBoxKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             comboBoxKhoa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             comboBoxKhoa.FormattingEnabled = true;
             comboBoxKhoa.IntegralHeight = false;
-            comboBoxKhoa.Location = new System.Drawing.Point(48, 134);
+            comboBoxKhoa.Location = new System.Drawing.Point(0, 0);
             comboBoxKhoa.Name = "comboBoxKhoa";
-            comboBoxKhoa.Size = new System.Drawing.Size(366, 29);
+            comboBoxKhoa.Size = new System.Drawing.Size(364, 29);
             comboBoxKhoa.TabIndex = 10;
             comboBoxKhoa.SelectedIndexChanged += comboBoxKhoa_SelectedIndexChanged;
+            // 
+            // panelComboBoxKhoaWrapper
+            // 
+            panelComboBoxKhoaWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panelComboBoxKhoaWrapper.Controls.Add(comboBoxKhoa);
+            panelComboBoxKhoaWrapper.Location = new System.Drawing.Point(48, 134);
+            panelComboBoxKhoaWrapper.Name = "panelComboBoxKhoaWrapper";
+            panelComboBoxKhoaWrapper.Size = new System.Drawing.Size(366, 29);
+            panelComboBoxKhoaWrapper.TabIndex = 11;
             // 
             // LoginForm
             // 
@@ -157,7 +171,7 @@
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(460, 577);
-            Controls.Add(comboBoxKhoa);
+            Controls.Add(panelComboBoxKhoaWrapper);
             Controls.Add(checkIsSinhVien);
             Controls.Add(btnCancel);
             Controls.Add(btnLogin);
@@ -177,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)textUsername.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)textPassword.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)checkIsSinhVien.Properties).EndInit();
+            panelComboBoxKhoaWrapper.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +208,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.CheckEdit checkIsSinhVien;
         private System.Windows.Forms.ComboBox comboBoxKhoa;
+        private System.Windows.Forms.Panel panelComboBoxKhoaWrapper;
     }
 }
