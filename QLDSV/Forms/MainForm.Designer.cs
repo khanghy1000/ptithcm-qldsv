@@ -23,10 +23,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             statusBarUsername = new DevExpress.XtraBars.BarStaticItem();
             statusBarFullName = new DevExpress.XtraBars.BarStaticItem();
             statusBarRole = new DevExpress.XtraBars.BarStaticItem();
+            barButtonLogout = new DevExpress.XtraBars.BarButtonItem();
             ribbonPageSystem = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -37,10 +39,10 @@
             // 
             ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
             ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, ribbonControl1.SearchEditItem, statusBarUsername, statusBarFullName, statusBarRole });
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, ribbonControl1.SearchEditItem, statusBarUsername, statusBarFullName, statusBarRole, barButtonLogout });
             ribbonControl1.Location = new System.Drawing.Point(0, 0);
             ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            ribbonControl1.MaxItemId = 5;
+            ribbonControl1.MaxItemId = 6;
             ribbonControl1.Name = "ribbonControl1";
             ribbonControl1.OptionsMenuMinWidth = 385;
             ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPageSystem });
@@ -65,6 +67,15 @@
             statusBarRole.Id = 3;
             statusBarRole.Name = "statusBarRole";
             // 
+            // barButtonLogout
+            // 
+            barButtonLogout.Caption = "Đăng xuất";
+            barButtonLogout.Id = 5;
+            barButtonLogout.ImageOptions.Image = (System.Drawing.Image)resources.GetObject("barButtonLogout.ImageOptions.Image");
+            barButtonLogout.ImageOptions.LargeImage = (System.Drawing.Image)resources.GetObject("barButtonLogout.ImageOptions.LargeImage");
+            barButtonLogout.Name = "barButtonLogout";
+            barButtonLogout.ItemClick += barButtonLogout_ItemClick;
+            // 
             // ribbonPageSystem
             // 
             ribbonPageSystem.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1 });
@@ -73,8 +84,9 @@
             // 
             // ribbonPageGroup1
             // 
+            ribbonPageGroup1.ItemLinks.Add(barButtonLogout);
             ribbonPageGroup1.Name = "ribbonPageGroup1";
-            ribbonPageGroup1.Text = "ribbonPageGroup1";
+            ribbonPageGroup1.Text = "Hệ thống";
             // 
             // ribbonStatusBar1
             // 
@@ -98,8 +110,9 @@
             Name = "MainForm";
             Ribbon = ribbonControl1;
             StatusBar = ribbonStatusBar1;
-            Text = "Form1";
+            Text = "QLDSV";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            FormClosed += MainForm_FormClosed;
             ((System.ComponentModel.ISupportInitialize)ribbonControl1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -114,6 +127,7 @@
         public DevExpress.XtraBars.BarStaticItem statusBarUsername;
         public DevExpress.XtraBars.BarStaticItem statusBarFullName;
         public DevExpress.XtraBars.BarStaticItem statusBarRole;
+        private DevExpress.XtraBars.BarButtonItem barButtonLogout;
     }
 }
 

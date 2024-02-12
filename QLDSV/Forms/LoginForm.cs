@@ -118,5 +118,13 @@ namespace QLDSV.Forms {
         private void btnCancel_Click(object sender, EventArgs e) {
             Application.Exit();
         }
+
+        public void resetForm() {
+            comboBoxKhoa.SelectedIndex = Database.KhoaId;
+            Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
+            textUsername.Text = "";
+            textPassword.Text = "";
+            textUsername.Focus();
+        }
     }
 }
