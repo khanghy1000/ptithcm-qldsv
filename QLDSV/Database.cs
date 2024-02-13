@@ -41,7 +41,7 @@ public class Database {
 
     public static BindingSource BindingSourcePhanManh = new(); // giữ bdsPM khi đăng nhập
 
-    public static Result Connect() {
+    public static Result Connect(bool showExceptionMsg = false) {
         if (Connection != null && Connection.State == ConnectionState.Open)
             Connection.Close();
         try {
@@ -56,6 +56,9 @@ public class Database {
             return Result.Success;
         }
         catch (Exception e) {
+            if (showExceptionMsg) {
+                MessageBox.Show(e.Message, "Exception", MessageBoxButtons.OK);
+            }
             return Result.Failure;
         }
     }
