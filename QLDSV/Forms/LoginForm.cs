@@ -94,6 +94,8 @@ namespace QLDSV.Forms {
         private void LoginForm_Load(object sender, EventArgs e) {
             if (_connectPublisherServer() == Result.Failure) return;
 
+            this.AcceptButton = btnLogin;
+
             var dataTable = new DataTable();
 
             if (_publisherConnection.State == ConnectionState.Closed)
