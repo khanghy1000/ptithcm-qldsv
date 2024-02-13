@@ -53,6 +53,8 @@ namespace QLDSV.Forms {
             }
 
             if (Database.Connect() == Result.Failure) {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không đúng\nVui lòng kiểm tra lại.", "Lỗi",
+                    MessageBoxButtons.OK);
                 return;
             }
 

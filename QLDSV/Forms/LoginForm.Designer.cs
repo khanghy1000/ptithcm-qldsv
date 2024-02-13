@@ -65,7 +65,7 @@
             // 
             labelPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelPassword.Appearance.Options.UseFont = true;
-            labelPassword.Location = new System.Drawing.Point(48, 261);
+            labelPassword.Location = new System.Drawing.Point(48, 257);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new System.Drawing.Size(68, 21);
             labelPassword.TabIndex = 2;
@@ -95,7 +95,7 @@
             // textPassword
             // 
             textPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textPassword.Location = new System.Drawing.Point(48, 288);
+            textPassword.Location = new System.Drawing.Point(48, 278);
             textPassword.Name = "textPassword";
             textPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textPassword.Properties.Appearance.Options.UseFont = true;
@@ -109,7 +109,7 @@
             btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnLogin.Appearance.Options.UseBackColor = true;
             btnLogin.Appearance.Options.UseFont = true;
-            btnLogin.Location = new System.Drawing.Point(48, 386);
+            btnLogin.Location = new System.Drawing.Point(48, 379);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new System.Drawing.Size(366, 62);
             btnLogin.TabIndex = 7;
@@ -122,7 +122,7 @@
             btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCancel.Appearance.Options.UseBackColor = true;
             btnCancel.Appearance.Options.UseFont = true;
-            btnCancel.Location = new System.Drawing.Point(48, 466);
+            btnCancel.Location = new System.Drawing.Point(48, 459);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new System.Drawing.Size(366, 62);
             btnCancel.TabIndex = 8;
@@ -131,7 +131,7 @@
             // 
             // checkIsSinhVien
             // 
-            checkIsSinhVien.Location = new System.Drawing.Point(305, 339);
+            checkIsSinhVien.Location = new System.Drawing.Point(302, 318);
             checkIsSinhVien.Name = "checkIsSinhVien";
             checkIsSinhVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             checkIsSinhVien.Properties.Appearance.Options.UseFont = true;
@@ -170,7 +170,7 @@
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(460, 577);
+            ClientSize = new System.Drawing.Size(460, 565);
             Controls.Add(panelComboBoxKhoaWrapper);
             Controls.Add(checkIsSinhVien);
             Controls.Add(btnCancel);

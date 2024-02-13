@@ -56,11 +56,6 @@ public class Database {
             return Result.Success;
         }
         catch (Exception e) {
-            MessageBox.Show(
-                $"Lỗi kết nối cơ sở dữ liệu.\nVui lòng kiểm tra lại username và password.\n{e.Message}",
-                "Lỗi",
-                MessageBoxButtons.OK);
-
             return Result.Failure;
         }
     }
