@@ -22,5 +22,16 @@ namespace QLDSV.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-FJ9S2JN\\MSSQLSERVER1;Initial Catalog=QLDSV_TC;User ID=sa;Trus" +
+            "tServerCertificate=True")]
+        public string QLDSV_TCConnectionString {
+            get {
+                return ((string)(this["QLDSV_TCConnectionString"]));
+            }
+        }
     }
 }
