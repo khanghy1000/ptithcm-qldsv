@@ -23,177 +23,178 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            labelTitle = new DevExpress.XtraEditors.LabelControl();
-            labelUsername = new DevExpress.XtraEditors.LabelControl();
-            labelPassword = new DevExpress.XtraEditors.LabelControl();
-            labelKhoa = new DevExpress.XtraEditors.LabelControl();
-            textUsername = new DevExpress.XtraEditors.TextEdit();
-            textPassword = new DevExpress.XtraEditors.TextEdit();
-            btnLogin = new DevExpress.XtraEditors.SimpleButton();
-            btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            checkIsSinhVien = new DevExpress.XtraEditors.CheckEdit();
-            comboBoxKhoa = new System.Windows.Forms.ComboBox();
-            panelComboBoxKhoaWrapper = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)textUsername.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textPassword.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)checkIsSinhVien.Properties).BeginInit();
-            panelComboBoxKhoaWrapper.SuspendLayout();
-            SuspendLayout();
+            this.labelTitle = new DevExpress.XtraEditors.LabelControl();
+            this.labelUsername = new DevExpress.XtraEditors.LabelControl();
+            this.labelPassword = new DevExpress.XtraEditors.LabelControl();
+            this.labelKhoa = new DevExpress.XtraEditors.LabelControl();
+            this.textUsername = new DevExpress.XtraEditors.TextEdit();
+            this.textPassword = new DevExpress.XtraEditors.TextEdit();
+            this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.checkIsSinhVien = new DevExpress.XtraEditors.CheckEdit();
+            this.comboBoxKhoa = new System.Windows.Forms.ComboBox();
+            this.panelComboBoxKhoaWrapper = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.textUsername.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkIsSinhVien.Properties)).BeginInit();
+            this.panelComboBoxKhoaWrapper.SuspendLayout();
+            this.SuspendLayout();
             // 
             // labelTitle
             // 
-            labelTitle.Appearance.Font = new System.Drawing.Font("Tahoma", 19.8000011F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            labelTitle.Appearance.Options.UseFont = true;
-            labelTitle.Location = new System.Drawing.Point(137, 34);
-            labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(184, 41);
-            labelTitle.TabIndex = 0;
-            labelTitle.Text = "Đăng nhập";
-            labelTitle.Click += labelTitle_Click;
+            this.labelTitle.Appearance.Font = new System.Drawing.Font("Tahoma", 19.8F, System.Drawing.FontStyle.Bold);
+            this.labelTitle.Appearance.Options.UseFont = true;
+            this.labelTitle.Location = new System.Drawing.Point(137, 34);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(181, 40);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "Đăng nhập";
+            this.labelTitle.Click += new System.EventHandler(this.labelTitle_Click);
             // 
             // labelUsername
             // 
-            labelUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelUsername.Appearance.Options.UseFont = true;
-            labelUsername.Location = new System.Drawing.Point(48, 182);
-            labelUsername.Name = "labelUsername";
-            labelUsername.Size = new System.Drawing.Size(72, 21);
-            labelUsername.TabIndex = 1;
-            labelUsername.Text = "Tài khoản";
+            this.labelUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.labelUsername.Appearance.Options.UseFont = true;
+            this.labelUsername.Location = new System.Drawing.Point(48, 182);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(72, 21);
+            this.labelUsername.TabIndex = 1;
+            this.labelUsername.Text = "Tài khoản";
             // 
             // labelPassword
             // 
-            labelPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelPassword.Appearance.Options.UseFont = true;
-            labelPassword.Location = new System.Drawing.Point(48, 257);
-            labelPassword.Name = "labelPassword";
-            labelPassword.Size = new System.Drawing.Size(68, 21);
-            labelPassword.TabIndex = 2;
-            labelPassword.Text = "Mật khẩu";
+            this.labelPassword.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.labelPassword.Appearance.Options.UseFont = true;
+            this.labelPassword.Location = new System.Drawing.Point(48, 257);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(68, 21);
+            this.labelPassword.TabIndex = 2;
+            this.labelPassword.Text = "Mật khẩu";
             // 
             // labelKhoa
             // 
-            labelKhoa.Appearance.BackColor = System.Drawing.Color.White;
-            labelKhoa.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            labelKhoa.Appearance.Options.UseBackColor = true;
-            labelKhoa.Appearance.Options.UseFont = true;
-            labelKhoa.Location = new System.Drawing.Point(48, 107);
-            labelKhoa.Name = "labelKhoa";
-            labelKhoa.Size = new System.Drawing.Size(37, 21);
-            labelKhoa.TabIndex = 3;
-            labelKhoa.Text = "Khoa";
+            this.labelKhoa.Appearance.BackColor = System.Drawing.Color.White;
+            this.labelKhoa.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.labelKhoa.Appearance.Options.UseBackColor = true;
+            this.labelKhoa.Appearance.Options.UseFont = true;
+            this.labelKhoa.Location = new System.Drawing.Point(48, 107);
+            this.labelKhoa.Name = "labelKhoa";
+            this.labelKhoa.Size = new System.Drawing.Size(37, 21);
+            this.labelKhoa.TabIndex = 3;
+            this.labelKhoa.Text = "Khoa";
             // 
             // textUsername
             // 
-            textUsername.Location = new System.Drawing.Point(48, 209);
-            textUsername.Name = "textUsername";
-            textUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textUsername.Properties.Appearance.Options.UseFont = true;
-            textUsername.Size = new System.Drawing.Size(366, 28);
-            textUsername.TabIndex = 4;
+            this.textUsername.Location = new System.Drawing.Point(48, 209);
+            this.textUsername.Name = "textUsername";
+            this.textUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.textUsername.Properties.Appearance.Options.UseFont = true;
+            this.textUsername.Size = new System.Drawing.Size(366, 28);
+            this.textUsername.TabIndex = 4;
             // 
             // textPassword
             // 
-            textPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textPassword.Location = new System.Drawing.Point(48, 278);
-            textPassword.Name = "textPassword";
-            textPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textPassword.Properties.Appearance.Options.UseFont = true;
-            textPassword.Properties.UseSystemPasswordChar = true;
-            textPassword.Size = new System.Drawing.Size(366, 28);
-            textPassword.TabIndex = 5;
+            this.textPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textPassword.Location = new System.Drawing.Point(48, 278);
+            this.textPassword.Name = "textPassword";
+            this.textPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.textPassword.Properties.Appearance.Options.UseFont = true;
+            this.textPassword.Properties.UseSystemPasswordChar = true;
+            this.textPassword.Size = new System.Drawing.Size(366, 28);
+            this.textPassword.TabIndex = 5;
             // 
             // btnLogin
             // 
-            btnLogin.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
-            btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnLogin.Appearance.Options.UseBackColor = true;
-            btnLogin.Appearance.Options.UseFont = true;
-            btnLogin.Location = new System.Drawing.Point(48, 379);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new System.Drawing.Size(366, 62);
-            btnLogin.TabIndex = 7;
-            btnLogin.Text = "Đăng nhập";
-            btnLogin.Click += btnLogin_Click;
+            this.btnLogin.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
+            this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F);
+            this.btnLogin.Appearance.Options.UseBackColor = true;
+            this.btnLogin.Appearance.Options.UseFont = true;
+            this.btnLogin.Location = new System.Drawing.Point(48, 379);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(366, 62);
+            this.btnLogin.TabIndex = 7;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnCancel
             // 
-            btnCancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
-            btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnCancel.Appearance.Options.UseBackColor = true;
-            btnCancel.Appearance.Options.UseFont = true;
-            btnCancel.Location = new System.Drawing.Point(48, 459);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(366, 62);
-            btnCancel.TabIndex = 8;
-            btnCancel.Text = "Thoát";
-            btnCancel.Click += btnCancel_Click;
+            this.btnCancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10.8F);
+            this.btnCancel.Appearance.Options.UseBackColor = true;
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.Location = new System.Drawing.Point(48, 459);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(366, 62);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // checkIsSinhVien
             // 
-            checkIsSinhVien.Location = new System.Drawing.Point(302, 318);
-            checkIsSinhVien.Name = "checkIsSinhVien";
-            checkIsSinhVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            checkIsSinhVien.Properties.Appearance.Options.UseFont = true;
-            checkIsSinhVien.Properties.Caption = "Là sinh viên";
-            checkIsSinhVien.Size = new System.Drawing.Size(146, 25);
-            checkIsSinhVien.TabIndex = 9;
-            checkIsSinhVien.CheckedChanged += checkIsSinhVien_CheckedChanged;
+            this.checkIsSinhVien.Location = new System.Drawing.Point(302, 318);
+            this.checkIsSinhVien.Name = "checkIsSinhVien";
+            this.checkIsSinhVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.checkIsSinhVien.Properties.Appearance.Options.UseFont = true;
+            this.checkIsSinhVien.Properties.Caption = "Là sinh viên";
+            this.checkIsSinhVien.Size = new System.Drawing.Size(146, 25);
+            this.checkIsSinhVien.TabIndex = 9;
+            this.checkIsSinhVien.CheckedChanged += new System.EventHandler(this.checkIsSinhVien_CheckedChanged);
             // 
             // comboBoxKhoa
             // 
-            comboBoxKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            comboBoxKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            comboBoxKhoa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            comboBoxKhoa.FormattingEnabled = true;
-            comboBoxKhoa.IntegralHeight = false;
-            comboBoxKhoa.Location = new System.Drawing.Point(0, 0);
-            comboBoxKhoa.Name = "comboBoxKhoa";
-            comboBoxKhoa.Size = new System.Drawing.Size(364, 29);
-            comboBoxKhoa.TabIndex = 10;
-            comboBoxKhoa.SelectedIndexChanged += comboBoxKhoa_SelectedIndexChanged;
+            this.comboBoxKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxKhoa.Font = new System.Drawing.Font("Tahoma", 10.2F);
+            this.comboBoxKhoa.FormattingEnabled = true;
+            this.comboBoxKhoa.IntegralHeight = false;
+            this.comboBoxKhoa.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxKhoa.Name = "comboBoxKhoa";
+            this.comboBoxKhoa.Size = new System.Drawing.Size(364, 29);
+            this.comboBoxKhoa.TabIndex = 10;
+            this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
             // 
             // panelComboBoxKhoaWrapper
             // 
-            panelComboBoxKhoaWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            panelComboBoxKhoaWrapper.Controls.Add(comboBoxKhoa);
-            panelComboBoxKhoaWrapper.Location = new System.Drawing.Point(48, 134);
-            panelComboBoxKhoaWrapper.Name = "panelComboBoxKhoaWrapper";
-            panelComboBoxKhoaWrapper.Size = new System.Drawing.Size(366, 29);
-            panelComboBoxKhoaWrapper.TabIndex = 11;
+            this.panelComboBoxKhoaWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelComboBoxKhoaWrapper.Controls.Add(this.comboBoxKhoa);
+            this.panelComboBoxKhoaWrapper.Location = new System.Drawing.Point(48, 134);
+            this.panelComboBoxKhoaWrapper.Name = "panelComboBoxKhoaWrapper";
+            this.panelComboBoxKhoaWrapper.Size = new System.Drawing.Size(366, 29);
+            this.panelComboBoxKhoaWrapper.TabIndex = 11;
             // 
             // LoginForm
             // 
-            Appearance.BackColor = System.Drawing.Color.White;
-            Appearance.Options.UseBackColor = true;
-            Appearance.Options.UseFont = true;
-            AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(460, 565);
-            Controls.Add(panelComboBoxKhoaWrapper);
-            Controls.Add(checkIsSinhVien);
-            Controls.Add(btnCancel);
-            Controls.Add(btnLogin);
-            Controls.Add(textPassword);
-            Controls.Add(textUsername);
-            Controls.Add(labelKhoa);
-            Controls.Add(labelPassword);
-            Controls.Add(labelUsername);
-            Controls.Add(labelTitle);
-            Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            IconOptions.ImageUri.Uri = "icon%20builder/security_key";
-            Margin = new System.Windows.Forms.Padding(4);
-            Name = "LoginForm";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "Đăng nhập";
-            Load += LoginForm_Load;
-            ((System.ComponentModel.ISupportInitialize)textUsername.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textPassword.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)checkIsSinhVien.Properties).EndInit();
-            panelComboBoxKhoaWrapper.ResumeLayout(false);
-            ResumeLayout(false);
-            PerformLayout();
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
+            this.Appearance.Options.UseFont = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(460, 565);
+            this.Controls.Add(this.panelComboBoxKhoaWrapper);
+            this.Controls.Add(this.checkIsSinhVien);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.textPassword);
+            this.Controls.Add(this.textUsername);
+            this.Controls.Add(this.labelKhoa);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.labelUsername);
+            this.Controls.Add(this.labelTitle);
+            this.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.IconOptions.ImageUri.Uri = "icon%20builder/security_key";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.textUsername.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkIsSinhVien.Properties)).EndInit();
+            this.panelComboBoxKhoaWrapper.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

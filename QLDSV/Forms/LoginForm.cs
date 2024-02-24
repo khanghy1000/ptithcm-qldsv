@@ -14,7 +14,6 @@ namespace QLDSV.Forms {
             }
 
             try {
-                _publisherConnection ??= new SqlConnection();
                 _publisherConnection.ConnectionString = Database.PublisherConnectionString;
                 _publisherConnection.Open();
                 return Result.Success;
