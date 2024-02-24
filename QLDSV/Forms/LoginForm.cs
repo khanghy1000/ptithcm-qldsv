@@ -65,7 +65,7 @@ namespace QLDSV.Forms {
 
             if (Database.DataReader == null) return;
 
-            Database.KhoaId = comboBoxKhoa.SelectedIndex;
+            Database.SelectedKhoaIndex = comboBoxKhoa.SelectedIndex;
             Database.CurrentLoginName = Database.LoginName;
             Database.CurrentLoginPassword = Database.LoginPassword;
 
@@ -123,7 +123,7 @@ namespace QLDSV.Forms {
         }
 
         public void resetForm() {
-            comboBoxKhoa.SelectedIndex = Database.KhoaId;
+            comboBoxKhoa.SelectedIndex = Database.SelectedKhoaIndex;
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
             textUsername.Text = "";
             textPassword.Text = "";

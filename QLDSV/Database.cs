@@ -13,14 +13,14 @@ namespace QLDSV {
 
         public static SqlConnection Connection = new SqlConnection();
         public static string ConnectionString;
-
         public static SqlDataReader DataReader;
+
         public static string ServerName = "";
         public static string LoginName = "";
         public static string LoginPassword = "";
 
         public static string RemoteLoginName = "htkn";
-        public static string RemoteLoginPassword = "123456";
+        public static string RemoteLoginPassword = "1";
 
         public static string CurrentLoginName = "";
         public static string CurrentLoginPassword = "";
@@ -28,7 +28,7 @@ namespace QLDSV {
         public static string Username = "";
         public static string UserRole = "";
         public static string UserFullName = "";
-        public static int KhoaId = 0;
+        public static int SelectedKhoaIndex = 0;
 
         // login vao server
         public static string SinhVienLoginName = "sinhvien";

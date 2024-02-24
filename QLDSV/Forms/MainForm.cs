@@ -1,9 +1,19 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 
 namespace QLDSV.Forms {
     public partial class MainForm : RibbonForm {
+        private Form CheckExists(Type ftype) {
+            foreach (Form f in this.MdiChildren) {
+                if (f.GetType() == ftype) {
+                    return f;
+                }
+            }
+            return null;
+        }
+
         public MainForm() {
             InitializeComponent();
         }
@@ -16,6 +26,16 @@ namespace QLDSV.Forms {
             this.Dispose();
             Program.LoginForm.resetForm();
             Program.LoginForm.Show();
+        }
+
+        private void barButtonClass_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(LopForm));
+            if (form != null) form.Activate();
+            else {
+                LopForm newForm = new LopForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
         }
     }
 }
