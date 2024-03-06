@@ -28,9 +28,6 @@ namespace QLDSV.Forms {
             InitializeComponent();
         }
 
-        private void labelTitle_Click(object sender, EventArgs e) {
-        }
-
         private void checkIsSinhVien_CheckedChanged(object sender, EventArgs e) {
             labelUsername.Text = checkIsSinhVien.Checked ? "MSSV" : "Tài khoản";
         }
@@ -66,8 +63,8 @@ namespace QLDSV.Forms {
             if (Database.DataReader == null) return;
 
             Database.SelectedKhoaIndex = comboBoxKhoa.SelectedIndex;
-            Database.CurrentLoginName = Database.LoginName;
-            Database.CurrentLoginPassword = Database.LoginPassword;
+            Database.UserLoginName = Database.LoginName;
+            Database.UserLoginPassword = Database.LoginPassword;
 
             Database.DataReader.Read();
             try {
@@ -122,7 +119,7 @@ namespace QLDSV.Forms {
             Application.Exit();
         }
 
-        public void resetForm() {
+        public void ResetForm() {
             comboBoxKhoa.SelectedIndex = Database.SelectedKhoaIndex;
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
             textUsername.Text = "";

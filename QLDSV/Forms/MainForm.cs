@@ -24,7 +24,7 @@ namespace QLDSV.Forms {
 
         private void barButtonLogout_ItemClick(object sender, ItemClickEventArgs e) {
             this.Dispose();
-            Program.LoginForm.resetForm();
+            Program.LoginForm.ResetForm();
             Program.LoginForm.Show();
         }
 

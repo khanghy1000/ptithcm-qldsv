@@ -15,34 +15,44 @@ namespace QLDSV {
         public static string ConnectionString;
         public static SqlDataReader DataReader;
 
+        // De ket noi vao server
         public static string ServerName = "";
         public static string LoginName = "";
         public static string LoginPassword = "";
 
+        // Tai khoan helper
         public static string RemoteLoginName = "htkn";
         public static string RemoteLoginPassword = "1";
 
-        public static string CurrentLoginName = "";
-        public static string CurrentLoginPassword = "";
+        // Login name and password ma user nhap o login form
+        public static string UserLoginName = "";
+        public static string UserLoginPassword = "";
 
+        // Show thong tin o status bar cua main form
         public static string Username = "";
         public static string UserRole = "";
         public static string UserFullName = "";
+
+        // Index comboKhoa ma user da select o login form
         public static int SelectedKhoaIndex = 0;
 
-        // login vao server
+        // Tai khoan helper
         public static string SinhVienLoginName = "sinhvien";
         public static string SinhVienLoginPassword = "1";
 
-        // mssv + pass tu input
+        // mssv + pass cua sinh vien tu input
         public static string MSSV = "";
         public static string SinhVienPassword = "";
 
-        public static BindingSource BindingSourcePhanManh = new BindingSource(); // giữ bdsPM khi đăng nhập
+        // giữ bdsPM khi đăng nhập
+        public static BindingSource BindingSourcePhanManh = new BindingSource();
 
         public static Result Connect(bool showExceptionMsg = false) {
             if (Connection != null && Connection.State == ConnectionState.Open)
                 Connection.Close();
+
+            if (Connection == null) Connection = new SqlConnection();
+
             try {
                 ConnectionString =
                     $"Data Source={ServerName};Initial Catalog={DatabaseName};User ID={LoginName};password={LoginPassword}";

@@ -147,7 +147,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarUsername);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarFullName);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarRole);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 760);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 675);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1376, 30);
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 790);
+            this.ClientSize = new System.Drawing.Size(1376, 705);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
