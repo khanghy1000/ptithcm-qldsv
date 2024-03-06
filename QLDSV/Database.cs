@@ -24,7 +24,7 @@ namespace QLDSV {
         public static string RemoteLoginName = "htkn";
         public static string RemoteLoginPassword = "1";
 
-        // Login name and password ma user nhap o login form
+        // Login name va password ma user nhap o login form
         public static string UserLoginName = "";
         public static string UserLoginPassword = "";
 

@@ -30,7 +30,7 @@
             this.statusBarFullName = new DevExpress.XtraBars.BarStaticItem();
             this.statusBarRole = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonLogout = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonClass = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonLop = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -45,7 +45,7 @@
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(50, 58, 50, 58);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -54,17 +54,17 @@
             this.statusBarFullName,
             this.statusBarRole,
             this.barButtonLogout,
-            this.barButtonClass});
+            this.barButtonLop});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 385;
+            this.ribbonControl1.OptionsMenuMinWidth = 550;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPageSystem});
-            this.ribbonControl1.Size = new System.Drawing.Size(1376, 193);
+            this.ribbonControl1.Size = new System.Drawing.Size(1573, 203);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // statusBarUsername
@@ -94,14 +94,14 @@
             this.barButtonLogout.Name = "barButtonLogout";
             this.barButtonLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonLogout_ItemClick);
             // 
-            // barButtonClass
+            // barButtonLop
             // 
-            this.barButtonClass.Caption = "Lớp";
-            this.barButtonClass.Id = 6;
-            this.barButtonClass.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonClass.ImageOptions.Image")));
-            this.barButtonClass.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonClass.ImageOptions.LargeImage")));
-            this.barButtonClass.Name = "barButtonClass";
-            this.barButtonClass.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonClass_ItemClick);
+            this.barButtonLop.Caption = "Lớp";
+            this.barButtonLop.Id = 6;
+            this.barButtonLop.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonLop.ImageOptions.Image")));
+            this.barButtonLop.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonLop.ImageOptions.LargeImage")));
+            this.barButtonLop.Name = "barButtonLop";
+            this.barButtonLop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonLop_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -112,7 +112,7 @@
             // 
             // ribbonPageGroup2
             // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonClass);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonLop);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Nhập xuất";
             // 
@@ -147,10 +147,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarUsername);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarFullName);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarRole);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 675);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 851);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1376, 30);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1573, 30);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -158,13 +159,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 705);
+            this.ClientSize = new System.Drawing.Size(1573, 881);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "MainForm";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;
@@ -188,7 +190,7 @@
         public DevExpress.XtraBars.BarStaticItem statusBarFullName;
         public DevExpress.XtraBars.BarStaticItem statusBarRole;
         private DevExpress.XtraBars.BarButtonItem barButtonLogout;
-        private DevExpress.XtraBars.BarButtonItem barButtonClass;
+        private DevExpress.XtraBars.BarButtonItem barButtonLop;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;

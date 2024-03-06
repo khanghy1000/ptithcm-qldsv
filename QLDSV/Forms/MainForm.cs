@@ -28,7 +28,7 @@ namespace QLDSV.Forms {
             Program.LoginForm.Show();
         }
 
-        private void barButtonClass_ItemClick(object sender, ItemClickEventArgs e) {
+        private void barButtonLop_ItemClick(object sender, ItemClickEventArgs e) {
             Form form = CheckExists(typeof(LopForm));
             if (form != null) form.Activate();
             else {

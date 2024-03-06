@@ -45,3 +45,29 @@ BEGIN
                                                           WHERE NAME = @username)))
         END
 END
+GO
+
+ALTER PROCEDURE sp_get_ma_khoa
+AS
+BEGIN
+    SELECT MAKHOA FROM KHOA
+END
+GO
+
+ALTER PROC sp_check_ma_lop @ma_lop NCHAR(10)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM LOP WHERE LOP.MALOP = @ma_lop)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    IF EXISTS(SELECT * FROM LINK1.QLDSV_TC.dbo.LOP AS LOP WHERE LOP.MALOP = @ma_lop)
+        BEGIN
+            SELECT 2 AS result
+            RETURN
+        END
+    SELECT 0 AS result
+    RETURN
+END
