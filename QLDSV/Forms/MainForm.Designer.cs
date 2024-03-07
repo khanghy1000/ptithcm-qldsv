@@ -56,7 +56,7 @@
             this.barButtonLogout,
             this.barButtonLop});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 550;
@@ -64,7 +64,7 @@
             this.ribbonPage1,
             this.ribbonPage2,
             this.ribbonPageSystem});
-            this.ribbonControl1.Size = new System.Drawing.Size(1573, 203);
+            this.ribbonControl1.Size = new System.Drawing.Size(1438, 203);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // statusBarUsername
@@ -147,11 +147,11 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarUsername);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarFullName);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarRole);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 851);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 663);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1573, 30);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1438, 30);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -161,12 +161,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1573, 881);
+            this.ClientSize = new System.Drawing.Size(1438, 693);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MainForm";
             this.Ribbon = this.ribbonControl1;
             this.StatusBar = this.ribbonStatusBar1;

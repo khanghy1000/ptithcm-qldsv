@@ -49,7 +49,7 @@
             this.labelTitle.Size = new System.Drawing.Size(181, 40);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Đăng nhập";
-            //
+            // 
             // labelUsername
             // 
             this.labelUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F);

@@ -52,10 +52,10 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1423, 30);
+            this.barDockControlRight.Location = new System.Drawing.Point(1424, 30);
             this.barDockControlRight.Manager = null;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 644);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 639);
             // 
             // barManager1
             // 
@@ -180,15 +180,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1423, 30);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1424, 30);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 674);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 669);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1423, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1424, 0);
             // 
             // barDockControlLeft
             // 
@@ -196,15 +198,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 644);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 639);
             // 
             // barDockControl1
             // 
             this.barDockControl1.CausesValidation = false;
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl1.Location = new System.Drawing.Point(1423, 30);
+            this.barDockControl1.Location = new System.Drawing.Point(1424, 30);
             this.barDockControl1.Manager = this.barManager1;
-            this.barDockControl1.Size = new System.Drawing.Size(0, 644);
+            this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControl1.Size = new System.Drawing.Size(0, 639);
             // 
             // panelControl1
             // 
@@ -212,8 +216,9 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1423, 43);
+            this.panelControl1.Size = new System.Drawing.Size(1424, 48);
             this.panelControl1.TabIndex = 5;
             // 
             // comboBoxKhoa
@@ -221,9 +226,10 @@
             this.comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxKhoa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKhoa.FormattingEnabled = true;
-            this.comboBoxKhoa.Location = new System.Drawing.Point(84, 7);
+            this.comboBoxKhoa.Location = new System.Drawing.Point(96, 9);
+            this.comboBoxKhoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxKhoa.Name = "comboBoxKhoa";
-            this.comboBoxKhoa.Size = new System.Drawing.Size(330, 29);
+            this.comboBoxKhoa.Size = new System.Drawing.Size(377, 29);
             this.comboBoxKhoa.TabIndex = 1;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
             // 
@@ -231,7 +237,8 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(29, 10);
+            this.labelControl1.Location = new System.Drawing.Point(33, 12);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(37, 21);
             this.labelControl1.TabIndex = 0;
@@ -239,16 +246,17 @@
             // 
             // TemplateForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1423, 674);
+            this.ClientSize = new System.Drawing.Size(1424, 669);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControl1);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TemplateForm";
             this.Text = "Form";
             this.Load += new System.EventHandler(this.TemplateForm_Load);
