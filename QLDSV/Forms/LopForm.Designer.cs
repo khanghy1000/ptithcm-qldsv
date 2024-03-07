@@ -78,7 +78,7 @@
             this.barDockControl5 = new DevExpress.XtraBars.BarDockControl();
             this.SINHVIENTableAdapter = new QLDSV.subscriberDataSetTableAdapters.SINHVIENTableAdapter();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
+            this.panelSinhVien = new DevExpress.XtraEditors.PanelControl();
             this.panelLopInput = new DevExpress.XtraEditors.PanelControl();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
@@ -101,8 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
-            this.panelControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelSinhVien)).BeginInit();
+            this.panelSinhVien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelLopInput)).BeginInit();
             this.panelLopInput.SuspendLayout();
             this.SuspendLayout();
@@ -624,7 +624,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.panelControl5);
+            this.groupControl1.Controls.Add(this.panelSinhVien);
             this.groupControl1.Controls.Add(this.panelLopInput);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 393);
@@ -634,16 +634,16 @@
             this.groupControl1.TabIndex = 18;
             this.groupControl1.Text = "Lớp";
             // 
-            // panelControl5
+            // panelSinhVien
             // 
-            this.panelControl5.Controls.Add(this.SINHVIENGridControl);
-            this.panelControl5.Controls.Add(this.standaloneBarDockControl1);
-            this.panelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl5.Location = new System.Drawing.Point(383, 28);
-            this.panelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1032, 256);
-            this.panelControl5.TabIndex = 1;
+            this.panelSinhVien.Controls.Add(this.SINHVIENGridControl);
+            this.panelSinhVien.Controls.Add(this.standaloneBarDockControl1);
+            this.panelSinhVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSinhVien.Location = new System.Drawing.Point(383, 28);
+            this.panelSinhVien.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelSinhVien.Name = "panelSinhVien";
+            this.panelSinhVien.Size = new System.Drawing.Size(1032, 256);
+            this.panelSinhVien.TabIndex = 1;
             // 
             // panelLopInput
             // 
@@ -703,8 +703,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
-            this.panelControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelSinhVien)).EndInit();
+            this.panelSinhVien.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelLopInput)).EndInit();
             this.panelLopInput.ResumeLayout(false);
             this.panelLopInput.PerformLayout();
@@ -764,7 +764,7 @@
         private DevExpress.XtraGrid.GridControl SINHVIENGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl5;
+        private DevExpress.XtraEditors.PanelControl panelSinhVien;
         private DevExpress.XtraEditors.PanelControl panelLopInput;
     }
 }

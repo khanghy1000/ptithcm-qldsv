@@ -136,9 +136,7 @@ namespace QLDSV.Forms {
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             LOPGridControl.Enabled = false;
             comboBoxKhoa.Enabled = false;
-            SINHVIENGridControl.Enabled = false;
-            btnSvSave.Enabled =
-                btnSvDelete.Enabled = btnSvEdit.Enabled = btnSvSave.Enabled = btnSvCancel.Enabled = false;
+            panelSinhVien.Enabled = false;
         }
 
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e) {
@@ -173,9 +171,7 @@ namespace QLDSV.Forms {
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             LOPGridControl.Enabled = false;
             comboBoxKhoa.Enabled = false;
-            SINHVIENGridControl.Enabled = false;
-            btnSvSave.Enabled =
-                btnSvDelete.Enabled = btnSvEdit.Enabled = btnSvSave.Enabled = btnSvCancel.Enabled = false;
+            panelSinhVien.Enabled = false;
         }
 
         private void btnSave_ItemClick(object sender, ItemClickEventArgs e) {
@@ -195,9 +191,7 @@ namespace QLDSV.Forms {
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
                 LOPGridControl.Enabled = true;
                 comboBoxKhoa.Enabled = true;
-                SINHVIENGridControl.Enabled = true;
-                btnSvSave.Enabled =
-                    btnSvDelete.Enabled = btnSvEdit.Enabled = btnSvSave.Enabled = btnSvCancel.Enabled = true;
+                panelSinhVien.Enabled = true;
             }
         }
 
@@ -214,9 +208,7 @@ namespace QLDSV.Forms {
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
             LOPGridControl.Enabled = true;
             comboBoxKhoa.Enabled = true;
-            SINHVIENGridControl.Enabled = true;
-            btnSvSave.Enabled =
-                btnSvDelete.Enabled = btnSvEdit.Enabled = btnSvSave.Enabled = btnSvCancel.Enabled = true;
+            panelSinhVien.Enabled = true;
         }
 
         private void btnUndo_ItemClick(object sender, ItemClickEventArgs e) {
