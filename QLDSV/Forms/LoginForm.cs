@@ -44,8 +44,8 @@ namespace QLDSV.Forms {
             if (checkIsSinhVien.Checked) {
                 Database.LoginName = Database.SinhVienLoginName;
                 Database.LoginPassword = Database.SinhVienLoginPassword;
-                Database.MSSV = textUsername.Text;
-                Database.SinhVienPassword = textPassword.Text;
+                Database.SinhVienInputMSSV = textUsername.Text;
+                Database.SinhVienInputPassword = textPassword.Text;
             }
 
             if (Database.Connect() == Result.Failure) {
@@ -55,16 +55,16 @@ namespace QLDSV.Forms {
             }
 
             var getUserInfoStatement = checkIsSinhVien.Checked
-                ? $"EXEC sp_get_sinh_vien_info {Database.MSSV}, {Database.SinhVienPassword}"
+                ? $"EXEC sp_get_sinh_vien_info {Database.SinhVienInputMSSV}, {Database.SinhVienInputPassword}"
                 : $"EXEC sp_get_login_info {Database.LoginName}";
 
             Database.DataReader = Database.ExecSqlDataReader(getUserInfoStatement);
 
             if (Database.DataReader == null) return;
 
-            Database.SelectedKhoaIndex = comboBoxKhoa.SelectedIndex;
-            Database.UserLoginName = Database.LoginName;
-            Database.UserLoginPassword = Database.LoginPassword;
+            Database.InitialSelectedKhoaIndex = comboBoxKhoa.SelectedIndex;
+            Database.UserInputLoginName = Database.LoginName;
+            Database.UserInputLoginPassword = Database.LoginPassword;
 
             Database.DataReader.Read();
             try {
@@ -109,6 +109,9 @@ namespace QLDSV.Forms {
             comboBoxKhoa.SelectedIndex = 0;
 
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
+
+            textUsername.Text = "kt";
+            textPassword.Text = "1";
         }
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {
@@ -120,7 +123,7 @@ namespace QLDSV.Forms {
         }
 
         public void ResetForm() {
-            comboBoxKhoa.SelectedIndex = Database.SelectedKhoaIndex;
+            comboBoxKhoa.SelectedIndex = Database.InitialSelectedKhoaIndex;
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
             textUsername.Text = "";
             textPassword.Text = "";

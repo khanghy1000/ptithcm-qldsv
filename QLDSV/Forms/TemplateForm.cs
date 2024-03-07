@@ -16,7 +16,7 @@ namespace QLDSV.Forms {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.SelectedKhoaIndex;
+            comboBoxKhoa.SelectedIndex = Database.InitialSelectedKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
         }
@@ -26,13 +26,13 @@ namespace QLDSV.Forms {
 
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
 
-            if (comboBoxKhoa.SelectedIndex != Database.SelectedKhoaIndex) {
+            if (comboBoxKhoa.SelectedIndex != Database.InitialSelectedKhoaIndex) {
                 Database.LoginName = Database.RemoteLoginName;
                 Database.LoginPassword = Database.RemoteLoginPassword;
             }
             else {
-                Database.LoginName = Database.UserLoginName;
-                Database.LoginPassword = Database.UserLoginPassword;
+                Database.LoginName = Database.UserInputLoginName;
+                Database.LoginPassword = Database.UserInputLoginPassword;
             }
 
             if (Database.Connect() == Result.Failure) {

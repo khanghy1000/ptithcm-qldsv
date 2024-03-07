@@ -25,8 +25,8 @@ namespace QLDSV {
         public static string RemoteLoginPassword = "1";
 
         // Login name va password ma user nhap o login form
-        public static string UserLoginName = "";
-        public static string UserLoginPassword = "";
+        public static string UserInputLoginName = "";
+        public static string UserInputLoginPassword = "";
 
         // Show thong tin o status bar cua main form
         public static string Username = "";
@@ -34,15 +34,15 @@ namespace QLDSV {
         public static string UserFullName = "";
 
         // Index comboKhoa ma user da select o login form
-        public static int SelectedKhoaIndex = 0;
+        public static int InitialSelectedKhoaIndex = 0;
 
         // Tai khoan helper
         public static string SinhVienLoginName = "sinhvien";
         public static string SinhVienLoginPassword = "1";
 
         // mssv + pass cua sinh vien tu input
-        public static string MSSV = "";
-        public static string SinhVienPassword = "";
+        public static string SinhVienInputMSSV = "";
+        public static string SinhVienInputPassword = "";
 
         // giữ bdsPM khi đăng nhập
         public static BindingSource BindingSourcePhanManh = new BindingSource();
