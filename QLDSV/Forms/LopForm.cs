@@ -7,7 +7,9 @@ using DevExpress.XtraEditors;
 namespace QLDSV.Forms {
     public partial class LopForm : XtraForm {
         private string _maKhoa = "";
-        private int _cursorPosision = 0;
+        private int _cursorPosition = 0;
+        private FormState _lopFormState = FormState.None;
+        private string _maLopBeforeEditing = "";
 
 
         public LopForm() {
@@ -48,34 +50,36 @@ namespace QLDSV.Forms {
                 return Result.Failure;
             }
 
-            var checkMaLopStatement = $"EXEC sp_check_ma_lop {MALOPTextEdit.Text.Trim()}";
+            if ((_lopFormState == FormState.Adding) ||
+                (_lopFormState == FormState.Editing && MALOPTextEdit.Text.Trim() != _maLopBeforeEditing)) {
+                var checkMaLopStatement = $"EXEC sp_check_ma_lop {MALOPTextEdit.Text.Trim()}";
+                Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
 
-            Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
-
-            if (Database.DataReader == null) {
-                MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
-                return Result.Failure;
-            }
-
-            Database.DataReader.Read();
-            try {
-                var result = Database.DataReader.GetInt32(0);
-                Database.DataReader.Close();
-
-                if (result == 1) {
-                    MessageBox.Show("Mã lớp đã tồn tại.\nVui lòng nhập mã khác.", "Lỗi", MessageBoxButtons.OK);
+                if (Database.DataReader == null) {
+                    MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
                     return Result.Failure;
                 }
 
-                if (result == 2) {
-                    MessageBox.Show("Mã lớp đã tồn tại ở khoa khác.\nVui lòng nhập mã khác.", "Lỗi",
-                        MessageBoxButtons.OK);
+                Database.DataReader.Read();
+                try {
+                    var result = Database.DataReader.GetInt32(0);
+                    Database.DataReader.Close();
+
+                    if (result == 1) {
+                        MessageBox.Show("Mã lớp đã tồn tại.\nVui lòng nhập mã khác.", "Lỗi", MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+
+                    if (result == 2) {
+                        MessageBox.Show("Mã lớp đã tồn tại ở khoa khác.\nVui lòng nhập mã khác.", "Lỗi",
+                            MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+                }
+                catch {
+                    MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
                     return Result.Failure;
                 }
-            }
-            catch {
-                MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
-                return Result.Failure;
             }
 
             return Result.Success;
@@ -126,8 +130,9 @@ namespace QLDSV.Forms {
         }
 
         private void btnAdd_ItemClick(object sender, ItemClickEventArgs e) {
-            _cursorPosision = LOPBindingSource.Position;
+            _cursorPosition = LOPBindingSource.Position;
             LOPBindingSource.AddNew();
+            _lopFormState = FormState.Adding;
             MAKHOATextEdit.Text = _maKhoa;
 
             btnSave.Enabled = btnCancel.Enabled = true;
@@ -150,7 +155,6 @@ namespace QLDSV.Forms {
             if (MessageBox.Show($"Bạn chắc chắn muốn xóa lớp có mã {maLop}?", "Xác nhận", MessageBoxButtons.OKCancel) ==
                 DialogResult.OK) {
                 try {
-                    maLop = ((DataRowView)LOPBindingSource[LOPBindingSource.Position])["MALOP"].ToString();
                     LOPBindingSource.RemoveCurrent();
                     LOPTableAdapter.Update(subscriberDataSet.LOP);
                 }
@@ -163,7 +167,9 @@ namespace QLDSV.Forms {
         }
 
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e) {
-            _cursorPosision = LOPBindingSource.Position;
+            _cursorPosition = LOPBindingSource.Position;
+            _lopFormState = FormState.Editing;
+            _maLopBeforeEditing = MALOPTextEdit.Text.Trim();
 
             btnSave.Enabled = btnCancel.Enabled = true;
             panelLopInput.Enabled = true;
@@ -185,6 +191,8 @@ namespace QLDSV.Forms {
                     return;
                 }
 
+                _lopFormState = FormState.None;
+
                 btnSave.Enabled = btnCancel.Enabled = false;
                 panelLopInput.Enabled = false;
 
@@ -197,10 +205,12 @@ namespace QLDSV.Forms {
 
         private void btnCancel_ItemClick(object sender, ItemClickEventArgs e) {
             LOPBindingSource.CancelEdit();
-            LOPBindingSource.Position = _cursorPosision;
+            LOPBindingSource.Position = _cursorPosition;
 
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+
+            _lopFormState = FormState.None;
 
             btnSave.Enabled = btnCancel.Enabled = false;
             panelLopInput.Enabled = false;
