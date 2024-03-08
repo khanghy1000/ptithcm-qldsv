@@ -67,7 +67,7 @@
             this.MALOPTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.barManager2 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
-            this.BtnSvAdd = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSvAdd = new DevExpress.XtraBars.BarButtonItem();
             this.btnSvDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btnSvEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btnSvSave = new DevExpress.XtraBars.BarButtonItem();
@@ -517,7 +517,7 @@
             this.barManager2.DockControls.Add(this.barDockControl5);
             this.barManager2.Form = this;
             this.barManager2.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.BtnSvAdd,
+            this.btnSvAdd,
             this.btnSvDelete,
             this.btnSvEdit,
             this.btnSvSave,
@@ -531,7 +531,7 @@
             this.bar2.DockRow = 0;
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.BtnSvAdd),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnSvAdd),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSvDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSvEdit),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSvSave),
@@ -540,13 +540,13 @@
             this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl1;
             this.bar2.Text = "Tools";
             // 
-            // BtnSvAdd
+            // btnSvAdd
             // 
-            this.BtnSvAdd.Caption = "Thêm";
-            this.BtnSvAdd.Id = 0;
-            this.BtnSvAdd.ImageOptions.Image = global::QLDSV.Properties.Resources.Add;
-            this.BtnSvAdd.Name = "BtnSvAdd";
-            this.BtnSvAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnSvAdd.Caption = "Thêm";
+            this.btnSvAdd.Id = 0;
+            this.btnSvAdd.ImageOptions.Image = global::QLDSV.Properties.Resources.Add;
+            this.btnSvAdd.Name = "btnSvAdd";
+            this.btnSvAdd.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
             // btnSvDelete
             // 
@@ -751,7 +751,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControl4;
         private DevExpress.XtraBars.BarManager barManager2;
         private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.BarButtonItem BtnSvAdd;
+        private DevExpress.XtraBars.BarButtonItem btnSvAdd;
         private DevExpress.XtraBars.BarButtonItem btnSvDelete;
         private DevExpress.XtraBars.BarButtonItem btnSvEdit;
         private DevExpress.XtraBars.BarButtonItem btnSvSave;
