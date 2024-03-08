@@ -71,3 +71,23 @@ BEGIN
     SELECT 0 AS result
     RETURN
 END
+GO
+
+ALTER PROC sp_check_ma_sinh_vien @ma_sinh_vien NCHAR(10)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM SINHVIEN WHERE SINHVIEN.MASV = @ma_sinh_vien)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    IF EXISTS(SELECT * FROM LINK1.QLDSV_TC.dbo.SINHVIEN AS SINHVIEN WHERE SINHVIEN.MASV = @ma_sinh_vien)
+        BEGIN
+            SELECT 2 AS result
+            RETURN
+        END
+    SELECT 0 AS result
+    RETURN
+END
+GO

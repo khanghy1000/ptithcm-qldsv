@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using DevExpress.Data;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 
 namespace QLDSV.Forms {
     public partial class LopForm : XtraForm {
         private string _maKhoa = "";
-        private int _cursorPosition = 0;
-        private FormState _lopFormState = FormState.None;
+        private int _LopCursorPosition = 0;
+        private int _SinhVienCursorPosition = 0;
+        private FormState _formState = FormState.None;
         private string _maLopBeforeEditing = "";
+        private string _maSinhVienBeforeEditing = "";
 
 
         public LopForm() {
@@ -50,8 +54,8 @@ namespace QLDSV.Forms {
                 return Result.Failure;
             }
 
-            if ((_lopFormState == FormState.Adding) ||
-                (_lopFormState == FormState.Editing && MALOPTextEdit.Text.Trim() != _maLopBeforeEditing)) {
+            if ((_formState == FormState.Adding) ||
+                (_formState == FormState.Editing && MALOPTextEdit.Text.Trim() != _maLopBeforeEditing)) {
                 var checkMaLopStatement = $"EXEC sp_check_ma_lop {MALOPTextEdit.Text.Trim()}";
                 Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
 
@@ -85,6 +89,68 @@ namespace QLDSV.Forms {
             return Result.Success;
         }
 
+
+        private Result CheckSinhVienInput() {
+            var dr = (DataRowView)SINHVIENBindingSource[
+                _formState == FormState.Adding ? SINHVIENBindingSource.Count - 1 : _SinhVienCursorPosition];
+
+            if (dr["MASV"].ToString().Trim() == "") {
+                MessageBox.Show("Mã sinh viên không được để trống", "Lỗi", MessageBoxButtons.OK);
+                return Result.Failure;
+            }
+
+            if (dr["HO"].ToString().Trim() == "") {
+                MessageBox.Show("Họ không được để trống", "Lỗi", MessageBoxButtons.OK);
+                return Result.Failure;
+            }
+
+            if (dr["TEN"].ToString().Trim() == "") {
+                MessageBox.Show("Tên không được để trống", "Lỗi", MessageBoxButtons.OK);
+                return Result.Failure;
+            }
+
+            if (dr["NGAYSINH"] == DBNull.Value) {
+                MessageBox.Show("Ngày sinh không được để trống", "Lỗi", MessageBoxButtons.OK);
+                return Result.Failure;
+            }
+
+
+            if ((_formState == FormState.Adding) ||
+                (_formState == FormState.Editing && dr["MASV"].ToString().Trim() != _maSinhVienBeforeEditing)) {
+                var checkMaSinhVienStatement = $"EXEC sp_check_ma_sinh_vien {dr["MASV"].ToString().Trim()}";
+                Database.DataReader = Database.ExecSqlDataReader(checkMaSinhVienStatement);
+
+                if (Database.DataReader == null) {
+                    MessageBox.Show("Lỗi kiểm tra mã sinh viên", "Lỗi", MessageBoxButtons.OK);
+                    return Result.Failure;
+                }
+
+                Database.DataReader.Read();
+                try {
+                    var result = Database.DataReader.GetInt32(0);
+                    Database.DataReader.Close();
+
+                    if (result == 1) {
+                        MessageBox.Show("Mã sinh viên đã tồn tại.\nVui lòng nhập mã khác.", "Lỗi",
+                            MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+
+                    if (result == 2) {
+                        MessageBox.Show("Mã sinh viên đã tồn tại ở khoa khác.\nVui lòng nhập mã khác.", "Lỗi",
+                            MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+                }
+                catch {
+                    MessageBox.Show("Lỗi kiểm tra mã sinh viên", "Lỗi", MessageBoxButtons.OK);
+                    return Result.Failure;
+                }
+            }
+
+            return Result.Success;
+        }
+
         private void LopForm_Load(object sender, EventArgs e) {
             subscriberDataSet.EnforceConstraints = false;
 
@@ -92,6 +158,8 @@ namespace QLDSV.Forms {
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
             SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
 
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
@@ -130,21 +198,24 @@ namespace QLDSV.Forms {
         }
 
         private void btnAdd_ItemClick(object sender, ItemClickEventArgs e) {
-            _cursorPosition = LOPBindingSource.Position;
+            _LopCursorPosition = LOPBindingSource.Position;
+            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
             LOPBindingSource.AddNew();
-            _lopFormState = FormState.Adding;
+            _formState = FormState.Adding;
             MAKHOATextEdit.Text = _maKhoa;
 
             btnSave.Enabled = btnCancel.Enabled = true;
             panelLopInput.Enabled = true;
 
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
-            LOPGridControl.Enabled = false;
+            btnAdd.Enabled = btnDelete.Enabled =
+                btnEdit.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
         }
 
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e) {
+            if (LOPBindingSource.Count <= 0) return;
+
             String maLop = ((DataRowView)LOPBindingSource[LOPBindingSource.Position])["MALOP"].ToString().Trim();
 
             if (SINHVIENBindingSource.Count > 0) {
@@ -167,15 +238,18 @@ namespace QLDSV.Forms {
         }
 
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e) {
-            _cursorPosition = LOPBindingSource.Position;
-            _lopFormState = FormState.Editing;
+            if (LOPBindingSource.Count <= 0) return;
+
+            _LopCursorPosition = LOPBindingSource.Position;
+            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            _formState = FormState.Editing;
             _maLopBeforeEditing = MALOPTextEdit.Text.Trim();
 
             btnSave.Enabled = btnCancel.Enabled = true;
             panelLopInput.Enabled = true;
 
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
-            LOPGridControl.Enabled = false;
+            btnAdd.Enabled = btnDelete.Enabled =
+                btnEdit.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
         }
@@ -185,19 +259,19 @@ namespace QLDSV.Forms {
                 try {
                     LOPBindingSource.EndEdit();
                     LOPTableAdapter.Update(subscriberDataSet.LOP);
+                    SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
                 }
                 catch (Exception ex) {
                     MessageBox.Show($"Lỗi ghi lớp\n{ex.Message}", "Lỗi", MessageBoxButtons.OK);
                     return;
                 }
 
-                _lopFormState = FormState.None;
+                _formState = FormState.None;
 
                 btnSave.Enabled = btnCancel.Enabled = false;
                 panelLopInput.Enabled = false;
 
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
-                LOPGridControl.Enabled = true;
                 comboBoxKhoa.Enabled = true;
                 panelSinhVien.Enabled = true;
             }
@@ -205,18 +279,20 @@ namespace QLDSV.Forms {
 
         private void btnCancel_ItemClick(object sender, ItemClickEventArgs e) {
             LOPBindingSource.CancelEdit();
-            LOPBindingSource.Position = _cursorPosition;
 
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
 
-            _lopFormState = FormState.None;
+            LOPBindingSource.Position = _LopCursorPosition;
+            SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+
+            _formState = FormState.None;
 
             btnSave.Enabled = btnCancel.Enabled = false;
             panelLopInput.Enabled = false;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
-            LOPGridControl.Enabled = true;
             comboBoxKhoa.Enabled = true;
             panelSinhVien.Enabled = true;
         }
@@ -227,10 +303,152 @@ namespace QLDSV.Forms {
         private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e) {
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
         }
 
         private void btnExit_ItemClick(object sender, ItemClickEventArgs e) {
             Close();
+        }
+
+        private void btnSvAdd_ItemClick(object sender, ItemClickEventArgs e) {
+            _LopCursorPosition = LOPBindingSource.Position;
+            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            subscriberDataSet.SINHVIEN.DANGHIHOCColumn.DefaultValue = false;
+            subscriberDataSet.SINHVIEN.PHAIColumn.DefaultValue = false;
+            subscriberDataSet.SINHVIEN.PASSWORDColumn.DefaultValue = "123456";
+
+            SINHVIENBindingSource.AddNew();
+            gridViewSINHVIEN.OptionsBehavior.ReadOnly = false;
+
+            var de = new RepositoryItemDateEdit();
+            de.MaxValue = DateTime.Now.AddYears(-10);
+            colNGAYSINH.ColumnEdit = de;
+
+            _formState = FormState.Adding;
+
+            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
+                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+            LOPGridControl.Enabled = false;
+            comboBoxKhoa.Enabled = false;
+            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
+            btnSvSave.Enabled = btnSvCancel.Enabled = true;
+        }
+
+        private void btnSvDelete_ItemClick(object sender, ItemClickEventArgs e) {
+            if (SINHVIENBindingSource.Count <= 0) return;
+            String maSinhVien = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position])["MASV"].ToString()
+                .Trim();
+
+            if (DANGKYBindingSource.Count > 0) {
+                MessageBox.Show($"Không thể xoá sinh viên có mã {maSinhVien} vì sinh viên đã đăng ký lớp tín chỉ.",
+                    "Lỗi", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (MessageBox.Show($"Bạn chắc chắn muốn xóa sinh viên có mã {maSinhVien}?", "Xác nhận",
+                    MessageBoxButtons.OKCancel) ==
+                DialogResult.OK) {
+                try {
+                    SINHVIENBindingSource.RemoveCurrent();
+                    SINHVIENTableAdapter.Update(subscriberDataSet.SINHVIEN);
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"Lỗi xóa sinh viên có mã {maSinhVien}\n{ex.Message}", "Lỗi", MessageBoxButtons.OK);
+                    SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+                    SINHVIENBindingSource.Position = SINHVIENBindingSource.Find("MASV", maSinhVien);
+                }
+            }
+        }
+
+        private void btnSvEdit_ItemClick(object sender, ItemClickEventArgs e) {
+            if (SINHVIENBindingSource.Count <= 0) return;
+
+            _LopCursorPosition = LOPBindingSource.Position;
+            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+
+            gridViewSINHVIEN.OptionsBehavior.ReadOnly = false;
+
+            var de = new RepositoryItemDateEdit();
+            de.MaxValue = DateTime.Now.AddYears(-10);
+            colNGAYSINH.ColumnEdit = de;
+
+            _formState = FormState.Editing;
+            _maSinhVienBeforeEditing = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position])["MASV"]
+                .ToString().Trim();
+
+            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
+                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+            LOPGridControl.Enabled = false;
+            comboBoxKhoa.Enabled = false;
+            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
+            btnSvSave.Enabled = btnSvCancel.Enabled = true;
+        }
+
+        private void btnSvSave_ItemClick(object sender, ItemClickEventArgs e) {
+            if (CheckSinhVienInput() == Result.Success) {
+                try {
+                    SINHVIENBindingSource.EndEdit();
+                    SINHVIENTableAdapter.Update(subscriberDataSet.SINHVIEN);
+                    DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"Lỗi ghi sinh viên\n{ex.Message}", "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+
+                gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
+                _formState = FormState.None;
+
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
+                    btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+                LOPGridControl.Enabled = true;
+                comboBoxKhoa.Enabled = true;
+                btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
+                btnSvSave.Enabled = btnSvCancel.Enabled = false;
+            }
+        }
+
+        private void btnSvCancel_ItemClick(object sender, ItemClickEventArgs e) {
+            SINHVIENBindingSource.CancelEdit();
+            gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
+
+            LOPTableAdapter.Fill(subscriberDataSet.LOP);
+            SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
+
+            LOPBindingSource.Position = _LopCursorPosition;
+            SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+
+            _formState = FormState.None;
+
+            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
+                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+            LOPGridControl.Enabled = true;
+            comboBoxKhoa.Enabled = true;
+            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
+            btnSvSave.Enabled = btnSvCancel.Enabled = false;
+        }
+
+        private void gridViewLOP_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (_formState == FormState.Adding) {
+                LOPBindingSource.Position = LOPBindingSource.Count - 1;
+                return;
+            }
+
+            if (_formState == FormState.Editing) {
+                LOPBindingSource.Position = _LopCursorPosition;
+            }
+        }
+
+        private void gridViewSINHVIEN_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (_formState == FormState.Adding) {
+                SINHVIENBindingSource.Position = SINHVIENBindingSource.Count - 1;
+                return;
+            }
+
+            if (_formState == FormState.Editing) {
+                SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+            }
         }
     }
 }
