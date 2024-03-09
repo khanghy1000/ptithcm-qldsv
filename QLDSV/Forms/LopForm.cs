@@ -68,7 +68,7 @@ namespace QLDSV.Forms {
 
             if ((_formState == FormState.Adding) ||
                 (_formState == FormState.Editing && MALOPTextEdit.Text.Trim() != _maLopBeforeEditing)) {
-                var checkMaLopStatement = $"EXEC sp_check_ma_lop {MALOPTextEdit.Text.Trim()}";
+                var checkMaLopStatement = $"EXEC sp_check_ma_lop N'{MALOPTextEdit.Text.Trim()}'";
                 Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
 
                 if (Database.DataReader == null) {
@@ -129,7 +129,7 @@ namespace QLDSV.Forms {
 
             if ((_formState == FormState.Adding) ||
                 (_formState == FormState.Editing && dr["MASV"].ToString().Trim() != _maSinhVienBeforeEditing)) {
-                var checkMaSinhVienStatement = $"EXEC sp_check_ma_sinh_vien {dr["MASV"].ToString().Trim()}";
+                var checkMaSinhVienStatement = $"EXEC sp_check_ma_sinh_vien N'{dr["MASV"].ToString().Trim()}'";
                 Database.DataReader = Database.ExecSqlDataReader(checkMaSinhVienStatement);
 
                 if (Database.DataReader == null) {
