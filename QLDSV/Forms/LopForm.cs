@@ -7,10 +7,10 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 
 namespace QLDSV.Forms {
-    public partial class LopForm : XtraForm {
+    public partial class LopForm : XtraForm, CustomForm {
         private string _maKhoa = "";
-        private int _LopCursorPosition = 0;
-        private int _SinhVienCursorPosition = 0;
+        private int _lopCursorPosition = 0;
+        private int _sinhVienCursorPosition = 0;
         private FormState _formState = FormState.None;
         private string _maLopBeforeEditing = "";
         private string _maSinhVienBeforeEditing = "";
@@ -92,7 +92,7 @@ namespace QLDSV.Forms {
 
         private Result CheckSinhVienInput() {
             var dr = (DataRowView)SINHVIENBindingSource[
-                _formState == FormState.Adding ? SINHVIENBindingSource.Count - 1 : _SinhVienCursorPosition];
+                _formState == FormState.Adding ? SINHVIENBindingSource.Count - 1 : _sinhVienCursorPosition];
 
             if (dr["MASV"].ToString().Trim() == "") {
                 MessageBox.Show("Mã sinh viên không được để trống", "Lỗi", MessageBoxButtons.OK);
@@ -151,6 +151,21 @@ namespace QLDSV.Forms {
             return Result.Success;
         }
 
+        public void Reload() {
+            comboBoxKhoa.SelectedIndex = Database.CurrentKhoaIndex;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
+            btnSave.Enabled = btnCancel.Enabled = false;
+            panelLopInput.Enabled = false;
+            btnAdd.Enabled = btnDelete.Enabled =
+                btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+            panelSinhVien.Enabled = true;
+
+            gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
+            LOPGridControl.Enabled = true;
+            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
+            btnSvSave.Enabled = btnSvCancel.Enabled = false;
+        }
+
         private void LopForm_Load(object sender, EventArgs e) {
             subscriberDataSet.EnforceConstraints = false;
 
@@ -164,7 +179,7 @@ namespace QLDSV.Forms {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.InitialSelectedKhoaIndex;
+            comboBoxKhoa.SelectedIndex = Database.CurrentKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
             LoadMaKhoa();
@@ -175,7 +190,7 @@ namespace QLDSV.Forms {
 
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
 
-            if (comboBoxKhoa.SelectedIndex != Database.InitialSelectedKhoaIndex) {
+            if (comboBoxKhoa.SelectedIndex != Database.InitialKhoaIndex) {
                 Database.LoginName = Database.RemoteLoginName;
                 Database.LoginPassword = Database.RemoteLoginPassword;
             }
@@ -186,20 +201,26 @@ namespace QLDSV.Forms {
 
             if (Database.Connect() == Result.Failure) {
                 MessageBox.Show("Lỗi kết nối với khoa", "Lỗi", MessageBoxButtons.OK);
+                return;
             }
-            else {
-                LOPTableAdapter.Connection.ConnectionString = Database.ConnectionString;
-                LOPTableAdapter.Fill(subscriberDataSet.LOP);
-                SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
-                SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
 
-                LoadMaKhoa();
-            }
+            Database.CurrentKhoaIndex = comboBoxKhoa.SelectedIndex;
+
+            LOPTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            LOPTableAdapter.Fill(subscriberDataSet.LOP);
+            SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
+
+            LoadMaKhoa();
+
+            Program.MainForm.ReloadMdiChildExcept(typeof(LopForm));
         }
 
         private void btnAdd_ItemClick(object sender, ItemClickEventArgs e) {
-            _LopCursorPosition = LOPBindingSource.Position;
-            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            _lopCursorPosition = LOPBindingSource.Position;
+            _sinhVienCursorPosition = SINHVIENBindingSource.Position;
             LOPBindingSource.AddNew();
             _formState = FormState.Adding;
             MAKHOATextEdit.Text = _maKhoa;
@@ -208,7 +229,7 @@ namespace QLDSV.Forms {
             panelLopInput.Enabled = true;
 
             btnAdd.Enabled = btnDelete.Enabled =
-                btnEdit.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+                btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
         }
@@ -240,8 +261,8 @@ namespace QLDSV.Forms {
         private void btnEdit_ItemClick(object sender, ItemClickEventArgs e) {
             if (LOPBindingSource.Count <= 0) return;
 
-            _LopCursorPosition = LOPBindingSource.Position;
-            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            _lopCursorPosition = LOPBindingSource.Position;
+            _sinhVienCursorPosition = SINHVIENBindingSource.Position;
             _formState = FormState.Editing;
             _maLopBeforeEditing = MALOPTextEdit.Text.Trim();
 
@@ -249,7 +270,7 @@ namespace QLDSV.Forms {
             panelLopInput.Enabled = true;
 
             btnAdd.Enabled = btnDelete.Enabled =
-                btnEdit.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+                btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
         }
@@ -272,7 +293,7 @@ namespace QLDSV.Forms {
                 panelLopInput.Enabled = false;
 
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
-                comboBoxKhoa.Enabled = true;
+                comboBoxKhoa.Enabled = Database.UserRole == "PGV";
                 panelSinhVien.Enabled = true;
             }
         }
@@ -284,8 +305,8 @@ namespace QLDSV.Forms {
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
             DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
 
-            LOPBindingSource.Position = _LopCursorPosition;
-            SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+            LOPBindingSource.Position = _lopCursorPosition;
+            SINHVIENBindingSource.Position = _sinhVienCursorPosition;
 
             _formState = FormState.None;
 
@@ -293,7 +314,7 @@ namespace QLDSV.Forms {
             panelLopInput.Enabled = false;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
-            comboBoxKhoa.Enabled = true;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             panelSinhVien.Enabled = true;
         }
 
@@ -311,8 +332,8 @@ namespace QLDSV.Forms {
         }
 
         private void btnSvAdd_ItemClick(object sender, ItemClickEventArgs e) {
-            _LopCursorPosition = LOPBindingSource.Position;
-            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            _lopCursorPosition = LOPBindingSource.Position;
+            _sinhVienCursorPosition = SINHVIENBindingSource.Position;
             subscriberDataSet.SINHVIEN.DANGHIHOCColumn.DefaultValue = false;
             subscriberDataSet.SINHVIEN.PHAIColumn.DefaultValue = false;
             subscriberDataSet.SINHVIEN.PASSWORDColumn.DefaultValue = "123456";
@@ -327,7 +348,7 @@ namespace QLDSV.Forms {
             _formState = FormState.Adding;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+                btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             LOPGridControl.Enabled = false;
             comboBoxKhoa.Enabled = false;
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
@@ -363,8 +384,8 @@ namespace QLDSV.Forms {
         private void btnSvEdit_ItemClick(object sender, ItemClickEventArgs e) {
             if (SINHVIENBindingSource.Count <= 0) return;
 
-            _LopCursorPosition = LOPBindingSource.Position;
-            _SinhVienCursorPosition = SINHVIENBindingSource.Position;
+            _lopCursorPosition = LOPBindingSource.Position;
+            _sinhVienCursorPosition = SINHVIENBindingSource.Position;
 
             gridViewSINHVIEN.OptionsBehavior.ReadOnly = false;
 
@@ -377,7 +398,7 @@ namespace QLDSV.Forms {
                 .ToString().Trim();
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
+                btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             LOPGridControl.Enabled = false;
             comboBoxKhoa.Enabled = false;
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
@@ -400,9 +421,9 @@ namespace QLDSV.Forms {
                 _formState = FormState.None;
 
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                    btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+                    btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
                 LOPGridControl.Enabled = true;
-                comboBoxKhoa.Enabled = true;
+                comboBoxKhoa.Enabled = Database.UserRole == "PGV";
                 btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
                 btnSvSave.Enabled = btnSvCancel.Enabled = false;
             }
@@ -416,15 +437,15 @@ namespace QLDSV.Forms {
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
             DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
 
-            LOPBindingSource.Position = _LopCursorPosition;
-            SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+            LOPBindingSource.Position = _lopCursorPosition;
+            SINHVIENBindingSource.Position = _sinhVienCursorPosition;
 
             _formState = FormState.None;
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                btnCancel.Enabled = btnUndo.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+                btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
             LOPGridControl.Enabled = true;
-            comboBoxKhoa.Enabled = true;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
             btnSvSave.Enabled = btnSvCancel.Enabled = false;
         }
@@ -436,7 +457,7 @@ namespace QLDSV.Forms {
             }
 
             if (_formState == FormState.Editing) {
-                LOPBindingSource.Position = _LopCursorPosition;
+                LOPBindingSource.Position = _lopCursorPosition;
             }
         }
 
@@ -447,7 +468,7 @@ namespace QLDSV.Forms {
             }
 
             if (_formState == FormState.Editing) {
-                SINHVIENBindingSource.Position = _SinhVienCursorPosition;
+                SINHVIENBindingSource.Position = _sinhVienCursorPosition;
             }
         }
     }
