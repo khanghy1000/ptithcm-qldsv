@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using DevExpress.Data;
@@ -12,9 +13,20 @@ namespace QLDSV.Forms {
         private int _lopCursorPosition = 0;
         private int _sinhVienCursorPosition = 0;
         private FormState _formState = FormState.None;
-        private string _maLopBeforeEditing = "";
-        private string _maSinhVienBeforeEditing = "";
 
+        private string _maLopBeforeEditing = "";
+        private string _tenLopBeforeEditing = "";
+        private string _khoaHocBeforeEditing = "";
+
+        private string _maSinhVienBeforeEditing = "";
+        private string _hoBeforeEditing = "";
+        private string _tenBeforeEditing = "";
+        private bool _phaiBeforeEditing = false;
+        private string _diaChiBeforeEditing = "";
+        private DateTime _ngaySinhBeforeEditing;
+        private bool _daNghiHocBeforeEditing = false;
+
+        private Stack<string> _undoStack = new Stack<string>();
 
         public LopForm() {
             InitializeComponent();
@@ -164,6 +176,9 @@ namespace QLDSV.Forms {
             LOPGridControl.Enabled = true;
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
             btnSvSave.Enabled = btnSvCancel.Enabled = false;
+
+            _undoStack = new Stack<string>();
+            btnUndo.Enabled = false;
         }
 
         private void LopForm_Load(object sender, EventArgs e) {
@@ -216,6 +231,9 @@ namespace QLDSV.Forms {
             LoadMaKhoa();
 
             Program.MainForm.ReloadMdiChildExcept(typeof(LopForm));
+
+            _undoStack = new Stack<string>();
+            btnUndo.Enabled = false;
         }
 
         private void btnAdd_ItemClick(object sender, ItemClickEventArgs e) {
@@ -232,12 +250,20 @@ namespace QLDSV.Forms {
                 btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
+
+            btnUndo.Enabled = false;
         }
 
         private void btnDelete_ItemClick(object sender, ItemClickEventArgs e) {
             if (LOPBindingSource.Count <= 0) return;
 
-            String maLop = ((DataRowView)LOPBindingSource[LOPBindingSource.Position])["MALOP"].ToString().Trim();
+            var dr = ((DataRowView)LOPBindingSource[LOPBindingSource.Position]);
+
+            var maLop = dr["MALOP"].ToString().Trim();
+            var tenLop = dr["TENLOP"].ToString().Trim();
+            var khoaHoc = dr["KHOAHOC"].ToString().Trim();
+            var maKhoa = dr["MAKHOA"].ToString().Trim();
+
 
             if (SINHVIENBindingSource.Count > 0) {
                 MessageBox.Show($"Không thể xoá lớp có mã {maLop} vì lớp đã có sinh viên", "Lỗi", MessageBoxButtons.OK);
@@ -254,7 +280,13 @@ namespace QLDSV.Forms {
                     MessageBox.Show($"Lỗi xóa lớp có mã {maLop}\n{ex.Message}", "Lỗi", MessageBoxButtons.OK);
                     LOPTableAdapter.Fill(subscriberDataSet.LOP);
                     LOPBindingSource.Position = LOPBindingSource.Find("MALOP", maLop);
+                    return;
                 }
+
+                var undoStatement =
+                    $"INSERT INTO LOP (MALOP, TENLOP, KHOAHOC, MAKHOA) VALUES (N'{maLop}', N'{tenLop}', N'{khoaHoc}', N'{maKhoa}')";
+                _undoStack.Push(undoStatement);
+                btnUndo.Enabled = true;
             }
         }
 
@@ -264,7 +296,10 @@ namespace QLDSV.Forms {
             _lopCursorPosition = LOPBindingSource.Position;
             _sinhVienCursorPosition = SINHVIENBindingSource.Position;
             _formState = FormState.Editing;
+
             _maLopBeforeEditing = MALOPTextEdit.Text.Trim();
+            _tenLopBeforeEditing = TENLOPTextEdit.Text.Trim();
+            _khoaHocBeforeEditing = KHOAHOCTextEdit.Text.Trim();
 
             btnSave.Enabled = btnCancel.Enabled = true;
             panelLopInput.Enabled = true;
@@ -273,9 +308,12 @@ namespace QLDSV.Forms {
                 btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
             comboBoxKhoa.Enabled = false;
             panelSinhVien.Enabled = false;
+
+            btnUndo.Enabled = false;
         }
 
         private void btnSave_ItemClick(object sender, ItemClickEventArgs e) {
+            var maLop = MALOPTextEdit.Text.Trim();
             if (CheckLopInput() == Result.Success) {
                 try {
                     LOPBindingSource.EndEdit();
@@ -287,6 +325,19 @@ namespace QLDSV.Forms {
                     return;
                 }
 
+                if (_formState == FormState.Adding) {
+                    var undoStatement = $"DELETE FROM LOP WHERE MALOP=N'{maLop}'";
+                    _undoStack.Push(undoStatement);
+                }
+
+                if (_formState == FormState.Editing) {
+                    var undoStatement =
+                        $"UPDATE LOP SET MALOP=N'{_maLopBeforeEditing}', TENLOP=N'{_tenLopBeforeEditing}', KHOAHOC=N'{_khoaHocBeforeEditing}' WHERE MALOP=N'{maLop}'";
+                    _undoStack.Push(undoStatement);
+                }
+
+                btnUndo.Enabled = true;
+
                 _formState = FormState.None;
 
                 btnSave.Enabled = btnCancel.Enabled = false;
@@ -295,6 +346,8 @@ namespace QLDSV.Forms {
                 btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
                 comboBoxKhoa.Enabled = Database.UserRole == "PGV";
                 panelSinhVien.Enabled = true;
+
+                btnUndo.Enabled = _undoStack.Count > 0;
             }
         }
 
@@ -316,9 +369,21 @@ namespace QLDSV.Forms {
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             panelSinhVien.Enabled = true;
+
+            btnUndo.Enabled = _undoStack.Count > 0;
         }
 
         private void btnUndo_ItemClick(object sender, ItemClickEventArgs e) {
+            var undoStatement = _undoStack.Pop().ToString();
+            if (_undoStack.Count <= 0) btnUndo.Enabled = false;
+            Database.ExecSqlNonQuery(undoStatement);
+
+            LOPTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            LOPTableAdapter.Fill(subscriberDataSet.LOP);
+            SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
+            DANGKYTableAdapter.Connection.ConnectionString = Database.ConnectionString;
+            DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
         }
 
         private void btnRefresh_ItemClick(object sender, ItemClickEventArgs e) {
@@ -353,12 +418,23 @@ namespace QLDSV.Forms {
             comboBoxKhoa.Enabled = false;
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
             btnSvSave.Enabled = btnSvCancel.Enabled = true;
+
+            btnUndo.Enabled = false;
         }
 
         private void btnSvDelete_ItemClick(object sender, ItemClickEventArgs e) {
             if (SINHVIENBindingSource.Count <= 0) return;
-            String maSinhVien = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position])["MASV"].ToString()
-                .Trim();
+
+            var dr = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position]);
+            var maSinhVien = dr["MASV"].ToString().Trim();
+            var ho = dr["HO"].ToString().Trim();
+            var ten = dr["TEN"].ToString().Trim();
+            var phai = bool.Parse(dr["PHAI"].ToString().Trim());
+            var diaChi = dr["DIACHI"].ToString().Trim();
+            var ngaySinh = (DateTime)dr["NGAYSINH"];
+            var maLop = dr["MALOP"].ToString().Trim();
+            var daNghiHoc = bool.Parse(dr["DANGHIHOC"].ToString().Trim());
+            var password = dr["PASSWORD"].ToString().Trim();
 
             if (DANGKYBindingSource.Count > 0) {
                 MessageBox.Show($"Không thể xoá sinh viên có mã {maSinhVien} vì sinh viên đã đăng ký lớp tín chỉ.",
@@ -378,6 +454,11 @@ namespace QLDSV.Forms {
                     SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
                     SINHVIENBindingSource.Position = SINHVIENBindingSource.Find("MASV", maSinhVien);
                 }
+
+                var undoStatement =
+                    $"INSERT INTO SINHVIEN(MASV, HO, TEN, PHAI, DIACHI, NGAYSINH, MALOP, DANGHIHOC, PASSWORD) VALUES (N'{maSinhVien}', N'{ho}', N'{ten}', {(phai ? 1 : 0)}, N'{diaChi}', '{ngaySinh:yyyy-MM-dd}', N'{maLop}', {(daNghiHoc ? 1 : 0)}, N'{password}')";
+                _undoStack.Push(undoStatement);
+                btnUndo.Enabled = true;
             }
         }
 
@@ -394,8 +475,14 @@ namespace QLDSV.Forms {
             colNGAYSINH.ColumnEdit = de;
 
             _formState = FormState.Editing;
-            _maSinhVienBeforeEditing = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position])["MASV"]
-                .ToString().Trim();
+            var dr = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position]);
+            _maSinhVienBeforeEditing = dr["MASV"].ToString().Trim();
+            _hoBeforeEditing = dr["HO"].ToString().Trim();
+            _tenBeforeEditing = dr["TEN"].ToString().Trim();
+            _phaiBeforeEditing = bool.Parse(dr["PHAI"].ToString().Trim());
+            _diaChiBeforeEditing = dr["DIACHI"].ToString().Trim();
+            _ngaySinhBeforeEditing = (DateTime)dr["NGAYSINH"];
+            _daNghiHocBeforeEditing = bool.Parse(dr["DANGHIHOC"].ToString().Trim());
 
             btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
                 btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = false;
@@ -403,9 +490,12 @@ namespace QLDSV.Forms {
             comboBoxKhoa.Enabled = false;
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = false;
             btnSvSave.Enabled = btnSvCancel.Enabled = true;
+
+            btnUndo.Enabled = false;
         }
 
         private void btnSvSave_ItemClick(object sender, ItemClickEventArgs e) {
+            var maSinhVien = ((DataRowView)SINHVIENBindingSource[SINHVIENBindingSource.Position])["MASV"];
             if (CheckSinhVienInput() == Result.Success) {
                 try {
                     SINHVIENBindingSource.EndEdit();
@@ -417,6 +507,19 @@ namespace QLDSV.Forms {
                     return;
                 }
 
+                if (_formState == FormState.Adding) {
+                    var undoStatement = $"DELETE FROM SINHVIEN WHERE MASV=N'{maSinhVien}'";
+                    _undoStack.Push(undoStatement);
+                }
+
+                if (_formState == FormState.Editing) {
+                    var undoStatement =
+                        $"UPDATE SINHVIEN SET MASV=N'{_maSinhVienBeforeEditing}', HO=N'{_hoBeforeEditing}', TEN=N'{_tenBeforeEditing}', PHAI={(_phaiBeforeEditing ? 1 : 0)}, DIACHI=N'{_diaChiBeforeEditing}', NGAYSINH='{_ngaySinhBeforeEditing:yyyy-MM-dd}', DANGHIHOC={(_daNghiHocBeforeEditing ? 1 : 0)} WHERE MASV=N'{maSinhVien}'";
+                    _undoStack.Push(undoStatement);
+                }
+
+                btnUndo.Enabled = true;
+
                 gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
                 _formState = FormState.None;
 
@@ -426,6 +529,8 @@ namespace QLDSV.Forms {
                 comboBoxKhoa.Enabled = Database.UserRole == "PGV";
                 btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
                 btnSvSave.Enabled = btnSvCancel.Enabled = false;
+
+                btnUndo.Enabled = _undoStack.Count > 0;
             }
         }
 
@@ -448,6 +553,8 @@ namespace QLDSV.Forms {
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
             btnSvSave.Enabled = btnSvCancel.Enabled = false;
+
+            btnUndo.Enabled = _undoStack.Count > 0;
         }
 
         private void gridViewLOP_SelectionChanged(object sender, SelectionChangedEventArgs e) {
