@@ -523,8 +523,8 @@ namespace QLDSV.Forms {
                 gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
                 _formState = FormState.None;
 
-                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                    btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+                btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+                btnSave.Enabled = btnCancel.Enabled = false;
                 LOPGridControl.Enabled = true;
                 comboBoxKhoa.Enabled = Database.UserRole == "PGV";
                 btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
@@ -547,8 +547,8 @@ namespace QLDSV.Forms {
 
             _formState = FormState.None;
 
-            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnSave.Enabled =
-                btnCancel.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+            btnAdd.Enabled = btnDelete.Enabled = btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+            btnSave.Enabled = btnCancel.Enabled = false;
             LOPGridControl.Enabled = true;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
