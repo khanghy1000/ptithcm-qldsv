@@ -14,13 +14,6 @@ namespace QLDSV.Forms {
             return null;
         }
 
-        public void ReloadMdiChildExcept(Type ftype) {
-            foreach (var form in this.MdiChildren ) {
-                if (form.GetType() == ftype) continue;
-                ((CustomForm)form).Reload();
-            }
-        }
-
         public MainForm() {
             InitializeComponent();
         }

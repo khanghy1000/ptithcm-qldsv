@@ -73,7 +73,6 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="FormState.cs" />
-    <Compile Include="Forms\CustomForm.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

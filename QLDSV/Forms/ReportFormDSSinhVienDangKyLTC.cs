@@ -6,12 +6,9 @@ using DevExpress.XtraReports.UI;
 using QLDSV.Forms.Reports;
 
 namespace QLDSV.Forms {
-    public partial class ReportFormDSSinhVienDangKyLTC : XtraForm, CustomForm {
+    public partial class ReportFormDSSinhVienDangKyLTC : XtraForm {
         public ReportFormDSSinhVienDangKyLTC() {
             InitializeComponent();
-        }
-
-        public void Reload() {
         }
 
         void loadNienKhoa() {
@@ -50,7 +47,6 @@ namespace QLDSV.Forms {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.CurrentKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
             loadNienKhoa();
@@ -75,11 +71,8 @@ namespace QLDSV.Forms {
                 return;
             }
 
-            Database.CurrentKhoaIndex = comboBoxKhoa.SelectedIndex;
 
             loadNienKhoa();
-
-            Program.MainForm.ReloadMdiChildExcept(typeof(ReportFormDSSinhVienDangKyLTC));
         }
 
         private void cmbNienKhoa_SelectedIndexChanged(object sender, EventArgs e) {

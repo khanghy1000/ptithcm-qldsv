@@ -41,6 +41,42 @@
             label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // hOCKYLabel
+            // 
+            hOCKYLabel.AutoSize = true;
+            hOCKYLabel.Location = new System.Drawing.Point(529, 138);
+            hOCKYLabel.Name = "hOCKYLabel";
+            hOCKYLabel.Size = new System.Drawing.Size(54, 20);
+            hOCKYLabel.TabIndex = 12;
+            hOCKYLabel.Text = "Học kỳ";
+            // 
+            // nIENKHOALabel
+            // 
+            nIENKHOALabel.AutoSize = true;
+            nIENKHOALabel.Location = new System.Drawing.Point(271, 138);
+            nIENKHOALabel.Name = "nIENKHOALabel";
+            nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
+            nIENKHOALabel.TabIndex = 11;
+            nIENKHOALabel.Text = "Niên khoá";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(533, 247);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(50, 20);
+            label1.TabIndex = 18;
+            label1.Text = "Nhóm";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(280, 193);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(67, 20);
+            label2.TabIndex = 17;
+            label2.Text = "Môn học";
+            // 
             // btnClose
             // 
             this.btnClose.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
@@ -63,15 +99,6 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // hOCKYLabel
-            // 
-            hOCKYLabel.AutoSize = true;
-            hOCKYLabel.Location = new System.Drawing.Point(529, 138);
-            hOCKYLabel.Name = "hOCKYLabel";
-            hOCKYLabel.Size = new System.Drawing.Size(54, 20);
-            hOCKYLabel.TabIndex = 12;
-            hOCKYLabel.Text = "Học kỳ";
-            // 
             // cmbHocKy
             // 
             this.cmbHocKy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -81,15 +108,6 @@
             this.cmbHocKy.Size = new System.Drawing.Size(121, 28);
             this.cmbHocKy.TabIndex = 14;
             this.cmbHocKy.SelectedIndexChanged += new System.EventHandler(this.cmbHocKy_SelectedIndexChanged);
-            // 
-            // nIENKHOALabel
-            // 
-            nIENKHOALabel.AutoSize = true;
-            nIENKHOALabel.Location = new System.Drawing.Point(271, 138);
-            nIENKHOALabel.Name = "nIENKHOALabel";
-            nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
-            nIENKHOALabel.TabIndex = 11;
-            nIENKHOALabel.Text = "Niên khoá";
             // 
             // cmbNienKhoa
             // 
@@ -123,15 +141,6 @@
             this.labelControl1.TabIndex = 9;
             this.labelControl1.Text = "Khoa";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(533, 247);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(50, 20);
-            label1.TabIndex = 18;
-            label1.Text = "Nhóm";
-            // 
             // cmbNhom
             // 
             this.cmbNhom.FormattingEnabled = true;
@@ -139,15 +148,6 @@
             this.cmbNhom.Name = "cmbNhom";
             this.cmbNhom.Size = new System.Drawing.Size(121, 28);
             this.cmbNhom.TabIndex = 20;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(280, 193);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(67, 20);
-            label2.TabIndex = 17;
-            label2.Text = "Môn học";
             // 
             // cmbMonHoc
             // 
@@ -177,7 +177,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Controls.Add(this.labelControl1);
             this.Name = "ReportFormDSSinhVienDangKyLTC";
-            this.Text = "ReportFormDSSinhVienDangKyLTC";
+            this.Text = "Report DS Sinh Viên Đăng Ký LTC";
             this.Load += new System.EventHandler(this.ReportFormDSSinhVienDangKyLTC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

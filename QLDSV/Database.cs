@@ -35,7 +35,6 @@ namespace QLDSV {
 
         // Index comboKhoa ma user da select o login form
         public static int InitialKhoaIndex = 0;
-        public static int CurrentKhoaIndex = 0;
 
         // Tai khoan helper
         public static string SinhVienLoginName = "sinhvien";

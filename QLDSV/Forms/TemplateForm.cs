@@ -4,7 +4,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 
 namespace QLDSV.Forms {
-    public partial class TemplateForm : XtraForm, CustomForm {
+    public partial class TemplateForm : XtraForm {
         private int _cursorPosision = 0;
 
 
@@ -12,15 +12,10 @@ namespace QLDSV.Forms {
             InitializeComponent();
         }
 
-        public void Reload() {
-
-        }
-
         private void TemplateForm_Load(object sender, EventArgs e) {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.InitialKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
         }

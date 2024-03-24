@@ -9,7 +9,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 
 namespace QLDSV.Forms {
-    public partial class LopForm : XtraForm, CustomForm {
+    public partial class LopForm : XtraForm {
         private string _maKhoa = "";
         private int _lopCursorPosition = 0;
         private int _sinhVienCursorPosition = 0;
@@ -170,24 +170,6 @@ namespace QLDSV.Forms {
             return Result.Success;
         }
 
-        public void Reload() {
-            comboBoxKhoa.SelectedIndex = Database.CurrentKhoaIndex;
-            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
-            btnSave.Enabled = btnCancel.Enabled = false;
-            panelLopInput.Enabled = false;
-            btnAdd.Enabled = btnDelete.Enabled =
-                btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
-            panelSinhVien.Enabled = true;
-
-            gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
-            LOPGridControl.Enabled = true;
-            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
-            btnSvSave.Enabled = btnSvCancel.Enabled = false;
-
-            _undoStack = new Stack<string>();
-            btnUndo.Enabled = false;
-        }
-
         private void LopForm_Load(object sender, EventArgs e) {
             subscriberDataSet.EnforceConstraints = false;
 
@@ -201,7 +183,6 @@ namespace QLDSV.Forms {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.CurrentKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
             LoadMaKhoa();
@@ -226,8 +207,6 @@ namespace QLDSV.Forms {
                 return;
             }
 
-            Database.CurrentKhoaIndex = comboBoxKhoa.SelectedIndex;
-
             LOPTableAdapter.Connection.ConnectionString = Database.ConnectionString;
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
             SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
@@ -237,7 +216,19 @@ namespace QLDSV.Forms {
 
             LoadMaKhoa();
 
-            Program.MainForm.ReloadMdiChildExcept(typeof(LopForm));
+            // Reset buttons
+            _formState = FormState.None;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
+            btnSave.Enabled = btnCancel.Enabled = false;
+            panelLopInput.Enabled = false;
+            btnAdd.Enabled = btnDelete.Enabled =
+                btnEdit.Enabled = btnRefresh.Enabled = btnExit.Enabled = true;
+            panelSinhVien.Enabled = true;
+
+            gridViewSINHVIEN.OptionsBehavior.ReadOnly = true;
+            LOPGridControl.Enabled = true;
+            btnSvAdd.Enabled = btnSvDelete.Enabled = btnSvEdit.Enabled = true;
+            btnSvSave.Enabled = btnSvCancel.Enabled = false;
 
             _undoStack = new Stack<string>();
             btnUndo.Enabled = false;
