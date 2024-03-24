@@ -28,6 +28,7 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportDSLopTinChi));
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
@@ -51,7 +52,6 @@
             this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailCaption1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -60,6 +60,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "QLDSV.Properties.Settings.QLDSV_TCConnectionString";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "sp_report_ds_lop_tin_chi";
+            queryParameter1.Name = "@nien_khoa";
+            queryParameter1.Type = typeof(string);
+            queryParameter1.ValueInfo = "2021-2022";
+            queryParameter2.Name = "@hoc_ky";
+            queryParameter2.Type = typeof(int);
+            queryParameter2.ValueInfo = "1";
+            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2});
+            storedProcQuery1.StoredProcName = "sp_report_ds_lop_tin_chi";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // TopMargin
             // 
@@ -94,7 +113,7 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.labelNienKhoaHocKy,
             this.labelKhoa});
-            this.ReportHeader.HeightF = 75.83334F;
+            this.ReportHeader.HeightF = 73.33334F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // labelNienKhoaHocKy
@@ -104,7 +123,7 @@
             this.labelNienKhoaHocKy.Multiline = true;
             this.labelNienKhoaHocKy.Name = "labelNienKhoaHocKy";
             this.labelNienKhoaHocKy.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.labelNienKhoaHocKy.SizeF = new System.Drawing.SizeF(650F, 30.5F);
+            this.labelNienKhoaHocKy.SizeF = new System.Drawing.SizeF(650F, 23F);
             this.labelNienKhoaHocKy.StylePriority.UseFont = false;
             this.labelNienKhoaHocKy.StylePriority.UseTextAlignment = false;
             this.labelNienKhoaHocKy.Text = "Niên khoá: ...-... Học kỳ: ...";
@@ -117,7 +136,7 @@
             this.labelKhoa.SizeF = new System.Drawing.SizeF(650F, 24.19433F);
             this.labelKhoa.StyleName = "Title";
             this.labelKhoa.StylePriority.UseTextAlignment = false;
-            this.labelKhoa.Text = "Khoa";
+            this.labelKhoa.Text = "Khoa...";
             this.labelKhoa.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // GroupHeader1
@@ -159,8 +178,8 @@
             this.tableCell1.StylePriority.UseBorderColor = false;
             this.tableCell1.StylePriority.UseBorders = false;
             this.tableCell1.StylePriority.UseBorderWidth = false;
-            this.tableCell1.Text = "ten mh";
-            this.tableCell1.Weight = 0.1282223393366887D;
+            this.tableCell1.Text = "TENMH";
+            this.tableCell1.Weight = 0.29836597332775694D;
             // 
             // tableCell2
             // 
@@ -175,9 +194,9 @@
             this.tableCell2.StylePriority.UseBorders = false;
             this.tableCell2.StylePriority.UseBorderWidth = false;
             this.tableCell2.StylePriority.UseTextAlignment = false;
-            this.tableCell2.Text = "nhom";
+            this.tableCell2.Text = "NHOM";
             this.tableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell2.Weight = 0.1123998553936298D;
+            this.tableCell2.Weight = 0.087376508979872147D;
             // 
             // tableCell3
             // 
@@ -191,8 +210,8 @@
             this.tableCell3.StylePriority.UseBorderColor = false;
             this.tableCell3.StylePriority.UseBorders = false;
             this.tableCell3.StylePriority.UseBorderWidth = false;
-            this.tableCell3.Text = "ho ten giang vien";
-            this.tableCell3.Weight = 0.26890209491436295D;
+            this.tableCell3.Text = "HOTENGV";
+            this.tableCell3.Weight = 0.269085717842659D;
             // 
             // tableCell4
             // 
@@ -207,9 +226,9 @@
             this.tableCell4.StylePriority.UseBorders = false;
             this.tableCell4.StylePriority.UseBorderWidth = false;
             this.tableCell4.StylePriority.UseTextAlignment = false;
-            this.tableCell4.Text = "so sv toi thieu";
+            this.tableCell4.Text = "SOSVTOITHIEU";
             this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell4.Weight = 0.22624114990234376D;
+            this.tableCell4.Weight = 0.16379098635641554D;
             // 
             // tableCell5
             // 
@@ -224,9 +243,9 @@
             this.tableCell5.StylePriority.UseBorders = false;
             this.tableCell5.StylePriority.UseBorderWidth = false;
             this.tableCell5.StylePriority.UseTextAlignment = false;
-            this.tableCell5.Text = "so sv da dang ky";
+            this.tableCell5.Text = "SOSVDADANGKY";
             this.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell5.Weight = 0.26423454871544472D;
+            this.tableCell5.Weight = 0.18138082523082644D;
             // 
             // Detail
             // 
@@ -243,7 +262,6 @@
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
             this.table2.SizeF = new System.Drawing.SizeF(650F, 25F);
-            this.table2.StylePriority.UseBorders = false;
             // 
             // tableRow2
             // 
@@ -263,13 +281,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell6.BorderWidth = 1F;
             this.tableCell6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ten_mh]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TENMH]")});
             this.tableCell6.Name = "tableCell6";
             this.tableCell6.StyleName = "DetailData1";
             this.tableCell6.StylePriority.UseBorderColor = false;
             this.tableCell6.StylePriority.UseBorders = false;
             this.tableCell6.StylePriority.UseBorderWidth = false;
-            this.tableCell6.Weight = 0.1282223393366887D;
+            this.tableCell6.Weight = 0.29836596965601714D;
             // 
             // tableCell7
             // 
@@ -278,7 +296,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell7.BorderWidth = 1F;
             this.tableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[nhom]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NHOM]")});
             this.tableCell7.Name = "tableCell7";
             this.tableCell7.StyleName = "DetailData1";
             this.tableCell7.StylePriority.UseBorderColor = false;
@@ -286,7 +304,7 @@
             this.tableCell7.StylePriority.UseBorderWidth = false;
             this.tableCell7.StylePriority.UseTextAlignment = false;
             this.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell7.Weight = 0.1123998553936298D;
+            this.tableCell7.Weight = 0.087376509912856226D;
             // 
             // tableCell8
             // 
@@ -295,13 +313,13 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell8.BorderWidth = 1F;
             this.tableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ho_ten_giang_vien]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[HOTENGV]")});
             this.tableCell8.Name = "tableCell8";
             this.tableCell8.StyleName = "DetailData1";
             this.tableCell8.StylePriority.UseBorderColor = false;
             this.tableCell8.StylePriority.UseBorders = false;
             this.tableCell8.StylePriority.UseBorderWidth = false;
-            this.tableCell8.Weight = 0.26890209491436295D;
+            this.tableCell8.Weight = 0.26908571582621121D;
             // 
             // tableCell9
             // 
@@ -310,7 +328,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell9.BorderWidth = 1F;
             this.tableCell9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[so_sv_toi_thieu]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SOSVTOITHIEU]")});
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.StyleName = "DetailData1";
             this.tableCell9.StylePriority.UseBorderColor = false;
@@ -318,7 +336,7 @@
             this.tableCell9.StylePriority.UseBorderWidth = false;
             this.tableCell9.StylePriority.UseTextAlignment = false;
             this.tableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell9.Weight = 0.22624114990234376D;
+            this.tableCell9.Weight = 0.16379098855344021D;
             // 
             // tableCell10
             // 
@@ -327,7 +345,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableCell10.BorderWidth = 1F;
             this.tableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[so_sv_da_dang_ky]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SOSVDADANGKY]")});
             this.tableCell10.Name = "tableCell10";
             this.tableCell10.StyleName = "DetailData1";
             this.tableCell10.StylePriority.UseBorderColor = false;
@@ -335,26 +353,7 @@
             this.tableCell10.StylePriority.UseBorderWidth = false;
             this.tableCell10.StylePriority.UseTextAlignment = false;
             this.tableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell10.Weight = 0.2642345252403846D;
-            // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionName = "QLDSV.Properties.Settings.QLDSV_TCConnectionString";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "sp_report_ds_lop_tin_chi";
-            queryParameter1.Name = "@nien_khoa";
-            queryParameter1.Type = typeof(string);
-            queryParameter1.ValueInfo = "2021-2022";
-            queryParameter2.Name = "@hoc_ky";
-            queryParameter2.Type = typeof(int);
-            queryParameter2.ValueInfo = "1";
-            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
-            queryParameter1,
-            queryParameter2});
-            storedProcQuery1.StoredProcName = "sp_report_ds_lop_tin_chi";
-            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
-            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            this.tableCell10.Weight = 0.18138080431394521D;
             // 
             // Title
             // 
@@ -436,7 +435,7 @@
         }
 
         #endregion
-
+        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.XRPageInfo pageInfo1;
@@ -458,7 +457,6 @@
         private DevExpress.XtraReports.UI.XRTableCell tableCell8;
         private DevExpress.XtraReports.UI.XRTableCell tableCell9;
         private DevExpress.XtraReports.UI.XRTableCell tableCell10;
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.UI.XRControlStyle Title;
         private DevExpress.XtraReports.UI.XRControlStyle DetailCaption1;
         private DevExpress.XtraReports.UI.XRControlStyle DetailData1;
