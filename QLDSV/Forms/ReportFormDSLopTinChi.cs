@@ -1,18 +1,12 @@
-﻿using DevExpress.XtraEditors;
+﻿using System;
+using System.Data;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using QLDSV.Forms.Reports;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QLDSV.Forms {
-    public partial class ReportFormDSLopTinChi : DevExpress.XtraEditors.XtraForm, CustomForm {
+    public partial class ReportFormDSLopTinChi : XtraForm, CustomForm {
         public ReportFormDSLopTinChi() {
             InitializeComponent();
         }
@@ -21,22 +15,19 @@ namespace QLDSV.Forms {
         }
 
         void loadNienKhoa() {
-
             string smt = "EXEC sp_get_nien_khoa_ltc";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbNienKhoa.DataSource = dt;
             cmbNienKhoa.DisplayMember = "NIENKHOA";
             cmbNienKhoa.ValueMember = "NIENKHOA";
-
         }
-        void loadHocKy(string nienKhoa) {
 
+        void loadHocKy(string nienKhoa) {
             string smt = $"EXEC sp_get_hoc_ky_ltc '{nienKhoa}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbHocKy.DataSource = dt;
             cmbHocKy.DisplayMember = "HOCKY";
             cmbHocKy.ValueMember = "HOCKY";
-
         }
 
         private void ReportFormDSLopTinChi_Load(object sender, EventArgs e) {
@@ -86,16 +77,16 @@ namespace QLDSV.Forms {
         private void btnPreview_Click(object sender, EventArgs e) {
             if (cmbNienKhoa.Text == "" || cmbHocKy.Text == "") {
                 MessageBox.Show("Vui lòng nhập niên khoá hoặc học kỳ", "Lỗi", MessageBoxButtons.OK);
+                return;
             }
-            else {
-                ReportDSLopTinChi report = new ReportDSLopTinChi(cmbNienKhoa.Text, int.Parse(cmbHocKy.Text));
 
-                report.labelKhoa.Text = "KHOA " + comboBoxKhoa.Text.ToUpper();
-                report.labelNienKhoaHocKy.Text = $"Niên khoá {cmbNienKhoa.Text} Học kỳ {cmbHocKy.Text}";
+            ReportDSLopTinChi report = new ReportDSLopTinChi(cmbNienKhoa.Text, int.Parse(cmbHocKy.Text));
 
-                ReportPrintTool print = new ReportPrintTool(report);
-                print.ShowPreviewDialog();
-            }
+            report.labelKhoa.Text = "KHOA " + comboBoxKhoa.Text.ToUpper();
+            report.labelNienKhoaHocKy.Text = $"Niên khoá: {cmbNienKhoa.Text} Học kỳ: {cmbHocKy.Text}";
+
+            ReportPrintTool print = new ReportPrintTool(report);
+            print.ShowPreviewDialog();
         }
     }
 }

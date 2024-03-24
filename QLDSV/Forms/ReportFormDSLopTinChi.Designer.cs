@@ -84,6 +84,7 @@
             // 
             // cmbNienKhoa
             // 
+            this.cmbNienKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNienKhoa.FormattingEnabled = true;
             this.cmbNienKhoa.Location = new System.Drawing.Point(364, 133);
             this.cmbNienKhoa.Name = "cmbNienKhoa";
@@ -93,6 +94,7 @@
             // 
             // cmbHocKy
             // 
+            this.cmbHocKy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHocKy.FormattingEnabled = true;
             this.cmbHocKy.Location = new System.Drawing.Point(595, 133);
             this.cmbHocKy.Name = "cmbHocKy";
