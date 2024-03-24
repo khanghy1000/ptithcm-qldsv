@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.Data;
 using DevExpress.XtraBars;
@@ -62,6 +63,12 @@ namespace QLDSV.Forms {
 
             if (KHOAHOCTextEdit.Text.Trim() == "") {
                 MessageBox.Show("Khóa học không được để trống", "Lỗi", MessageBoxButtons.OK);
+                KHOAHOCTextEdit.Focus();
+                return Result.Failure;
+            }
+
+            if (!Regex.IsMatch(KHOAHOCTextEdit.Text.Trim(), @"^\d{4}-\d{4}$")) {
+                MessageBox.Show("Khóa học phải có format ####-####\nVí dụ: 2015-2019", "Lỗi", MessageBoxButtons.OK);
                 KHOAHOCTextEdit.Focus();
                 return Result.Failure;
             }
