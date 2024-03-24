@@ -96,11 +96,11 @@ ALTER PROC sp_report_ds_lop_tin_chi @nien_khoa NCHAR(9),
                                     @hoc_ky INT
 AS
 BEGIN
-    SELECT ten_mh=(SELECT TENMH FROM MONHOC mh WHERE mh.MAMH = ltc.MAMH),
-           nhom=ltc.NHOM,
-           ho_ten_giang_vien=(SELECT gv.HO + ' ' + gv.TEN FROM GIANGVIEN gv WHERE gv.MAGV = ltc.MAGV),
-           so_sv_toi_thieu=ltc.SOSVTOITHIEU,
-           so_sv_da_dang_ky=(SELECT COUNT(*)
+    SELECT TENMH=(SELECT TENMH FROM MONHOC mh WHERE mh.MAMH = ltc.MAMH),
+           ltc.NHOM,
+           HOTENGV=(SELECT gv.HO + ' ' + gv.TEN FROM GIANGVIEN gv WHERE gv.MAGV = ltc.MAGV),
+           ltc.SOSVTOITHIEU,
+           SOSVDADANGKY=(SELECT COUNT(*)
                              FROM DANGKY dk
                              WHERE dk.MALTC = ltc.MALTC
                                AND (dk.HUYDANGKY = 0 OR dk.HUYDANGKY IS NULL))
@@ -108,7 +108,7 @@ BEGIN
     WHERE ltc.NIENKHOA = @nien_khoa
       AND ltc.HOCKY = @hoc_ky
       AND ltc.HUYLOP = 0
-    ORDER BY ten_mh, nhom
+    ORDER BY TENMH, NHOM
 END
 GO
 
@@ -129,3 +129,39 @@ BEGIN
 END
 GO
 
+ALTER PROC sp_get_mon_hoc @nien_khoa VARCHAR(9), @hoc_ky INT
+AS
+BEGIN
+    SELECT ltc.MAMH, mh.TENMH
+    FROM (SELECT DISTINCT MAMH FROM LOPTINCHI ltc WHERE ltc.NIENKHOA = @nien_khoa AND ltc.HOCKY = @hoc_ky) ltc
+             JOIN (SELECT MAMH, TENMH FROM MONHOC) mh ON ltc.MAMH = mh.MAMH
+END
+GO
+
+ALTER PROC sp_get_nhom_ltc @nien_khoa VARCHAR(9), @hoc_ky INT, @ma_mh NCHAR(10)
+AS
+BEGIN
+    SELECT DISTINCT NHOM
+    FROM LOPTINCHI
+    WHERE NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+      AND MAMH = @ma_mh
+END
+GO
+
+ALTER PROC sp_report_ds_sv_dang_ky_ltc @nien_khoa NCHAR(9), @hoc_ky INT, @nhom INT, @ma_mh NCHAR(10)
+AS
+BEGIN
+    DECLARE @ma_ltc INT
+    SELECT @ma_ltc = MALTC
+    FROM LOPTINCHI ltc
+    WHERE ltc.NIENKHOA = @nien_khoa
+      AND ltc.HOCKY = @hoc_ky
+      AND ltc.NHOM = @nhom
+      AND ltc.MAMH = @ma_mh
+
+    SELECT dk.MASV, HO, TEN, PHAI, MALOP
+    FROM (SELECT MASV FROM DANGKY WHERE MALTC = @ma_ltc) dk
+             JOIN (SELECT MASV, HO, TEN, IIF(PHAI = '0', 'Nam', N'Nữ') AS PHAI, MALOP FROM SINHVIEN) sv
+                  ON dk.MASV = sv.MASV
+END

@@ -54,5 +54,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(ReportFormDSSinhVienDangKyLTC));
+            if (form != null) form.Activate();
+            else {
+                ReportFormDSSinhVienDangKyLTC newForm = new ReportFormDSSinhVienDangKyLTC();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }
