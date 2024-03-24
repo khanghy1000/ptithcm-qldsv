@@ -39,6 +39,7 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.barButtonDSLopTinChi = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -54,10 +55,11 @@
             this.statusBarFullName,
             this.statusBarRole,
             this.barButtonLogout,
-            this.barButtonLop});
+            this.barButtonLop,
+            this.barButtonDSLopTinChi});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.ribbonControl1.MaxItemId = 8;
+            this.ribbonControl1.MaxItemId = 9;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 550;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -125,6 +127,7 @@
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonDSLopTinChi);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Báo cáo";
             // 
@@ -156,6 +159,14 @@
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // barButtonDSLopTinChi
+            // 
+            this.barButtonDSLopTinChi.Caption = "DS Lớp Tín Chỉ";
+            this.barButtonDSLopTinChi.Id = 8;
+            this.barButtonDSLopTinChi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonDSLopTinChi.ImageOptions.SvgImage")));
+            this.barButtonDSLopTinChi.Name = "barButtonDSLopTinChi";
+            this.barButtonDSLopTinChi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDSLopTinChi_ItemClick);
             // 
             // MainForm
             // 
@@ -195,6 +206,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
+        private DevExpress.XtraBars.BarButtonItem barButtonDSLopTinChi;
     }
 }
 

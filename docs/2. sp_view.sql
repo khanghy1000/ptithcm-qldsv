@@ -91,3 +91,43 @@ BEGIN
     RETURN
 END
 GO
+
+ALTER PROC sp_report_ds_lop_tin_chi @nien_khoa NCHAR(9),
+                                    @hoc_ky INT
+AS
+BEGIN
+    SELECT ten_mh=(SELECT TENMH FROM MONHOC mh WHERE mh.MAMH = ltc.MAMH),
+           nhom=ltc.NHOM,
+           ho_ten_giang_vien=(SELECT gv.HO + ' ' + gv.TEN FROM GIANGVIEN gv WHERE gv.MAGV = ltc.MAGV),
+           so_sv_toi_thieu=ltc.SOSVTOITHIEU,
+           so_sv_da_dang_ky=(SELECT COUNT(*)
+                             FROM DANGKY dk
+                             WHERE dk.MALTC = ltc.MALTC
+                               AND (dk.HUYDANGKY = 0 OR dk.HUYDANGKY IS NULL))
+    FROM LOPTINCHI ltc
+    WHERE ltc.NIENKHOA = @nien_khoa
+      AND ltc.HOCKY = @hoc_ky
+      AND ltc.HUYLOP = 0
+    ORDER BY ten_mh, nhom
+END
+GO
+
+ALTER PROC sp_get_nien_khoa AS
+BEGIN
+    SELECT NIENKHOA
+    FROM LOPTINCHI
+    GROUP BY NIENKHOA
+    ORDER BY NIENKHOA
+END
+GO
+
+ALTER PROC sp_get_hoc_ky @nien_khoa NCHAR(9) AS
+BEGIN
+    SELECT HOCKY
+    FROM LOPTINCHI
+    WHERE NIENKHOA = @nien_khoa
+    GROUP BY HOCKY
+    ORDER BY HOCKY
+END
+GO
+
