@@ -22,7 +22,7 @@ namespace QLDSV.Forms {
 
         void loadNienKhoa() {
 
-            string smt = "EXEC sp_get_nien_khoa";
+            string smt = "EXEC sp_get_nien_khoa_ltc";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbNienKhoa.DataSource = dt;
             cmbNienKhoa.DisplayMember = "NIENKHOA";
@@ -31,7 +31,7 @@ namespace QLDSV.Forms {
         }
         void loadHocKy(string nienKhoa) {
 
-            string smt = $"EXEC sp_get_hoc_ky '{nienKhoa}'";
+            string smt = $"EXEC sp_get_hoc_ky_ltc '{nienKhoa}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbHocKy.DataSource = dt;
             cmbHocKy.DisplayMember = "HOCKY";
