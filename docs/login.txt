@@ -1,0 +1,17 @@
+﻿Server (pass = 1):
+- KT (PGV, securityadmin)
+- TT (Khoa, securityadmin)
+- QM (PKT, securityadmin)
+- sinhvien (SV)
+- HTKN (HTKN)
+
+DB:
+- PGV (db_owner)
+- Khoa (db_owner)
+- HTKN (db_owner)
+- PKT (db_datareader, db_securityadmin, db_accessadmin)
+- SV (db_datareader)
+
+Permission:
+- sp_get_login_info: PKT
+- sp_get_sinh_vien_info: SV
