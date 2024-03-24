@@ -58,23 +58,22 @@
             // comboBoxKhoa
             // 
             this.comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxKhoa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKhoa.FormattingEnabled = true;
             this.comboBoxKhoa.Location = new System.Drawing.Point(338, 77);
             this.comboBoxKhoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxKhoa.Name = "comboBoxKhoa";
-            this.comboBoxKhoa.Size = new System.Drawing.Size(377, 29);
+            this.comboBoxKhoa.Size = new System.Drawing.Size(377, 28);
             this.comboBoxKhoa.TabIndex = 3;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(275, 80);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(37, 21);
+            this.labelControl1.Size = new System.Drawing.Size(34, 20);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Khoa";
             // 
