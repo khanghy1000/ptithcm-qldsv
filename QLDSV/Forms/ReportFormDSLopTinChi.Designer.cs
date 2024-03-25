@@ -40,7 +40,7 @@
             // nIENKHOALabel
             // 
             nIENKHOALabel.AutoSize = true;
-            nIENKHOALabel.Location = new System.Drawing.Point(271, 136);
+            nIENKHOALabel.Location = new System.Drawing.Point(247, 136);
             nIENKHOALabel.Name = "nIENKHOALabel";
             nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
             nIENKHOALabel.TabIndex = 4;
@@ -70,7 +70,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(275, 80);
+            this.labelControl1.Location = new System.Drawing.Point(289, 82);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(34, 20);
@@ -86,9 +86,9 @@
             // 
             this.cmbNienKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNienKhoa.FormattingEnabled = true;
-            this.cmbNienKhoa.Location = new System.Drawing.Point(364, 133);
+            this.cmbNienKhoa.Location = new System.Drawing.Point(338, 133);
             this.cmbNienKhoa.Name = "cmbNienKhoa";
-            this.cmbNienKhoa.Size = new System.Drawing.Size(121, 28);
+            this.cmbNienKhoa.Size = new System.Drawing.Size(147, 28);
             this.cmbNienKhoa.TabIndex = 5;
             this.cmbNienKhoa.SelectedIndexChanged += new System.EventHandler(this.cmbNienKhoa_SelectedIndexChanged);
             // 

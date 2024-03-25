@@ -53,7 +53,7 @@
             // nIENKHOALabel
             // 
             nIENKHOALabel.AutoSize = true;
-            nIENKHOALabel.Location = new System.Drawing.Point(271, 138);
+            nIENKHOALabel.Location = new System.Drawing.Point(242, 138);
             nIENKHOALabel.Name = "nIENKHOALabel";
             nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
             nIENKHOALabel.TabIndex = 11;
@@ -71,7 +71,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(280, 193);
+            label2.Location = new System.Drawing.Point(251, 193);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(67, 20);
             label2.TabIndex = 17;
@@ -113,9 +113,9 @@
             // 
             this.cmbNienKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNienKhoa.FormattingEnabled = true;
-            this.cmbNienKhoa.Location = new System.Drawing.Point(364, 135);
+            this.cmbNienKhoa.Location = new System.Drawing.Point(338, 135);
             this.cmbNienKhoa.Name = "cmbNienKhoa";
-            this.cmbNienKhoa.Size = new System.Drawing.Size(121, 28);
+            this.cmbNienKhoa.Size = new System.Drawing.Size(147, 28);
             this.cmbNienKhoa.TabIndex = 13;
             this.cmbNienKhoa.SelectedIndexChanged += new System.EventHandler(this.cmbNienKhoa_SelectedIndexChanged);
             // 
@@ -134,7 +134,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(275, 82);
+            this.labelControl1.Location = new System.Drawing.Point(284, 82);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(34, 20);
@@ -153,9 +153,9 @@
             // 
             this.cmbMonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMonHoc.FormattingEnabled = true;
-            this.cmbMonHoc.Location = new System.Drawing.Point(364, 190);
+            this.cmbMonHoc.Location = new System.Drawing.Point(338, 190);
             this.cmbMonHoc.Name = "cmbMonHoc";
-            this.cmbMonHoc.Size = new System.Drawing.Size(352, 28);
+            this.cmbMonHoc.Size = new System.Drawing.Size(378, 28);
             this.cmbMonHoc.TabIndex = 19;
             this.cmbMonHoc.SelectedIndexChanged += new System.EventHandler(this.cmbMonHoc_SelectedIndexChanged);
             // 
