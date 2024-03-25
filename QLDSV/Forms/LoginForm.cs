@@ -82,6 +82,7 @@ namespace QLDSV.Forms {
                 Program.MainForm.Show();
             }
             catch (Exception exception) {
+                Database.DataReader.Close();
                 MessageBox.Show("Tài khoản hoặc mật khẩu không đúng\nVui lòng kiểm tra lại.", "Lỗi",
                     MessageBoxButtons.OK);
             }
