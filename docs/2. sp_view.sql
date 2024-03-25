@@ -164,4 +164,5 @@ BEGIN
     FROM (SELECT MASV FROM DANGKY WHERE MALTC = @ma_ltc) dk
              JOIN (SELECT MASV, HO, TEN, IIF(PHAI = '0', 'Nam', N'Nữ') AS PHAI, MALOP FROM SINHVIEN) sv
                   ON dk.MASV = sv.MASV
+    ORDER BY TEN, HO
 END
