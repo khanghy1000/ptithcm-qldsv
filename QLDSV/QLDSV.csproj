@@ -91,6 +91,12 @@
     <Compile Include="Forms\ReportFormDSSinhVienDangKyLTC.Designer.cs">
       <DependentUpon>ReportFormDSSinhVienDangKyLTC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReportFormPhieuDiemSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportFormPhieuDiemSV.Designer.cs">
+      <DependentUpon>ReportFormPhieuDiemSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Reports\ReportDSLopTinChi.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +108,12 @@
     </Compile>
     <Compile Include="Forms\Reports\ReportDSSinhVienDangKyLTC.Designer.cs">
       <DependentUpon>ReportDSSinhVienDangKyLTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportPhieuDiemSV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportPhieuDiemSV.Designer.cs">
+      <DependentUpon>ReportPhieuDiemSV.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TemplateForm.cs">
       <SubType>Form</SubType>
@@ -141,11 +153,17 @@
     <EmbeddedResource Include="Forms\ReportFormDSSinhVienDangKyLTC.resx">
       <DependentUpon>ReportFormDSSinhVienDangKyLTC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportFormPhieuDiemSV.resx">
+      <DependentUpon>ReportFormPhieuDiemSV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ReportDSLopTinChi.resx">
       <DependentUpon>ReportDSLopTinChi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ReportDSSinhVienDangKyLTC.resx">
       <DependentUpon>ReportDSSinhVienDangKyLTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ReportPhieuDiemSV.resx">
+      <DependentUpon>ReportPhieuDiemSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TemplateForm.resx">
       <DependentUpon>TemplateForm.cs</DependentUpon>

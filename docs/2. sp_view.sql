@@ -101,9 +101,9 @@ BEGIN
            HOTENGV=(SELECT gv.HO + ' ' + gv.TEN FROM GIANGVIEN gv WHERE gv.MAGV = ltc.MAGV),
            ltc.SOSVTOITHIEU,
            SOSVDADANGKY=(SELECT COUNT(*)
-                             FROM DANGKY dk
-                             WHERE dk.MALTC = ltc.MALTC
-                               AND (dk.HUYDANGKY = 0 OR dk.HUYDANGKY IS NULL))
+                         FROM DANGKY dk
+                         WHERE dk.MALTC = ltc.MALTC
+                           AND (dk.HUYDANGKY = 0 OR dk.HUYDANGKY IS NULL))
     FROM LOPTINCHI ltc
     WHERE ltc.NIENKHOA = @nien_khoa
       AND ltc.HOCKY = @hoc_ky
@@ -166,3 +166,26 @@ BEGIN
                   ON dk.MASV = sv.MASV
     ORDER BY TEN, HO
 END
+GO
+
+ALTER PROC sp_get_ds_ma_sv AS
+BEGIN
+    SELECT MASV FROM dbo.SINHVIEN ORDER BY MASV
+END
+GO
+
+ALTER PROC sp_report_phieu_diem @MASV NCHAR(20) AS
+BEGIN
+    SELECT ltcmh.TENMH, MAX(dk.DIEM_CC * 0.1 + dk.DIEM_GK * 0.3 + dk.DIEM_CK * 0.6) AS DIEM
+    FROM (SELECT MALTC, DIEM_CC, DIEM_CK, DIEM_GK
+          FROM dbo.DANGKY
+          WHERE MASV = @MASV
+            AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
+             JOIN(SELECT mh.MAMH, mh.TENMH, ltc.MALTC
+                  FROM (SELECT MAMH, TENMH FROM dbo.MONHOC) mh
+                           JOIN(SELECT MALTC, MAMH FROM dbo.LOPTINCHI) ltc ON ltc.MAMH = mh.MAMH) ltcmh
+                 ON dk.MALTC = ltcmh.MALTC
+    GROUP BY ltcmh.TENMH
+    ORDER BY ltcmh.TENMH
+END
+GO
