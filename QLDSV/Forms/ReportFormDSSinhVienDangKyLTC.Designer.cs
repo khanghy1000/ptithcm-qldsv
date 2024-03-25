@@ -27,18 +27,19 @@
             System.Windows.Forms.Label nIENKHOALabel;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.cmbHocKy = new System.Windows.Forms.ComboBox();
             this.cmbNienKhoa = new System.Windows.Forms.ComboBox();
             this.comboBoxKhoa = new System.Windows.Forms.ComboBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbNhom = new System.Windows.Forms.ComboBox();
             this.cmbMonHoc = new System.Windows.Forms.ComboBox();
             hOCKYLabel = new System.Windows.Forms.Label();
             nIENKHOALabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // hOCKYLabel
@@ -130,17 +131,6 @@
             this.comboBoxKhoa.TabIndex = 10;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(284, 82);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(34, 20);
-            this.labelControl1.TabIndex = 9;
-            this.labelControl1.Text = "Khoa";
-            // 
             // cmbNhom
             // 
             this.cmbNhom.FormattingEnabled = true;
@@ -159,11 +149,21 @@
             this.cmbMonHoc.TabIndex = 19;
             this.cmbMonHoc.SelectedIndexChanged += new System.EventHandler(this.cmbMonHoc_SelectedIndexChanged);
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(275, 84);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(43, 20);
+            label3.TabIndex = 21;
+            label3.Text = "Khoa";
+            // 
             // ReportFormDSSinhVienDangKyLTC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 588);
+            this.Controls.Add(label3);
             this.Controls.Add(label1);
             this.Controls.Add(this.cmbNhom);
             this.Controls.Add(label2);
@@ -175,7 +175,6 @@
             this.Controls.Add(nIENKHOALabel);
             this.Controls.Add(this.cmbNienKhoa);
             this.Controls.Add(this.comboBoxKhoa);
-            this.Controls.Add(this.labelControl1);
             this.Name = "ReportFormDSSinhVienDangKyLTC";
             this.Text = "Report DS Sinh Viên Đăng Ký LTC";
             this.Load += new System.EventHandler(this.ReportFormDSSinhVienDangKyLTC_Load);
@@ -191,7 +190,6 @@
         private System.Windows.Forms.ComboBox cmbHocKy;
         private System.Windows.Forms.ComboBox cmbNienKhoa;
         private System.Windows.Forms.ComboBox comboBoxKhoa;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.ComboBox cmbNhom;
         private System.Windows.Forms.ComboBox cmbMonHoc;
     }

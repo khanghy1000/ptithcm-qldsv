@@ -11,7 +11,7 @@ namespace QLDSV.Forms {
             InitializeComponent();
         }
 
-        void loadNienKhoa() {
+        private void LoadNienKhoa() {
             string smt = "EXEC sp_get_nien_khoa_ltc";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbNienKhoa.DataSource = dt;
@@ -19,7 +19,7 @@ namespace QLDSV.Forms {
             cmbNienKhoa.ValueMember = "NIENKHOA";
         }
 
-        void loadHocKy(string nienKhoa) {
+        private void LoadHocKy(string nienKhoa) {
             string smt = $"EXEC sp_get_hoc_ky_ltc '{nienKhoa}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbHocKy.DataSource = dt;
@@ -27,7 +27,7 @@ namespace QLDSV.Forms {
             cmbHocKy.ValueMember = "HOCKY";
         }
 
-        void loadMonHoc(string nienKhoa, string hocKy) {
+        private void LoadMonHoc(string nienKhoa, string hocKy) {
             string smt = $"EXEC sp_get_mon_hoc '{nienKhoa}', {hocKy}";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbMonHoc.DataSource = dt;
@@ -35,7 +35,7 @@ namespace QLDSV.Forms {
             cmbMonHoc.ValueMember = "MAMH";
         }
 
-        void loadNhom(string nienKhoa, string hocKy, string maMonHoc) {
+        private void LoadNhom(string nienKhoa, string hocKy, string maMonHoc) {
             string smt = $"EXEC sp_get_nhom_ltc '{nienKhoa}', {hocKy}, '{maMonHoc}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbNhom.DataSource = dt;
@@ -49,7 +49,7 @@ namespace QLDSV.Forms {
             comboBoxKhoa.ValueMember = "ten_server";
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
-            loadNienKhoa();
+            LoadNienKhoa();
         }
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {
@@ -72,19 +72,19 @@ namespace QLDSV.Forms {
             }
 
 
-            loadNienKhoa();
+            LoadNienKhoa();
         }
 
         private void cmbNienKhoa_SelectedIndexChanged(object sender, EventArgs e) {
-            loadHocKy(cmbNienKhoa.Text);
+            LoadHocKy(cmbNienKhoa.Text);
         }
 
         private void cmbHocKy_SelectedIndexChanged(object sender, EventArgs e) {
-            loadMonHoc(cmbNienKhoa.Text, cmbHocKy.Text);
+            LoadMonHoc(cmbNienKhoa.Text, cmbHocKy.Text);
         }
 
         private void cmbMonHoc_SelectedIndexChanged(object sender, EventArgs e) {
-            loadNhom(cmbNienKhoa.Text, cmbHocKy.Text, cmbMonHoc.SelectedValue.ToString());
+            LoadNhom(cmbNienKhoa.Text, cmbHocKy.Text, cmbMonHoc.SelectedValue.ToString());
         }
 
         private void btnPreview_Click(object sender, EventArgs e) {

@@ -11,7 +11,7 @@ namespace QLDSV.Forms {
             InitializeComponent();
         }
 
-        void loadNienKhoa() {
+        private void LoadNienKhoa() {
             string smt = "EXEC sp_get_nien_khoa_ltc";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbNienKhoa.DataSource = dt;
@@ -19,7 +19,7 @@ namespace QLDSV.Forms {
             cmbNienKhoa.ValueMember = "NIENKHOA";
         }
 
-        void loadHocKy(string nienKhoa) {
+        private void LoadHocKy(string nienKhoa) {
             string smt = $"EXEC sp_get_hoc_ky_ltc '{nienKhoa}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbHocKy.DataSource = dt;
@@ -33,7 +33,7 @@ namespace QLDSV.Forms {
             comboBoxKhoa.ValueMember = "ten_server";
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
-            loadNienKhoa();
+            LoadNienKhoa();
         }
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {
@@ -55,7 +55,7 @@ namespace QLDSV.Forms {
                 return;
             }
 
-            loadNienKhoa();
+            LoadNienKhoa();
         }
 
         private void btnClose_Click(object sender, EventArgs e) {
@@ -63,7 +63,7 @@ namespace QLDSV.Forms {
         }
 
         private void cmbNienKhoa_SelectedIndexChanged(object sender, EventArgs e) {
-            loadHocKy(cmbNienKhoa.Text);
+            LoadHocKy(cmbNienKhoa.Text);
         }
 
         private void btnPreview_Click(object sender, EventArgs e) {

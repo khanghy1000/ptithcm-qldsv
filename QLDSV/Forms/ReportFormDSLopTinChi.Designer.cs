@@ -25,8 +25,8 @@
         private void InitializeComponent() {
             System.Windows.Forms.Label nIENKHOALabel;
             System.Windows.Forms.Label hOCKYLabel;
+            System.Windows.Forms.Label label1;
             this.comboBoxKhoa = new System.Windows.Forms.ComboBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.subscriberDataSet = new QLDSV.subscriberDataSet();
             this.cmbNienKhoa = new System.Windows.Forms.ComboBox();
             this.cmbHocKy = new System.Windows.Forms.ComboBox();
@@ -34,6 +34,7 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             nIENKHOALabel = new System.Windows.Forms.Label();
             hOCKYLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.subscriberDataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,17 +66,6 @@
             this.comboBoxKhoa.Size = new System.Drawing.Size(377, 28);
             this.comboBoxKhoa.TabIndex = 3;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(289, 82);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(34, 20);
-            this.labelControl1.TabIndex = 2;
-            this.labelControl1.Text = "Khoa";
             // 
             // subscriberDataSet
             // 
@@ -123,11 +113,21 @@
             this.btnClose.Text = "Thoát";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(280, 82);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Khoa";
+            // 
             // ReportFormDSLopTinChi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 512);
+            this.Controls.Add(label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(hOCKYLabel);
@@ -135,7 +135,6 @@
             this.Controls.Add(nIENKHOALabel);
             this.Controls.Add(this.cmbNienKhoa);
             this.Controls.Add(this.comboBoxKhoa);
-            this.Controls.Add(this.labelControl1);
             this.Name = "ReportFormDSLopTinChi";
             this.Text = "Report DS Lớp Tín Chỉ";
             this.Load += new System.EventHandler(this.ReportFormDSLopTinChi_Load);
@@ -148,7 +147,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox comboBoxKhoa;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private subscriberDataSet subscriberDataSet;
         private System.Windows.Forms.ComboBox cmbNienKhoa;
         private System.Windows.Forms.ComboBox cmbHocKy;
