@@ -186,6 +186,7 @@ namespace QLDSV.Forms {
             comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
             comboBoxKhoa.DisplayMember = "ten_phan_manh";
             comboBoxKhoa.ValueMember = "ten_server";
+            comboBoxKhoa.SelectedIndex = Database.InitialKhoaIndex;
             comboBoxKhoa.Enabled = Database.UserRole == "PGV";
 
             LoadMaKhoa();
