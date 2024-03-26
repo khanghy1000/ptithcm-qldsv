@@ -102,7 +102,7 @@ namespace QLDSV.Forms {
                 }
                 catch {
                     Database.DataReader.Close();
-                    MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi kiểm tra mã lớp", "Lỗi", MessageBoxButtons.OK);
                     return Result.Failure;
                 }
             }
