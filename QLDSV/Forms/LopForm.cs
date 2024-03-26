@@ -107,6 +107,39 @@ namespace QLDSV.Forms {
                 }
             }
 
+            if ((_formState == FormState.Adding) ||
+                (_formState == FormState.Editing && TENLOPTextEdit.Text.Trim() != _tenLopBeforeEditing)) {
+                var checkMaLopStatement = $"EXEC sp_check_ten_lop N'{TENLOPTextEdit.Text.Trim()}'";
+                Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
+
+                if (Database.DataReader == null) {
+                    MessageBox.Show("Lỗi kiểm tra tên lớp", "Lỗi", MessageBoxButtons.OK);
+                    return Result.Failure;
+                }
+
+                Database.DataReader.Read();
+                try {
+                    var result = Database.DataReader.GetInt32(0);
+                    Database.DataReader.Close();
+
+                    if (result == 1) {
+                        MessageBox.Show("Tên lớp đã tồn tại.\nVui lòng nhập tên khác.", "Lỗi", MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+
+                    if (result == 2) {
+                        MessageBox.Show("Tên lớp đã tồn tại ở khoa khác.\nVui lòng nhập tên khác.", "Lỗi",
+                            MessageBoxButtons.OK);
+                        return Result.Failure;
+                    }
+                }
+                catch {
+                    Database.DataReader.Close();
+                    MessageBox.Show("Lỗi kiểm tra tên lớp", "Lỗi", MessageBoxButtons.OK);
+                    return Result.Failure;
+                }
+            }
+
             return Result.Success;
         }
 

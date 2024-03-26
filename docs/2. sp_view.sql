@@ -73,6 +73,26 @@ BEGIN
 END
 GO
 
+ALTER PROCEDURE sp_check_ten_lop @ten_lop NVARCHAR(200)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM LOP WHERE LOP.TENLOP = @ten_lop)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    ELSE
+        IF EXISTS(SELECT * FROM LINK1.QLDSV_TC.dbo.LOP AS LOP WHERE LOP.TENLOP = @ten_lop)
+            BEGIN
+                SELECT 2 AS result
+                RETURN
+            END
+    SELECT 0 AS result
+    RETURN
+END
+GO
+
 ALTER PROC sp_check_ma_sinh_vien @ma_sinh_vien NCHAR(10)
 AS
 BEGIN
@@ -186,7 +206,10 @@ BEGIN
       AND ltc.MAMH = @ma_mh
 
     SELECT dk.MASV, HO, TEN, DIEM_CC, DIEM_GK, DIEM_CK
-    FROM (SELECT MASV, DIEM_CC, DIEM_GK, DIEM_CK FROM DANGKY WHERE MALTC = @ma_ltc AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
+    FROM (SELECT MASV, DIEM_CC, DIEM_GK, DIEM_CK
+          FROM DANGKY
+          WHERE MALTC = @ma_ltc
+            AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
              JOIN (SELECT MASV, HO, TEN FROM SINHVIEN) sv
                   ON dk.MASV = sv.MASV
 END
