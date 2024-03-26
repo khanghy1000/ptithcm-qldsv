@@ -33,6 +33,7 @@
             this.barButtonLop = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDSLopTinChi = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonPhieuDiem = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -41,14 +42,14 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.barButtonPhieuDiem = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
-            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(50, 58, 50, 58);
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(62, 72, 62, 72);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -60,12 +61,13 @@
             this.barButtonLop,
             this.barButtonDSLopTinChi,
             this.barButtonItem1,
-            this.barButtonPhieuDiem});
+            this.barButtonPhieuDiem,
+            this.barButtonItem2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.ribbonControl1.MaxItemId = 11;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ribbonControl1.MaxItemId = 12;
             this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.OptionsMenuMinWidth = 550;
+            this.ribbonControl1.OptionsMenuMinWidth = 687;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
@@ -125,6 +127,14 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
+            // barButtonPhieuDiem
+            // 
+            this.barButtonPhieuDiem.Caption = "Phiếu điểm SV";
+            this.barButtonPhieuDiem.Id = 10;
+            this.barButtonPhieuDiem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonPhieuDiem.ImageOptions.SvgImage")));
+            this.barButtonPhieuDiem.Name = "barButtonPhieuDiem";
+            this.barButtonPhieuDiem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPhieuDiem_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -149,6 +159,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonDSLopTinChi);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem2);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonPhieuDiem);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Báo cáo";
@@ -173,7 +184,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarFullName);
             this.ribbonStatusBar1.ItemLinks.Add(this.statusBarRole);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 663);
-            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(5);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1438, 30);
@@ -182,13 +193,13 @@
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // barButtonPhieuDiem
+            // barButtonItem2
             // 
-            this.barButtonPhieuDiem.Caption = "Phiếu điểm SV";
-            this.barButtonPhieuDiem.Id = 10;
-            this.barButtonPhieuDiem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonPhieuDiem.ImageOptions.SvgImage")));
-            this.barButtonPhieuDiem.Name = "barButtonPhieuDiem";
-            this.barButtonPhieuDiem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPhieuDiem_ItemClick);
+            this.barButtonItem2.Caption = "Bảng điểm lớp tín chỉ";
+            this.barButtonItem2.Id = 11;
+            this.barButtonItem2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem2.ImageOptions.SvgImage")));
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // MainForm
             // 
@@ -231,6 +242,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonDSLopTinChi;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonPhieuDiem;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }
 

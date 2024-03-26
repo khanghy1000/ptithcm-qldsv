@@ -161,7 +161,7 @@ BEGIN
       AND ltc.MAMH = @ma_mh
 
     SELECT dk.MASV, HO, TEN, PHAI, MALOP
-    FROM (SELECT MASV FROM DANGKY WHERE MALTC = @ma_ltc) dk
+    FROM (SELECT MASV FROM DANGKY WHERE MALTC = @ma_ltc AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
              JOIN (SELECT MASV, HO, TEN, IIF(PHAI = '0', 'Nam', N'Nữ') AS PHAI, MALOP FROM SINHVIEN) sv
                   ON dk.MASV = sv.MASV
     ORDER BY TEN, HO
@@ -171,6 +171,24 @@ GO
 ALTER PROC sp_get_ds_ma_sv AS
 BEGIN
     SELECT MASV FROM dbo.SINHVIEN ORDER BY MASV
+END
+GO
+
+ALTER PROC sp_report_bang_diem_ltc @nien_khoa NCHAR(9), @hoc_ky INT, @nhom INT, @ma_mh NCHAR(10)
+AS
+BEGIN
+    DECLARE @ma_ltc INT
+    SELECT @ma_ltc = MALTC
+    FROM LOPTINCHI ltc
+    WHERE ltc.NIENKHOA = @nien_khoa
+      AND ltc.HOCKY = @hoc_ky
+      AND ltc.NHOM = @nhom
+      AND ltc.MAMH = @ma_mh
+
+    SELECT dk.MASV, HO, TEN, DIEM_CC, DIEM_GK, DIEM_CK
+    FROM (SELECT MASV, DIEM_CC, DIEM_GK, DIEM_CK FROM DANGKY WHERE MALTC = @ma_ltc AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
+             JOIN (SELECT MASV, HO, TEN FROM SINHVIEN) sv
+                  ON dk.MASV = sv.MASV
 END
 GO
 
@@ -189,3 +207,4 @@ BEGIN
     ORDER BY ltcmh.TENMH
 END
 GO
+
