@@ -63,8 +63,8 @@
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -477,28 +477,28 @@
             this.ReportFooter.HeightF = 51.16669F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // xrLabel2
-            // 
-            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumCount([TENMH])")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(134.1667F, 10F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(60F, 23F);
-            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            xrSummary2.TreatStringsAsNumerics = false;
-            this.xrLabel2.Summary = xrSummary2;
-            this.xrLabel2.Text = "xrLabel2";
-            // 
             // xrLabel3
             // 
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(134.1667F, 23F);
             this.xrLabel3.Text = "Số lượng lớp đã mở:";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumRecordNumber()")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(134.1667F, 10F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(60F, 23F);
+            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            xrSummary2.TreatStringsAsNumerics = false;
+            this.xrLabel2.Summary = xrSummary2;
+            this.xrLabel2.Text = "xrLabel2";
             // 
             // ReportDSLopTinChi
             // 

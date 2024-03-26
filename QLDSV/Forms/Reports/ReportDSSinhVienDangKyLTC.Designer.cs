@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportDSSinhVienDangKyLTC));
-            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -44,6 +44,7 @@
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -52,6 +53,7 @@
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -63,11 +65,9 @@
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -189,6 +189,22 @@
             this.tableRow1.Name = "tableRow1";
             this.tableRow1.Weight = 1D;
             // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.BorderColor = System.Drawing.Color.Black;
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell1.BorderWidth = 1F;
+            this.xrTableCell1.Multiline = true;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.StyleName = "DetailCaption1";
+            this.xrTableCell1.StylePriority.UseBorderColor = false;
+            this.xrTableCell1.StylePriority.UseBorders = false;
+            this.xrTableCell1.StylePriority.UseBorderWidth = false;
+            this.xrTableCell1.Text = "STT";
+            this.xrTableCell1.Weight = 0.082553454338006732D;
+            // 
             // tableCell1
             // 
             this.tableCell1.BorderColor = System.Drawing.Color.Black;
@@ -291,6 +307,25 @@
             this.tableCell10});
             this.tableRow2.Name = "tableRow2";
             this.tableRow2.Weight = 11.5D;
+            // 
+            // xrTableCell2
+            // 
+            this.xrTableCell2.BorderColor = System.Drawing.Color.Black;
+            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell2.BorderWidth = 1F;
+            this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumRecordNumber()")});
+            this.xrTableCell2.Multiline = true;
+            this.xrTableCell2.Name = "xrTableCell2";
+            this.xrTableCell2.StyleName = "DetailData1";
+            this.xrTableCell2.StylePriority.UseBorderColor = false;
+            this.xrTableCell2.StylePriority.UseBorders = false;
+            this.xrTableCell2.StylePriority.UseBorderWidth = false;
+            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.xrTableCell2.Summary = xrSummary1;
+            this.xrTableCell2.Text = "xrTableCell2";
+            this.xrTableCell2.Weight = 0.082553421876695676D;
             // 
             // tableCell6
             // 
@@ -447,41 +482,6 @@
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
             // 
-            // xrTableCell1
-            // 
-            this.xrTableCell1.BorderColor = System.Drawing.Color.Black;
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell1.BorderWidth = 1F;
-            this.xrTableCell1.Multiline = true;
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.StyleName = "DetailCaption1";
-            this.xrTableCell1.StylePriority.UseBorderColor = false;
-            this.xrTableCell1.StylePriority.UseBorders = false;
-            this.xrTableCell1.StylePriority.UseBorderWidth = false;
-            this.xrTableCell1.Text = "STT";
-            this.xrTableCell1.Weight = 0.082553454338006732D;
-            // 
-            // xrTableCell2
-            // 
-            this.xrTableCell2.BorderColor = System.Drawing.Color.Black;
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell2.BorderWidth = 1F;
-            this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumRecordNumber()")});
-            this.xrTableCell2.Multiline = true;
-            this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.StyleName = "DetailData1";
-            this.xrTableCell2.StylePriority.UseBorderColor = false;
-            this.xrTableCell2.StylePriority.UseBorders = false;
-            this.xrTableCell2.StylePriority.UseBorderWidth = false;
-            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.xrTableCell2.Summary = xrSummary1;
-            this.xrTableCell2.Text = "xrTableCell2";
-            this.xrTableCell2.Weight = 0.082553421876695676D;
-            // 
             // ReportFooter
             // 
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -490,28 +490,28 @@
             this.ReportFooter.HeightF = 53.66669F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // xrLabel2
-            // 
-            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumCount([MASV])")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(156.6667F, 10F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 23F);
-            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            xrSummary2.TreatStringsAsNumerics = false;
-            this.xrLabel2.Summary = xrSummary2;
-            this.xrLabel2.Text = "xrLabel2";
-            // 
             // xrLabel3
             // 
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(156.6667F, 23F);
             this.xrLabel3.Text = "Số sinh viên đã đăng ký:";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumRecordNumber()")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(156.6667F, 10F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 23F);
+            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            xrSummary2.TreatStringsAsNumerics = false;
+            this.xrLabel2.Summary = xrSummary2;
+            this.xrLabel2.Text = "xrLabel2";
             // 
             // ReportDSSinhVienDangKyLTC
             // 
