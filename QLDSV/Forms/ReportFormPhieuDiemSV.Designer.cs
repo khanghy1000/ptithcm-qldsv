@@ -33,6 +33,24 @@
             label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // hOCKYLabel
+            // 
+            hOCKYLabel.AutoSize = true;
+            hOCKYLabel.Location = new System.Drawing.Point(260, 136);
+            hOCKYLabel.Name = "hOCKYLabel";
+            hOCKYLabel.Size = new System.Drawing.Size(91, 20);
+            hOCKYLabel.TabIndex = 12;
+            hOCKYLabel.Text = "Mã sinh viên";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(308, 80);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 20);
+            label1.TabIndex = 17;
+            label1.Text = "Khoa";
+            // 
             // btnClose
             // 
             this.btnClose.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
@@ -55,15 +73,6 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // hOCKYLabel
-            // 
-            hOCKYLabel.AutoSize = true;
-            hOCKYLabel.Location = new System.Drawing.Point(260, 136);
-            hOCKYLabel.Name = "hOCKYLabel";
-            hOCKYLabel.Size = new System.Drawing.Size(91, 20);
-            hOCKYLabel.TabIndex = 12;
-            hOCKYLabel.Text = "Mã sinh viên";
-            // 
             // cmbMaSV
             // 
             this.cmbMaSV.FormattingEnabled = true;
@@ -83,15 +92,6 @@
             this.comboBoxKhoa.TabIndex = 10;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(308, 80);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(43, 20);
-            label1.TabIndex = 17;
-            label1.Text = "Khoa";
-            // 
             // ReportFormPhieuDiemSV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -104,7 +104,7 @@
             this.Controls.Add(this.cmbMaSV);
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormPhieuDiemSV";
-            this.Text = "ReportFormPhieuDiemSV";
+            this.Text = "Report Phiếu Điểm SV";
             this.Load += new System.EventHandler(this.ReportFormPhieuDiemSV_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
