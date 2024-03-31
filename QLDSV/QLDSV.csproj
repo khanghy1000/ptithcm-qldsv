@@ -79,6 +79,12 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReportFormBangDiemLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportFormBangDiemLop.Designer.cs">
+      <DependentUpon>ReportFormBangDiemLop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ReportFormBangDiemLTC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,12 @@
     </Compile>
     <Compile Include="Forms\ReportFormPhieuDiemSV.Designer.cs">
       <DependentUpon>ReportFormPhieuDiemSV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportBangDiemLop.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\ReportBangDiemLop.Designer.cs">
+      <DependentUpon>ReportBangDiemLop.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Reports\ReportBangDiemLTC.cs">
       <SubType>Component</SubType>
@@ -171,6 +183,9 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportFormBangDiemLop.resx">
+      <DependentUpon>ReportFormBangDiemLop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReportFormBangDiemLTC.resx">
       <DependentUpon>ReportFormBangDiemLTC.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReportFormPhieuDiemSV.resx">
       <DependentUpon>ReportFormPhieuDiemSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\ReportBangDiemLop.resx">
+      <DependentUpon>ReportBangDiemLop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\ReportBangDiemLTC.resx">
       <DependentUpon>ReportBangDiemLTC.cs</DependentUpon>

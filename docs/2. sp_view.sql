@@ -253,7 +253,8 @@ ALTER PROC sp_get_hoc_ky_hoc_phi @ma_lop NCHAR(10), @nien_khoa NCHAR(9) AS
 BEGIN
     SELECT DISTINCT HOCKY
     FROM (SELECT MASV FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
-             JOIN (SELECT MASV, HOCKY FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa) hp ON sv.MASV = hp.MASV
+             JOIN (SELECT MASV, HOCKY FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa) hp
+                  ON sv.MASV = hp.MASV
     ORDER BY HOCKY
 END
 GO
@@ -265,7 +266,9 @@ AS
 BEGIN
     SELECT sv.MASV, sv.HOTEN, hp.HOCPHI, cthp.SOTIENDADONG
     FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
-             JOIN (SELECT HOCPHI, MASV FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa AND HOCKY = @hoc_ky) hp
+             JOIN (SELECT HOCPHI, MASV
+                   FROM LINK2.QLDSV_TC.dbo.HOCPHI
+                   WHERE NIENKHOA = @nien_khoa AND HOCKY = @hoc_ky) hp
                   ON sv.MASV = hp.MASV
              LEFT JOIN (SELECT MASV, SUM(SOTIENDONG) AS SOTIENDADONG
                         FROM LINK2.QLDSV_TC.dbo.CT_DONGHOCPHI
@@ -274,4 +277,17 @@ BEGIN
                         GROUP BY MASV) cthp ON cthp.MASV = sv.MASV
     ORDER BY MASV
 END
+GO
+
+ALTER PROC sp_report_bang_diem_lop @ma_lop NCHAR(10)
+AS
+SELECT sv.MASV, HOTEN, TENMH, MAX((DIEM_CC * 0.1 + DIEM_GK * 0.3 + DIEM_CK * 0.6)) AS DIEM
+FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
+         JOIN (SELECT MASV, MALTC, DIEM_CC, DIEM_GK, DIEM_CK
+               FROM dbo.DANGKY
+               WHERE HUYDANGKY IS NULL OR HUYDANGKY = 0) dk ON dk.MASV = sv.MASV
+         JOIN (SELECT MALTC, MAMH FROM dbo.LOPTINCHI) ltc ON ltc.MALTC = dk.MALTC
+         JOIN (SELECT MAMH, TENMH FROM dbo.MONHOC) mh ON mh.MAMH = ltc.MAMH
+GROUP BY sv.MASV, HOTEN, TENMH
+
 GO
