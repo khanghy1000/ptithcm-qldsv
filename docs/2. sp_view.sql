@@ -231,3 +231,47 @@ BEGIN
 END
 GO
 
+ALTER PROC sp_get_ds_ma_lop_hoc_phi AS
+BEGIN
+    SELECT DISTINCT MALOP
+    FROM LINK2.QLDSV_TC.dbo.HOCPHI AS HOCPHI
+             JOIN SINHVIEN AS SINHVIEN ON HOCPHI.MASV = SINHVIEN.MASV
+    ORDER BY MALOP
+END
+GO
+
+ALTER PROC sp_get_nien_khoa_hoc_phi @ma_lop NCHAR(10) AS
+BEGIN
+    SELECT DISTINCT NIENKHOA
+    FROM (SELECT MASV FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
+             JOIN LINK2.QLDSV_TC.dbo.HOCPHI AS HOCPHI ON sv.MASV = HOCPHI.MASV
+    ORDER BY NIENKHOA
+END
+GO
+
+ALTER PROC sp_get_hoc_ky_hoc_phi @ma_lop NCHAR(10), @nien_khoa NCHAR(9) AS
+BEGIN
+    SELECT DISTINCT HOCKY
+    FROM (SELECT MASV FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
+             JOIN (SELECT MASV, HOCKY FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa) hp ON sv.MASV = hp.MASV
+    ORDER BY HOCKY
+END
+GO
+
+ALTER PROC sp_report_hoc_phi_lop @ma_lop NCHAR(10),
+                                 @nien_khoa NCHAR(9),
+                                 @hoc_ky INT
+AS
+BEGIN
+    SELECT sv.MASV, sv.HOTEN, hp.HOCPHI, cthp.SOTIENDADONG
+    FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
+             JOIN (SELECT HOCPHI, MASV FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa AND HOCKY = @hoc_ky) hp
+                  ON sv.MASV = hp.MASV
+             LEFT JOIN (SELECT MASV, SUM(SOTIENDONG) AS SOTIENDADONG
+                        FROM LINK2.QLDSV_TC.dbo.CT_DONGHOCPHI
+                        WHERE NIENKHOA = @nien_khoa
+                          AND HOCKY = @hoc_ky
+                        GROUP BY MASV) cthp ON cthp.MASV = sv.MASV
+    ORDER BY MASV
+END
+GO
