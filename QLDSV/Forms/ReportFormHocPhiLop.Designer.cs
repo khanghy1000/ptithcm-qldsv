@@ -48,6 +48,33 @@
             label1.TabIndex = 17;
             label1.Text = "Khoa";
             // 
+            // hOCKYLabel
+            // 
+            hOCKYLabel.AutoSize = true;
+            hOCKYLabel.Location = new System.Drawing.Point(528, 192);
+            hOCKYLabel.Name = "hOCKYLabel";
+            hOCKYLabel.Size = new System.Drawing.Size(54, 20);
+            hOCKYLabel.TabIndex = 12;
+            hOCKYLabel.Text = "Học kỳ";
+            // 
+            // nIENKHOALabel
+            // 
+            nIENKHOALabel.AutoSize = true;
+            nIENKHOALabel.Location = new System.Drawing.Point(246, 192);
+            nIENKHOALabel.Name = "nIENKHOALabel";
+            nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
+            nIENKHOALabel.TabIndex = 11;
+            nIENKHOALabel.Text = "Niên khoá";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(266, 141);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(56, 20);
+            label2.TabIndex = 18;
+            label2.Text = "Mã lớp";
+            // 
             // btnClose
             // 
             this.btnClose.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
@@ -70,15 +97,6 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // hOCKYLabel
-            // 
-            hOCKYLabel.AutoSize = true;
-            hOCKYLabel.Location = new System.Drawing.Point(528, 192);
-            hOCKYLabel.Name = "hOCKYLabel";
-            hOCKYLabel.Size = new System.Drawing.Size(54, 20);
-            hOCKYLabel.TabIndex = 12;
-            hOCKYLabel.Text = "Học kỳ";
-            // 
             // cmbHocKy
             // 
             this.cmbHocKy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -87,15 +105,6 @@
             this.cmbHocKy.Name = "cmbHocKy";
             this.cmbHocKy.Size = new System.Drawing.Size(121, 28);
             this.cmbHocKy.TabIndex = 14;
-            // 
-            // nIENKHOALabel
-            // 
-            nIENKHOALabel.AutoSize = true;
-            nIENKHOALabel.Location = new System.Drawing.Point(246, 192);
-            nIENKHOALabel.Name = "nIENKHOALabel";
-            nIENKHOALabel.Size = new System.Drawing.Size(76, 20);
-            nIENKHOALabel.TabIndex = 11;
-            nIENKHOALabel.Text = "Niên khoá";
             // 
             // cmbNienKhoa
             // 
@@ -117,15 +126,6 @@
             this.comboBoxKhoa.Size = new System.Drawing.Size(377, 28);
             this.comboBoxKhoa.TabIndex = 10;
             this.comboBoxKhoa.SelectedIndexChanged += new System.EventHandler(this.comboBoxKhoa_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(266, 141);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(56, 20);
-            label2.TabIndex = 18;
-            label2.Text = "Mã lớp";
             // 
             // cmbMaLop
             // 

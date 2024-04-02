@@ -24,6 +24,7 @@ namespace QLDSV.Forms {
 
         private void barButtonLogout_ItemClick(object sender, ItemClickEventArgs e) {
             this.Dispose();
+            Database.BindingSourcePhanManh.RemoveFilter();
             Program.LoginForm.ResetForm();
             Program.LoginForm.Show();
         }

@@ -6,7 +6,6 @@
              dbo.sysmergesubscriptions AS SUBS
         WHERE (PUBS.pubid = SUBS.pubid)
           AND (publisher <> subscriber_server)
-          AND (PUBS.description <> N'Học phí')
 GO
 
 ALTER PROC sp_get_login_info @login_name NVARCHAR(50)
@@ -231,11 +230,13 @@ BEGIN
 END
 GO
 
-ALTER PROC sp_get_ds_ma_lop_hoc_phi AS
+ALTER PROC sp_get_ds_ma_lop_hoc_phi @ma_khoa NCHAR(10) AS
 BEGIN
     SELECT DISTINCT MALOP
-    FROM LINK2.QLDSV_TC.dbo.HOCPHI AS HOCPHI
-             JOIN SINHVIEN AS SINHVIEN ON HOCPHI.MASV = SINHVIEN.MASV
+    FROM (SELECT MASV, SINHVIEN.MALOP
+          FROM (SELECT MALOP FROM LOP WHERE MAKHOA = @ma_khoa) l
+                   JOIN SINHVIEN ON SINHVIEN.MALOP = l.MALOP) sv
+             JOIN HOCPHI ON sv.MASV = HOCPHI.MASV
     ORDER BY MALOP
 END
 GO
@@ -243,8 +244,8 @@ GO
 ALTER PROC sp_get_nien_khoa_hoc_phi @ma_lop NCHAR(10) AS
 BEGIN
     SELECT DISTINCT NIENKHOA
-    FROM (SELECT MASV FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
-             JOIN LINK2.QLDSV_TC.dbo.HOCPHI AS HOCPHI ON sv.MASV = HOCPHI.MASV
+    FROM (SELECT MASV FROM SINHVIEN WHERE MALOP = @ma_lop) sv
+             JOIN HOCPHI ON sv.MASV = HOCPHI.MASV
     ORDER BY NIENKHOA
 END
 GO
@@ -252,8 +253,8 @@ GO
 ALTER PROC sp_get_hoc_ky_hoc_phi @ma_lop NCHAR(10), @nien_khoa NCHAR(9) AS
 BEGIN
     SELECT DISTINCT HOCKY
-    FROM (SELECT MASV FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
-             JOIN (SELECT MASV, HOCKY FROM LINK2.QLDSV_TC.dbo.HOCPHI WHERE NIENKHOA = @nien_khoa) hp
+    FROM (SELECT MASV FROM SINHVIEN WHERE MALOP = @ma_lop) sv
+             JOIN (SELECT MASV, HOCKY FROM HOCPHI WHERE NIENKHOA = @nien_khoa) hp
                   ON sv.MASV = hp.MASV
     ORDER BY HOCKY
 END
@@ -265,13 +266,14 @@ ALTER PROC sp_report_hoc_phi_lop @ma_lop NCHAR(10),
 AS
 BEGIN
     SELECT sv.MASV, sv.HOTEN, hp.HOCPHI, cthp.SOTIENDADONG
-    FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM LINK2.QLDSV_TC.dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
+    FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM SINHVIEN WHERE MALOP = @ma_lop) sv
              JOIN (SELECT HOCPHI, MASV
-                   FROM LINK2.QLDSV_TC.dbo.HOCPHI
-                   WHERE NIENKHOA = @nien_khoa AND HOCKY = @hoc_ky) hp
+                   FROM HOCPHI
+                   WHERE NIENKHOA = @nien_khoa
+                     AND HOCKY = @hoc_ky) hp
                   ON sv.MASV = hp.MASV
              LEFT JOIN (SELECT MASV, SUM(SOTIENDONG) AS SOTIENDADONG
-                        FROM LINK2.QLDSV_TC.dbo.CT_DONGHOCPHI
+                        FROM CT_DONGHOCPHI
                         WHERE NIENKHOA = @nien_khoa
                           AND HOCKY = @hoc_ky
                         GROUP BY MASV) cthp ON cthp.MASV = sv.MASV
@@ -285,7 +287,8 @@ SELECT sv.MASV, HOTEN, TENMH, MAX((DIEM_CC * 0.1 + DIEM_GK * 0.3 + DIEM_CK * 0.6
 FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM dbo.SINHVIEN WHERE MALOP = @ma_lop) sv
          JOIN (SELECT MASV, MALTC, DIEM_CC, DIEM_GK, DIEM_CK
                FROM dbo.DANGKY
-               WHERE HUYDANGKY IS NULL OR HUYDANGKY = 0) dk ON dk.MASV = sv.MASV
+               WHERE HUYDANGKY IS NULL
+                  OR HUYDANGKY = 0) dk ON dk.MASV = sv.MASV
          JOIN (SELECT MALTC, MAMH FROM dbo.LOPTINCHI) ltc ON ltc.MALTC = dk.MALTC
          JOIN (SELECT MAMH, TENMH FROM dbo.MONHOC) mh ON mh.MAMH = ltc.MAMH
 GROUP BY sv.MASV, HOTEN, TENMH

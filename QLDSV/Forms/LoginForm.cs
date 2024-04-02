@@ -78,6 +78,7 @@ namespace QLDSV.Forms {
                 Program.MainForm.statusBarUsername.Caption = $"MÃ: {Database.Username}";
                 Program.MainForm.statusBarFullName.Caption = $"HỌ TÊN: {Database.UserFullName}";
                 Program.MainForm.statusBarRole.Caption = $"VAI TRÒ: {Database.UserRole}";
+                Database.BindingSourcePhanManh.Filter = "ten_phan_manh not like 'Kế toán'";
                 this.Visible = false;
                 Program.MainForm.Show();
             }

@@ -17,8 +17,17 @@ namespace QLDSV.Forms {
             InitializeComponent();
         }
 
-        private void LoadMaLop() {
-            string smt = "EXEC sp_get_ds_ma_lop_hoc_phi";
+        private void LoadKhoa() {
+            string smt = "SELECT MAKHOA, TENKHOA FROM KHOA";
+            DataTable dt = Database.ExecSqlDataTable(smt);
+            comboBoxKhoa.DataSource = dt;
+            comboBoxKhoa.DisplayMember = "TENKHOA";
+            comboBoxKhoa.ValueMember = "MAKHOA";
+            LoadMaLop(comboBoxKhoa.SelectedValue.ToString());
+        }
+
+        private void LoadMaLop(string maKhoa) {
+            string smt = $"EXEC sp_get_ds_ma_lop_hoc_phi '{maKhoa}'";
             DataTable dt = Database.ExecSqlDataTable(smt);
             cmbMaLop.DataSource = dt;
             cmbMaLop.DisplayMember = "MALOP";
@@ -42,35 +51,11 @@ namespace QLDSV.Forms {
         }
 
         private void ReportFormHocPhiLop_Load(object sender, EventArgs e) {
-            comboBoxKhoa.DataSource = Database.BindingSourcePhanManh;
-            comboBoxKhoa.DisplayMember = "ten_phan_manh";
-            comboBoxKhoa.ValueMember = "ten_server";
-            comboBoxKhoa.SelectedIndex = Database.InitialKhoaIndex;
-            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
-
-            LoadMaLop();
+            LoadKhoa();
         }
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxKhoa.SelectedValue.ToString() == "System.Data.DataRowView") return;
-
-            Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
-
-            if (comboBoxKhoa.SelectedIndex != Database.InitialKhoaIndex) {
-                Database.LoginName = Database.RemoteLoginName;
-                Database.LoginPassword = Database.RemoteLoginPassword;
-            }
-            else {
-                Database.LoginName = Database.UserInputLoginName;
-                Database.LoginPassword = Database.UserInputLoginPassword;
-            }
-
-            if (Database.Connect() == Result.Failure) {
-                MessageBox.Show("Lỗi kết nối với khoa", "Lỗi", MessageBoxButtons.OK);
-                return;
-            }
-
-            LoadMaLop();
+            LoadMaLop(comboBoxKhoa.SelectedValue.ToString());
         }
 
         private void cmbMaLop_SelectedIndexChanged(object sender, EventArgs e) {
