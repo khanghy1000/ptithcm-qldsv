@@ -409,15 +409,12 @@ namespace QLDSV.Forms {
         }
 
         private void btnUndo_ItemClick(object sender, ItemClickEventArgs e) {
-            var undoStatement = _undoStack.Pop().ToString();
+            var undoStatement = _undoStack.Pop();
             if (_undoStack.Count <= 0) btnUndo.Enabled = false;
             Database.ExecSqlNonQuery(undoStatement);
 
-            LOPTableAdapter.Connection.ConnectionString = Database.ConnectionString;
             LOPTableAdapter.Fill(subscriberDataSet.LOP);
-            SINHVIENTableAdapter.Connection.ConnectionString = Database.ConnectionString;
             SINHVIENTableAdapter.Fill(subscriberDataSet.SINHVIEN);
-            DANGKYTableAdapter.Connection.ConnectionString = Database.ConnectionString;
             DANGKYTableAdapter.Fill(subscriberDataSet.DANGKY);
         }
 
