@@ -98,5 +98,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(MonHocForm));
+            if (form != null) form.Activate();
+            else {
+                MonHocForm newForm = new MonHocForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }

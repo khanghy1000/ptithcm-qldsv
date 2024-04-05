@@ -294,3 +294,31 @@ FROM (SELECT MASV, HO + ' ' + TEN AS HOTEN FROM dbo.SINHVIEN WHERE MALOP = @ma_l
 GROUP BY sv.MASV, HOTEN, TENMH
 
 GO
+
+ALTER PROC sp_check_ma_mon_hoc @ma_mon_hoc NCHAR(10)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM MONHOC WHERE MONHOC.MAMH = @ma_mon_hoc)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    SELECT 0 AS result
+    RETURN
+END
+GO
+
+ALTER PROCEDURE sp_check_ten_mon_hoc @ten_mon_hoc NVARCHAR(200)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM MONHOC WHERE MONHOC.TENMH = @ten_mon_hoc)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    SELECT 0 AS result
+    RETURN
+END
+GO
