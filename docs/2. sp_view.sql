@@ -322,3 +322,33 @@ BEGIN
     RETURN
 END
 GO
+
+ALTER PROC sp_check_lop_tin_chi @nien_khoa NCHAR(9), @hoc_ky INT, @ma_mh NCHAR(10), @nhom INT
+AS
+BEGIN
+    IF EXISTS(SELECT *
+              FROM LOPTINCHI
+              WHERE NIENKHOA = @nien_khoa
+                AND HOCKY = @hoc_ky
+                AND MAMH = @ma_mh
+                AND NHOM = @nhom)
+        BEGIN
+            SELECT 1 AS result
+            RETURN
+        END
+
+    IF EXISTS(SELECT *
+              FROM LINK1.QLDSV_TC.dbo.LOPTINCHI
+              WHERE NIENKHOA = @nien_khoa
+                AND HOCKY = @hoc_ky
+                AND MAMH = @ma_mh
+                AND NHOM = @nhom)
+        BEGIN
+            SELECT 2 AS result
+            RETURN
+        END
+
+    SELECT 0 AS result
+    RETURN
+END
+GO

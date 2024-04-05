@@ -357,6 +357,34 @@
         L2c+DQo8L3N2Zz4L
 </value>
   </data>
+  <data name="barButtonItem6.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v22.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIyLjIsIFZlcnNpb249MjIuMi4z
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAANIEAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
+        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkJsYWNre2ZpbGw6IzcyNzI3Mjt9Cgku
+        R3JlZW57ZmlsbDojMDM5QzIzO30KCS5ZZWxsb3d7ZmlsbDojRkZCMTE1O30KCS5CbHVle2ZpbGw6IzEx
+        NzdENzt9CgkuUmVke2ZpbGw6I0QxMUMxQzt9Cjwvc3R5bGU+DQogIDxnIGlkPSJQYXNzcG9ydCI+DQog
+        ICAgPHBhdGggZD0iTTE4LDE4aC0yYzAuMSwxLjQsMC41LDIuOCwxLDRDMTcuNSwyMC44LDE3LjksMTku
+        NCwxOCwxOHoiIGNsYXNzPSJCbHVlIiAvPg0KICAgIDxwYXRoIGQ9Ik0xNywxMmMtMC41LDEuMi0wLjks
+        Mi42LTEsNGgyQzE3LjksMTQuNiwxNy41LDEzLjIsMTcsMTJ6IiBjbGFzcz0iQmx1ZSIgLz4NCiAgICA8
+        cGF0aCBkPSJNMjEuOSwxNmMtMC4zLTEuNS0xLjMtMi43LTIuNi0zLjRjMC4zLDEuMSwwLjYsMi4yLDAu
+        NywzLjRIMjEuOXoiIGNsYXNzPSJCbHVlIiAvPg0KICAgIDxwYXRoIGQ9Ik0yMS45LDE4SDIwYy0wLjEs
+        MS4yLTAuMywyLjMtMC43LDMuNEMyMC42LDIwLjcsMjEuNiwxOS41LDIxLjksMTh6IiBjbGFzcz0iQmx1
+        ZSIgLz4NCiAgICA8cGF0aCBkPSJNNyw0aDIxVjNjMC0wLjYtMC40LTEtMS0xSDdDNS4zLDIsNCwzLjMs
+        NCw1djIyYzAsMS43LDEuMywzLDMsM2gyMGMwLjYsMCwxLTAuNCwxLTFWNkg3QzYuNCw2LDYsNS42LDYs
+        NSAgIEM2LDQuNCw2LjQsNCw3LDR6IE0xNywxMGMzLjksMCw3LDMuMSw3LDdjMCwzLjktMy4xLDctNyw3
+        cy03LTMuMS03LTdDMTAsMTMuMSwxMy4xLDEwLDE3LDEweiIgY2xhc3M9IkJsdWUiIC8+DQogICAgPHBh
+        dGggZD0iTTE0LjcsMTIuNmMtMS4zLDAuNy0yLjMsMS45LTIuNiwzLjRIMTRDMTQuMSwxNC44LDE0LjQs
+        MTMuNywxNC43LDEyLjZ6IiBjbGFzcz0iQmx1ZSIgLz4NCiAgICA8cGF0aCBkPSJNMTQuNywyMS40Yy0w
+        LjMtMS4xLTAuNi0yLjItMC43LTMuNGgtMS45QzEyLjQsMTkuNSwxMy40LDIwLjcsMTQuNywyMS40eiIg
+        Y2xhc3M9IkJsdWUiIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
   <metadata name="xtraTabbedMdiManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

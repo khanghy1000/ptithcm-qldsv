@@ -157,6 +157,12 @@
     <Compile Include="Forms\MonHocForm.Designer.cs">
       <DependentUpon>MonHocForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LopTinChiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LopTinChiForm.Designer.cs">
+      <DependentUpon>LopTinChiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TemplateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MonHocForm.resx">
       <DependentUpon>MonHocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LopTinChiForm.resx">
+      <DependentUpon>LopTinChiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TemplateForm.resx">
       <DependentUpon>TemplateForm.cs</DependentUpon>

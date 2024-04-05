@@ -108,5 +108,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(LopTinChiForm));
+            if (form != null) form.Activate();
+            else {
+                LopTinChiForm newForm = new LopTinChiForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }
