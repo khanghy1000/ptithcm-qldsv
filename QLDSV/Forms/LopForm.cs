@@ -80,7 +80,7 @@ namespace QLDSV.Forms {
                 Database.DataReader = Database.ExecSqlDataReader(checkMaLopStatement);
 
                 if (Database.DataReader == null) {
-                    MessageBox.Show("Lỗi kiểm tra mã khoa", "Lỗi", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi kiểm tra mã lớp", "Lỗi", MessageBoxButtons.OK);
                     return Result.Failure;
                 }
 
