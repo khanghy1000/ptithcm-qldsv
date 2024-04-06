@@ -112,8 +112,9 @@ namespace QLDSV.Forms {
 
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
 
-            textUsername.Text = "kt";
-            textPassword.Text = "1";
+            textUsername.Text = "N15DCCN002";
+            textPassword.Text = "123456";
+            checkIsSinhVien.Checked = true;
         }
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {

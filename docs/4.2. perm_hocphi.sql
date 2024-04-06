@@ -1,0 +1,1 @@
+﻿GRANT EXECUTE ON OBJECT :: dbo.sp_get_login_info TO PKT

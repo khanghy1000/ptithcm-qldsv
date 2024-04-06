@@ -15,6 +15,10 @@ DB:
 Permission:
 - sp_get_login_info: PKT
 - sp_get_sinh_vien_info: SV
+- sp_get_ds_ltc_dang_ky: SV
+- sp_doi_trang_thai_dang_ky_ltc: SV
+- sp_get_nien_khoa_ltc: SV
+- sp_get_hoc_ky_ltc: SV
 
 Linked servers:
 - LINK0: publisher

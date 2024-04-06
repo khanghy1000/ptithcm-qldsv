@@ -397,3 +397,61 @@ BEGIN
         INSERT (MALTC, MASV, DIEM_CC, DIEM_GK, DIEM_CK)
         VALUES (Source.MALTC, Source.MASV, Source.DIEM_CC, Source.DIEM_GK, Source.DIEM_CK);
 END
+GO
+
+ALTER PROC sp_get_ds_ltc_dang_ky @nien_khoa NCHAR(9), @hoc_ky INT, @ma_sinh_vien NCHAR(10)
+AS
+BEGIN
+    SELECT ltc.MALTC,
+           mh.MAMH,
+           TENMH,
+           NHOM,
+           HO + ' ' + TEN                                                AS HOTENGV,
+           IIF(SOSVDADANGKY IS NULL, 0, SOSVDADANGKY)                    AS SOSVDADANGKY,
+           CAST(IIF(DADANGKY IS NOT NULL AND DADANGKY > 0, 1, 0) AS BIT) AS DANGKY
+    FROM (SELECT MALTC, MAMH, NHOM, MAGV
+          FROM LOPTINCHI
+          WHERE NIENKHOA = @nien_khoa
+            AND HOCKY = @hoc_ky
+            AND HUYLOP = 0) ltc
+             JOIN (SELECT MAMH, TENMH FROM MONHOC) mh ON ltc.MAMH = mh.MAMH
+             JOIN (SELECT MAGV, HO, TEN FROM GIANGVIEN) gv ON ltc.MAGV = gv.MAGV
+             LEFT JOIN (SELECT COUNT(*) AS SOSVDADANGKY, MALTC
+                        FROM DANGKY
+                        WHERE (HUYDANGKY = 0 OR HUYDANGKY IS NULL)
+                        GROUP BY MALTC) dk ON ltc.MALTC = dk.MALTC
+             LEFT JOIN (SELECT MALTC, COUNT(*) AS DADANGKY
+                        FROM DANGKY
+                        WHERE MASV = @ma_sinh_vien
+                          AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)
+                        GROUP BY MALTC) svdk ON ltc.MALTC = svdk.MALTC
+END
+GO
+
+ALTER PROC sp_doi_trang_thai_dang_ky_ltc @ma_ltc INT, @ma_sinh_vien NCHAR(10), @dang_ky BIT
+AS
+BEGIN
+    IF @dang_ky = 1
+        BEGIN
+            IF EXISTS(SELECT * FROM DANGKY WHERE MALTC = @ma_ltc AND MASV = @ma_sinh_vien)
+                BEGIN
+                    UPDATE DANGKY
+                    SET HUYDANGKY = 0
+                    WHERE MALTC = @ma_ltc
+                      AND MASV = @ma_sinh_vien
+                END
+            ELSE
+                BEGIN
+                    INSERT INTO DANGKY (MALTC, MASV, HUYDANGKY)
+                    VALUES (@ma_ltc, @ma_sinh_vien, 0)
+                END
+        END
+    ELSE
+        BEGIN
+            UPDATE DANGKY
+            SET HUYDANGKY = 1
+            WHERE MALTC = @ma_ltc
+              AND MASV = @ma_sinh_vien
+        END
+END
+GO

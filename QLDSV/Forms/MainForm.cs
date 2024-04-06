@@ -131,5 +131,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(DangKyLTCForm));
+            if (form != null) form.Activate();
+            else {
+                DangKyLTCForm newForm = new DangKyLTCForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }
