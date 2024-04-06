@@ -23,6 +23,9 @@ namespace QLDSV.Forms {
         }
 
         private void barButtonLogout_ItemClick(object sender, ItemClickEventArgs e) {
+            foreach (Form f in this.MdiChildren) {
+                f.Close();
+            }
             this.Dispose();
             Database.BindingSourcePhanManh.RemoveFilter();
             Program.LoginForm.ResetForm();
