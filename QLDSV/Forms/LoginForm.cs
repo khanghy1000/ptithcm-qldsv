@@ -118,6 +118,13 @@ namespace QLDSV.Forms {
 
         private void comboBoxKhoa_SelectedIndexChanged(object sender, EventArgs e) {
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
+
+            if (comboBoxKhoa.Text.Trim() == "Kế toán") {
+                checkIsSinhVien.Checked = false;
+                checkIsSinhVien.Enabled = false;
+                return;
+            }
+            checkIsSinhVien.Enabled = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
