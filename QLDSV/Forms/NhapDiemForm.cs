@@ -71,6 +71,8 @@ namespace QLDSV.Forms {
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = true;
             btnSaveDiem.Enabled = false;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = true;
+            cmbNienKhoa.Enabled = cmbHocKy.Enabled = true;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
         }
 
         private void cmbNienKhoa_SelectedIndexChanged(object sender, EventArgs e) {
@@ -97,6 +99,8 @@ namespace QLDSV.Forms {
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = false;
             btnSaveDiem.Enabled = true;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = false;
+            cmbNienKhoa.Enabled = cmbHocKy.Enabled = false;
+            comboBoxKhoa.Enabled = false;
         }
 
         private void btnSaveDiem_Click(object sender, EventArgs e) {
@@ -140,6 +144,8 @@ namespace QLDSV.Forms {
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = true;
             btnSaveDiem.Enabled = false;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = true;
+            cmbNienKhoa.Enabled = cmbHocKy.Enabled = true;
+            comboBoxKhoa.Enabled = Database.UserRole == "PGV";
             MessageBox.Show("Ghi điểm thành công", "Thành công",
                 MessageBoxButtons.OK);
         }
