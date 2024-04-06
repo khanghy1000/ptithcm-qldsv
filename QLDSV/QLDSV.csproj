@@ -73,6 +73,12 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="FormState.cs" />
+    <Compile Include="Forms\NhapDiemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NhapDiemForm.Designer.cs">
+      <DependentUpon>NhapDiemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>subscriberDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\NhapDiemForm.resx">
+      <DependentUpon>NhapDiemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

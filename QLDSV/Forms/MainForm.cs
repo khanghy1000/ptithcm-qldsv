@@ -118,5 +118,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(NhapDiemForm));
+            if (form != null) form.Activate();
+            else {
+                NhapDiemForm newForm = new NhapDiemForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }

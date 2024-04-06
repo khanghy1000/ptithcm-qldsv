@@ -352,3 +352,48 @@ BEGIN
     RETURN
 END
 GO
+
+ALTER PROC sp_get_ds_ltc @nien_khoa NCHAR(9), @hoc_ky INT
+AS
+BEGIN
+    SELECT MALTC, TENMH, NHOM, HO + ' ' + TEN AS HOTENGV
+    FROM (SELECT MALTC, MAMH, NHOM, MAGV
+          FROM LOPTINCHI
+          WHERE NIENKHOA = @nien_khoa
+            AND HOCKY = @hoc_ky
+            AND HUYLOP = 'FALSE') ltc
+             JOIN (SELECT MAMH, TENMH FROM MONHOC) mh ON ltc.MAMH = mh.MAMH
+             JOIN (SELECT MAGV, HO, TEN FROM GIANGVIEN) gv ON ltc.MAGV = gv.MAGV
+    ORDER BY TENMH, NHOM
+END
+GO
+
+ALTER PROC sp_get_dssv_dang_ky_ltc @ma_ltc INT
+AS
+BEGIN
+    SELECT sv.MASV, HO + ' ' + TEN AS HOTENSV, DIEM_CC, DIEM_GK, DIEM_CK
+    FROM (SELECT MASV, DIEM_CC, DIEM_GK, DIEM_CK
+          FROM DANGKY
+          WHERE MALTC = @ma_ltc
+            AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)) dk
+             JOIN (SELECT MASV, HO, TEN FROM SINHVIEN) sv
+                  ON dk.MASV = sv.MASV
+END
+GO
+
+ALTER PROC sp_update_diem @diem_thi TYPE_DANGKY READONLY
+AS
+BEGIN
+    MERGE INTO DANGKY AS Target
+    USING (SELECT MALTC, MASV, DIEM_CC, DIEM_GK, DIEM_CK
+           FROM @diem_thi) AS Source
+    ON Target.MALTC = Source.MALTC AND Target.MASV = Source.MASV
+    WHEN MATCHED THEN
+        UPDATE
+        SET Target.DIEM_CC = Source.DIEM_CC,
+            Target.DIEM_GK = Source.DIEM_GK,
+            Target.DIEM_CK = Source.DIEM_CK
+    WHEN NOT MATCHED THEN
+        INSERT (MALTC, MASV, DIEM_CC, DIEM_GK, DIEM_CK)
+        VALUES (Source.MALTC, Source.MASV, Source.DIEM_CC, Source.DIEM_GK, Source.DIEM_CK);
+END

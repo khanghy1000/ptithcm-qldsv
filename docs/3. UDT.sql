@@ -1,0 +1,8 @@
+﻿CREATE TYPE [dbo].[TYPE_DANGKY] AS TABLE(
+    [MALTC] [INT] NULL,
+    [MASV] [NCHAR](10) NULL,
+    [DIEM_CC] [INT] NULL,
+    [DIEM_GK] [FLOAT] NULL,
+    [DIEM_CK] [FLOAT] NULL
+)
+GO
