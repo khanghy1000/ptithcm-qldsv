@@ -38,6 +38,8 @@ namespace QLDSV.Forms {
                 return;
             }
 
+            textUsername.Text = textUsername.Text.Trim().ToUpper();
+
             Database.LoginName = textUsername.Text;
             Database.LoginPassword = textPassword.Text;
 
