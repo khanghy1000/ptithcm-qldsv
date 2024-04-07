@@ -81,5 +81,9 @@ namespace QLDSV.Forms {
             ReportPrintTool print = new ReportPrintTool(report);
             print.ShowPreviewDialog();
         }
+
+        private void ReportFormDSLopTinChi_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

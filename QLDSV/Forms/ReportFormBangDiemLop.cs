@@ -92,5 +92,9 @@ namespace QLDSV.Forms {
         private void btnClose_Click(object sender, EventArgs e) {
             this.Close();
         }
+
+        private void ReportFormBangDiemLop_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

@@ -282,6 +282,7 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "DangKyLTCForm";
             this.Text = "Đăng ký lớp tín chỉ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DangKyLTCForm_FormClosing);
             this.Load += new System.EventHandler(this.DangKyLTCForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

@@ -375,5 +375,9 @@ namespace QLDSV.Forms {
             if (cmbHOTENGV.SelectedValue == null) return;
             MAGVTextEdit.Text = cmbHOTENGV.SelectedValue.ToString().Trim();
         }
+
+        private void LopTinChiForm_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

@@ -56,6 +56,15 @@
             hOCKYLabel.TabIndex = 5;
             hOCKYLabel.Text = "Học kỳ";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(280, 82);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Khoa";
+            // 
             // comboBoxKhoa
             // 
             this.comboBoxKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -113,15 +122,6 @@
             this.btnClose.Text = "Thoát";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(280, 82);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(43, 20);
-            label1.TabIndex = 9;
-            label1.Text = "Khoa";
-            // 
             // ReportFormDSLopTinChi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -137,6 +137,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormDSLopTinChi";
             this.Text = "Report DS Lớp Tín Chỉ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportFormDSLopTinChi_FormClosing);
             this.Load += new System.EventHandler(this.ReportFormDSLopTinChi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subscriberDataSet)).EndInit();
             this.ResumeLayout(false);

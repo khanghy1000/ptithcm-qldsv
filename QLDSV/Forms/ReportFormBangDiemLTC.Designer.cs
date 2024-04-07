@@ -177,6 +177,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormBangDiemLTC";
             this.Text = "Report Bảng Điểm Của LTC";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportFormBangDiemLTC_FormClosing);
             this.Load += new System.EventHandler(this.ReportFormBangDiemLTC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

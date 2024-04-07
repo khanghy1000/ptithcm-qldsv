@@ -373,6 +373,7 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "NhapDiemForm";
             this.Text = "Nhập điểm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NhapDiemForm_FormClosing);
             this.Load += new System.EventHandler(this.DangKyLTCForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

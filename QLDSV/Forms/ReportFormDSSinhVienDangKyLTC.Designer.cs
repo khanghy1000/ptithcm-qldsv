@@ -78,6 +78,15 @@
             label2.TabIndex = 17;
             label2.Text = "Môn học";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(275, 84);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(43, 20);
+            label3.TabIndex = 21;
+            label3.Text = "Khoa";
+            // 
             // btnClose
             // 
             this.btnClose.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
@@ -149,15 +158,6 @@
             this.cmbMonHoc.TabIndex = 19;
             this.cmbMonHoc.SelectedIndexChanged += new System.EventHandler(this.cmbMonHoc_SelectedIndexChanged);
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(275, 84);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(43, 20);
-            label3.TabIndex = 21;
-            label3.Text = "Khoa";
-            // 
             // ReportFormDSSinhVienDangKyLTC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -177,6 +177,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormDSSinhVienDangKyLTC";
             this.Text = "Report DS Sinh Viên Đăng Ký LTC";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportFormDSSinhVienDangKyLTC_FormClosing);
             this.Load += new System.EventHandler(this.ReportFormDSSinhVienDangKyLTC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

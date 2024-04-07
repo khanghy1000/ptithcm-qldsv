@@ -105,6 +105,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormPhieuDiemSV";
             this.Text = "Report Phiếu Điểm SV";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportFormPhieuDiemSV_FormClosing);
             this.Load += new System.EventHandler(this.ReportFormPhieuDiemSV_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

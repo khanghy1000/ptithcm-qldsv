@@ -167,5 +167,9 @@ namespace QLDSV.Forms {
             _dtDsSvDangKy = Database.ExecSqlDataTable(smt);
             DSSVDangKyGridControl.DataSource = _dtDsSvDangKy;
         }
+
+        private void NhapDiemForm_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

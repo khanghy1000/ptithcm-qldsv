@@ -297,5 +297,9 @@ namespace QLDSV.Forms {
                 MONHOCBindingSource.Position = _cursorPosision;
             }
         }
+
+        private void MonHocForm_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
     }

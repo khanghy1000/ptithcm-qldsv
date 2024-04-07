@@ -610,5 +610,9 @@ namespace QLDSV.Forms {
                 SINHVIENBindingSource.Position = _sinhVienCursorPosition;
             }
         }
+
+        private void LopForm_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

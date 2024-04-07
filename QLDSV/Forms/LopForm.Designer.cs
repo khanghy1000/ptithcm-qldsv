@@ -826,6 +826,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LopForm";
             this.Text = "Lớp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LopForm_FormClosing);
             this.Load += new System.EventHandler(this.LopForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

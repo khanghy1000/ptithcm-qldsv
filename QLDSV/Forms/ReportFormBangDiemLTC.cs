@@ -113,5 +113,8 @@ namespace QLDSV.Forms {
             this.Close();
         }
 
+        private void ReportFormBangDiemLTC_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

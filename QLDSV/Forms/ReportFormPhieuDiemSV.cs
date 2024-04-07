@@ -91,6 +91,8 @@ namespace QLDSV.Forms {
             this.Close();
         }
 
-
+        private void ReportFormPhieuDiemSV_FormClosing(object sender, FormClosingEventArgs e) {
+            comboBoxKhoa.DataSource = null;
+        }
     }
 }

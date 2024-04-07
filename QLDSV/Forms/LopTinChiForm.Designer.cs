@@ -730,6 +730,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LopTinChiForm";
             this.Text = "Lớp tín chỉ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LopTinChiForm_FormClosing);
             this.Load += new System.EventHandler(this.TemplateForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

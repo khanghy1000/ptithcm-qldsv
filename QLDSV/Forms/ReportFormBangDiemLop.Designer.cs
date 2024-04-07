@@ -42,15 +42,6 @@
             label2.TabIndex = 24;
             label2.Text = "Mã lớp";
             // 
-            // cmbMaLop
-            // 
-            this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMaLop.FormattingEnabled = true;
-            this.cmbMaLop.Location = new System.Drawing.Point(226, 154);
-            this.cmbMaLop.Name = "cmbMaLop";
-            this.cmbMaLop.Size = new System.Drawing.Size(379, 28);
-            this.cmbMaLop.TabIndex = 25;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -59,6 +50,15 @@
             label1.Size = new System.Drawing.Size(43, 20);
             label1.TabIndex = 23;
             label1.Text = "Khoa";
+            // 
+            // cmbMaLop
+            // 
+            this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMaLop.FormattingEnabled = true;
+            this.cmbMaLop.Location = new System.Drawing.Point(226, 154);
+            this.cmbMaLop.Name = "cmbMaLop";
+            this.cmbMaLop.Size = new System.Drawing.Size(379, 28);
+            this.cmbMaLop.TabIndex = 25;
             // 
             // btnClose
             // 
@@ -106,6 +106,7 @@
             this.Controls.Add(this.comboBoxKhoa);
             this.Name = "ReportFormBangDiemLop";
             this.Text = "Report Bảng Điểm Lớp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportFormBangDiemLop_FormClosing);
             this.Load += new System.EventHandler(this.ReportFormBangDiemLop_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
