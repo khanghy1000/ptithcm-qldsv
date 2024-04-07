@@ -198,7 +198,6 @@ namespace QLDSV.Forms {
             _hocPhiCursorPosision = HOCPHIBindingSource.Position;
             _ctHocPhiCursorPosision = CT_HOCPHIBindingSource.Position;
 
-            // gridViewHOCPHI.AddNewRow();
             HOCPHIBindingSource.AddNew();
             _formState = FormState.Adding;
 
@@ -261,7 +260,7 @@ namespace QLDSV.Forms {
                     var smt =
                         $"EXEC sp_add_hoc_phi N'{textMASV.Text.Trim()}', N'{NIENKHOATextEdit.Text.Trim()}', {HOCKYSpinEdit.Value}, {HOCPHISpinEdit.Value}";
                     if (Database.ExecSqlNonQuery(smt) != 0) {
-                        MessageBox.Show("Lỗi thêm học phí", "Lỗi", MessageBoxButtons.OK);
+                        return;
                     }
                 }
 
@@ -269,10 +268,11 @@ namespace QLDSV.Forms {
                     var smt =
                         $"EXEC sp_update_hoc_phi N'{textMASV.Text.Trim()}', N'{NIENKHOATextEdit.Text.Trim()}', {HOCKYSpinEdit.Value}, {HOCPHISpinEdit.Value}";
                     if (Database.ExecSqlNonQuery(smt) != 0) {
-                        MessageBox.Show("Lỗi cập nhật học phí", "Lỗi", MessageBoxButtons.OK);
+                        return;
                     }
                 }
                 HOCPHIBindingSource.EndEdit();
+                _formState = FormState.None;
 
                 HOCPHITableAdapter.Fill(hocPhiDataSet.sp_get_hoc_phi_sv, cmbMaSV.Text.Trim());
                 CT_HOCPHITableAdapter.Fill(hocPhiDataSet.sp_get_ct_hoc_phi_sv, cmbMaSV.Text.Trim(),
@@ -419,7 +419,7 @@ namespace QLDSV.Forms {
                     var smt =
                         $"EXEC sp_add_ct_dong_hoc_phi N'{maSv}', N'{nienKhoa}', {hocKy}, '{ngayDong:yyyy-MM-dd}', {soTienDong}";
                     if (Database.ExecSqlNonQuery(smt) != 0) {
-                        MessageBox.Show("Lỗi thêm chi tiết học phí", "Lỗi", MessageBoxButtons.OK);
+                        return;
                     }
                 }
 
@@ -427,7 +427,7 @@ namespace QLDSV.Forms {
                     var smt =
                         $"EXEC sp_update_ct_dong_hoc_phi N'{maSv}', N'{nienKhoa}', {hocKy}, '{ngayDong:yyyy-MM-dd}', {soTienDong}";
                     if (Database.ExecSqlNonQuery(smt) != 0) {
-                        MessageBox.Show("Lỗi cập nhật chi tiết học phí", "Lỗi", MessageBoxButtons.OK);
+                        return;
                     }
                 }
 
