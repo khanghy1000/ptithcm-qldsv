@@ -40,7 +40,7 @@
             this.DSLTCTableAdapter = new QLDSV.subscriberDataSetTableAdapters.sp_get_ds_ltcTableAdapter();
             this.tableAdapterManager = new QLDSV.subscriberDataSetTableAdapters.TableAdapterManager();
             this.DSLTCGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewDSLTC = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMALTC = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENMH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNHOM = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -59,7 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.subscriberDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSLTCBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSLTCGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDSLTC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSSVDangKyGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSSVDangKy)).BeginInit();
             this.SuspendLayout();
@@ -211,23 +211,24 @@
             this.DSLTCGridControl.DataSource = this.DSLTCBindingSource;
             this.DSLTCGridControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.DSLTCGridControl.Location = new System.Drawing.Point(0, 55);
-            this.DSLTCGridControl.MainView = this.gridView1;
+            this.DSLTCGridControl.MainView = this.gridViewDSLTC;
             this.DSLTCGridControl.Name = "DSLTCGridControl";
             this.DSLTCGridControl.Size = new System.Drawing.Size(1355, 340);
             this.DSLTCGridControl.TabIndex = 3;
             this.DSLTCGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridViewDSLTC});
             // 
-            // gridView1
+            // gridViewDSLTC
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewDSLTC.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMALTC,
             this.colTENMH,
             this.colNHOM,
             this.colHOTENGV});
-            this.gridView1.GridControl = this.DSLTCGridControl;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridViewDSLTC.GridControl = this.DSLTCGridControl;
+            this.gridViewDSLTC.Name = "gridViewDSLTC";
+            this.gridViewDSLTC.OptionsBehavior.ReadOnly = true;
+            this.gridViewDSLTC.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewDSLTC_SelectionChanged);
             // 
             // colMALTC
             // 
@@ -379,7 +380,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.subscriberDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSLTCBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSLTCGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDSLTC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSSVDangKyGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSSVDangKy)).EndInit();
             this.ResumeLayout(false);
@@ -402,7 +403,7 @@
         private subscriberDataSetTableAdapters.sp_get_ds_ltcTableAdapter DSLTCTableAdapter;
         private subscriberDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.GridControl DSLTCGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewDSLTC;
         private DevExpress.XtraGrid.Columns.GridColumn colMALTC;
         private DevExpress.XtraGrid.Columns.GridColumn colTENMH;
         private DevExpress.XtraGrid.Columns.GridColumn colNHOM;

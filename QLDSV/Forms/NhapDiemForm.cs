@@ -69,6 +69,7 @@ namespace QLDSV.Forms {
 
             // Reset buttons
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = true;
+            DSLTCGridControl.Enabled = true;
             btnSaveDiem.Enabled = false;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = true;
             cmbNienKhoa.Enabled = cmbHocKy.Enabled = true;
@@ -97,6 +98,7 @@ namespace QLDSV.Forms {
             DSSVDangKyGridControl.DataSource = _dtDsSvDangKy;
 
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = false;
+            DSLTCGridControl.Enabled = false;
             btnSaveDiem.Enabled = true;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = false;
             cmbNienKhoa.Enabled = cmbHocKy.Enabled = false;
@@ -142,6 +144,7 @@ namespace QLDSV.Forms {
             }
 
             gridViewDSSVDangKy.OptionsBehavior.ReadOnly = true;
+            DSLTCGridControl.Enabled = true;
             btnSaveDiem.Enabled = false;
             btnLoadLTC.Enabled = btnNhapDiem.Enabled = true;
             cmbNienKhoa.Enabled = cmbHocKy.Enabled = true;
@@ -156,6 +159,13 @@ namespace QLDSV.Forms {
 
         private void cmbHocKy_SelectedIndexChanged(object sender, EventArgs e) {
             btnLoadLTC_Click(sender, e);
+        }
+
+        private void gridViewDSLTC_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e) {
+            _maLtc = ((DataRowView)DSLTCBindingSource[DSLTCBindingSource.Position])["MALTC"].ToString();
+            string smt = $"EXEC sp_get_dssv_dang_ky_ltc {_maLtc}";
+            _dtDsSvDangKy = Database.ExecSqlDataTable(smt);
+            DSSVDangKyGridControl.DataSource = _dtDsSvDangKy;
         }
     }
 }
