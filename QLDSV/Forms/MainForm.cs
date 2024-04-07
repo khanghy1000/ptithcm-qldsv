@@ -141,5 +141,15 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(DongHocPhiForm));
+            if (form != null) form.Activate();
+            else {
+                DongHocPhiForm newForm = new DongHocPhiForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }

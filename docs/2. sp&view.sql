@@ -455,3 +455,124 @@ BEGIN
         END
 END
 GO
+
+ALTER PROC sp_get_hoc_phi_sv @ma_sv NCHAR(10)
+AS
+BEGIN
+    SELECT hp.NIENKHOA, hp.HOCKY, HOCPHI, IIF(DADONG IS NULL, 0, DADONG) AS DADONG
+    FROM (SELECT * FROM HOCPHI WHERE MASV = @ma_sv) hp
+             LEFT JOIN
+         (SELECT MASV, NIENKHOA, HOCKY, SUM(SOTIENDONG) AS DADONG
+          FROM CT_DONGHOCPHI
+          WHERE MASV = @ma_sv
+          GROUP BY MASV, NIENKHOA, HOCKY) cthp
+         ON hp.MASV = cthp.MASV AND hp.NIENKHOA = cthp.NIENKHOA AND hp.HOCKY = cthp.HOCKY
+    ORDER BY NIENKHOA, HOCKY
+END
+GO
+
+ALTER PROC sp_get_ct_hoc_phi_sv @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT
+AS
+BEGIN
+    SELECT NGAYDONG, SOTIENDONG
+    FROM CT_DONGHOCPHI
+    WHERE MASV = @ma_sv
+      AND NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+    ORDER BY NGAYDONG
+END
+GO
+
+ALTER PROC sp_check_ma_sv_ton_tai @ma_sv NCHAR(10)
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM SINHVIEN WHERE MASV = @ma_sv)
+        BEGIN
+            SELECT 0 AS result
+            RETURN
+        END
+    SELECT 1 AS result
+    RETURN
+END
+GO
+
+ALTER PROC sp_add_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT, @hoc_phi INT
+AS
+BEGIN
+    IF EXISTS(SELECT * FROM HOCPHI WHERE MASV = @ma_sv AND NIENKHOA = @nien_khoa AND HOCKY = @hoc_ky)
+        BEGIN
+            RAISERROR ('Thông tin học phí bị trùng',16,1)
+        END
+    ELSE
+        BEGIN
+            INSERT INTO HOCPHI(MASV, NIENKHOA, HOCKY, HOCPHI)
+            VALUES (@ma_sv, @nien_khoa, @hoc_ky, @hoc_phi)
+        END
+END
+GO
+
+ALTER PROC sp_update_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT, @hoc_phi INT
+AS
+BEGIN
+    UPDATE HOCPHI
+    SET HOCPHI=@hoc_phi
+    WHERE MASV = @ma_sv
+      AND NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+END
+GO
+
+ALTER PROC sp_delete_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT
+AS
+BEGIN
+    DELETE
+    FROM HOCPHI
+    WHERE MASV = @ma_sv
+      AND NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+END
+GO
+
+ALTER PROC sp_add_ct_dong_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT,
+                                  @ngay_dong DATE, @so_tien_dong INT
+AS
+BEGIN
+    IF EXISTS (SELECT 1
+               FROM CT_DONGHOCPHI
+               WHERE MASV = @ma_sv
+                 AND NIENKHOA = @nien_khoa
+                 AND HOCKY = @hoc_ky
+                 AND @ngay_dong = NGAYDONG)
+        RAISERROR ('Vui lòng đổi ngày đóng',16,1)
+    ELSE
+        BEGIN
+            INSERT INTO CT_DONGHOCPHI(MASV, NIENKHOA, HOCKY, NGAYDONG, SOTIENDONG)
+            VALUES (@ma_sv, @nien_khoa, @hoc_ky, @ngay_dong, @so_tien_dong)
+        END
+END
+GO
+
+ALTER PROC sp_update_ct_dong_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT,
+                                     @ngay_dong DATE, @so_tien_dong INT
+AS
+BEGIN
+    UPDATE CT_DONGHOCPHI
+    SET SOTIENDONG=@so_tien_dong
+    WHERE MASV = @ma_sv
+      AND NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+      AND NGAYDONG = @ngay_dong
+END
+GO
+
+ALTER PROC sp_delete_ct_dong_hoc_phi @ma_sv NCHAR(10), @nien_khoa NCHAR(9), @hoc_ky INT, @ngay_dong DATE
+AS
+BEGIN
+    DELETE
+    FROM CT_DONGHOCPHI
+    WHERE MASV = @ma_sv
+      AND NIENKHOA = @nien_khoa
+      AND HOCKY = @hoc_ky
+      AND NGAYDONG = @ngay_dong
+END
+GO
