@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraReports.UI;
+using QLDSV.Forms.Reports;
 
 namespace QLDSV.Forms {
     public partial class MainForm : RibbonForm {
@@ -11,11 +13,48 @@ namespace QLDSV.Forms {
                     return f;
                 }
             }
+
             return null;
         }
 
         public MainForm() {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+            if (Database.UserRole == "PGV" || Database.UserRole == "KHOA") {
+                barButtonLop.Visibility =
+                    barButtonMonHoc.Visibility = barButtonLTC.Visibility =
+                        barButtonNhapDiem.Visibility = BarItemVisibility.Always;
+                barButtonFormDSLopTinChi.Visibility = barButtonFormSVDKLTC.Visibility =
+                    barButtonFormBangDiemLTC.Visibility =
+                        barButtonFormBangDiemLop.Visibility = BarItemVisibility.Always;
+                barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Never;
+                barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
+                barButtonDKLTC.Visibility = BarItemVisibility.Never;
+            }
+
+            if (Database.UserRole == "PKT") {
+                barButtonLop.Visibility =
+                    barButtonMonHoc.Visibility =
+                        barButtonLTC.Visibility = barButtonNhapDiem.Visibility = BarItemVisibility.Never;
+                barButtonFormDSLopTinChi.Visibility = barButtonFormSVDKLTC.Visibility =
+                    barButtonFormBangDiemLTC.Visibility = barButtonFormBangDiemLop.Visibility = BarItemVisibility.Never;
+                barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Always;
+                barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
+                barButtonDKLTC.Visibility = BarItemVisibility.Never;
+            }
+
+            if (Database.UserRole == "SV") {
+                barButtonLop.Visibility =
+                    barButtonMonHoc.Visibility =
+                        barButtonLTC.Visibility = barButtonNhapDiem.Visibility = BarItemVisibility.Never;
+                barButtonFormDSLopTinChi.Visibility = barButtonFormSVDKLTC.Visibility =
+                    barButtonFormBangDiemLTC.Visibility = barButtonFormBangDiemLop.Visibility = BarItemVisibility.Never;
+                barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Never;
+                barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
+                barButtonDKLTC.Visibility = BarItemVisibility.Always;
+            }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
@@ -26,6 +65,7 @@ namespace QLDSV.Forms {
             foreach (Form f in this.MdiChildren) {
                 f.Close();
             }
+
             this.Dispose();
             Database.BindingSourcePhanManh.RemoveFilter();
             Program.LoginForm.ResetForm();
@@ -63,6 +103,17 @@ namespace QLDSV.Forms {
         }
 
         private void barButtonPhieuDiem_ItemClick(object sender, ItemClickEventArgs e) {
+            if (Database.UserRole == "SV") {
+                ReportPhieuDiemSV report = new ReportPhieuDiemSV(Database.SinhVienInputMSSV);
+
+                report.labelHoTen.Text = $"Họ tên: {Database.UserFullName}";
+                report.labelMaSV.Text = $"Mã sinh viên: {Database.SinhVienInputMSSV}";
+
+                ReportPrintTool print = new ReportPrintTool(report);
+                print.ShowPreviewDialog();
+                return;
+            }
+
             Form form = CheckExists(typeof(ReportFormPhieuDiemSV));
             if (form != null) form.Activate();
             else {
