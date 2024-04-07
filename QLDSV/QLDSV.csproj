@@ -79,6 +79,12 @@
     <Compile Include="Forms\DangKyLTCForm.Designer.cs">
       <DependentUpon>DangKyLTCForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DoiMatKhauForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DoiMatKhauForm.Designer.cs">
+      <DependentUpon>DoiMatKhauForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NhapDiemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\DangKyLTCForm.resx">
       <DependentUpon>DangKyLTCForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoiMatKhauForm.resx">
+      <DependentUpon>DoiMatKhauForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NhapDiemForm.resx">
       <DependentUpon>NhapDiemForm.cs</DependentUpon>

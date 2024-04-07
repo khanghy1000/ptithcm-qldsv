@@ -32,6 +32,8 @@ namespace QLDSV.Forms {
                 barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Never;
                 barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
                 barButtonDKLTC.Visibility = BarItemVisibility.Never;
+                barButtonTaoTK.Visibility = BarItemVisibility.Always;
+                barButtonChangePass.Visibility = BarItemVisibility.Always;
             }
 
             if (Database.UserRole == "PKT") {
@@ -43,6 +45,8 @@ namespace QLDSV.Forms {
                 barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Always;
                 barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
                 barButtonDKLTC.Visibility = BarItemVisibility.Never;
+                barButtonTaoTK.Visibility = BarItemVisibility.Always;
+                barButtonChangePass.Visibility = BarItemVisibility.Always;
             }
 
             if (Database.UserRole == "SV") {
@@ -54,6 +58,8 @@ namespace QLDSV.Forms {
                 barButtonDongHocPhi.Visibility = barButtonFormDSDongHocPhi.Visibility = BarItemVisibility.Never;
                 barButtonFormPhieuDiem.Visibility = BarItemVisibility.Always;
                 barButtonDKLTC.Visibility = BarItemVisibility.Always;
+                barButtonTaoTK.Visibility = BarItemVisibility.Never;
+                barButtonChangePass.Visibility = BarItemVisibility.Always;
             }
         }
 
@@ -61,7 +67,7 @@ namespace QLDSV.Forms {
             Application.Exit();
         }
 
-        private void barButtonLogout_ItemClick(object sender, ItemClickEventArgs e) {
+        public void barButtonLogout_ItemClick(object sender, ItemClickEventArgs e) {
             foreach (Form f in this.MdiChildren) {
                 f.Close();
             }
@@ -214,7 +220,13 @@ namespace QLDSV.Forms {
         }
 
         private void barButtonChangePass_ItemClick(object sender, ItemClickEventArgs e) {
-
+            Form form = CheckExists(typeof(DoiMatKhauForm));
+            if (form != null) form.Activate();
+            else {
+                DoiMatKhauForm newForm = new DoiMatKhauForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
         }
     }
 }
