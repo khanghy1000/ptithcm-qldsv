@@ -42,6 +42,8 @@
             this.barButtonNhapDiem = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDKLTC = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDongHocPhi = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonTaoTK = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonChangePass = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -76,10 +78,12 @@
             this.barButtonLTC,
             this.barButtonNhapDiem,
             this.barButtonDKLTC,
-            this.barButtonDongHocPhi});
+            this.barButtonDongHocPhi,
+            this.barButtonTaoTK,
+            this.barButtonChangePass});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(8);
-            this.ribbonControl1.MaxItemId = 19;
+            this.ribbonControl1.MaxItemId = 22;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 687;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -153,7 +157,7 @@
             // 
             this.barButtonFormBangDiemLTC.Caption = "Bảng điểm lớp tín chỉ";
             this.barButtonFormBangDiemLTC.Id = 11;
-            this.barButtonFormBangDiemLTC.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonFormDangDiemLTC.ImageOptions.SvgImage")));
+            this.barButtonFormBangDiemLTC.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonFormBangDiemLTC.ImageOptions.SvgImage")));
             this.barButtonFormBangDiemLTC.Name = "barButtonFormBangDiemLTC";
             this.barButtonFormBangDiemLTC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
@@ -213,6 +217,22 @@
             this.barButtonDongHocPhi.Name = "barButtonDongHocPhi";
             this.barButtonDongHocPhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
             // 
+            // barButtonTaoTK
+            // 
+            this.barButtonTaoTK.Caption = "Tạo tài khoản";
+            this.barButtonTaoTK.Id = 19;
+            this.barButtonTaoTK.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.barButtonTaoTK.Name = "barButtonTaoTK";
+            this.barButtonTaoTK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonTaoTK_ItemClick);
+            // 
+            // barButtonChangePass
+            // 
+            this.barButtonChangePass.Caption = "Đổi mật khẩu";
+            this.barButtonChangePass.Id = 20;
+            this.barButtonChangePass.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonChangePass.ImageOptions.SvgImage")));
+            this.barButtonChangePass.Name = "barButtonChangePass";
+            this.barButtonChangePass.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonChangePass_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -258,6 +278,8 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonTaoTK);
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonChangePass);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonLogout);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Hệ thống";
@@ -328,6 +350,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonNhapDiem;
         private DevExpress.XtraBars.BarButtonItem barButtonDKLTC;
         private DevExpress.XtraBars.BarButtonItem barButtonDongHocPhi;
+        private DevExpress.XtraBars.BarButtonItem barButtonTaoTK;
+        private DevExpress.XtraBars.BarButtonItem barButtonChangePass;
     }
 }
 

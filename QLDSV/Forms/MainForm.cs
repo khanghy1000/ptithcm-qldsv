@@ -202,5 +202,19 @@ namespace QLDSV.Forms {
                 newForm.Show();
             }
         }
+
+        private void barButtonTaoTK_ItemClick(object sender, ItemClickEventArgs e) {
+            Form form = CheckExists(typeof(TaoTaiKhoanForm));
+            if (form != null) form.Activate();
+            else {
+                TaoTaiKhoanForm newForm = new TaoTaiKhoanForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
+
+        private void barButtonChangePass_ItemClick(object sender, ItemClickEventArgs e) {
+
+        }
     }
 }

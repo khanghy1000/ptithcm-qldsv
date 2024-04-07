@@ -576,3 +576,113 @@ BEGIN
       AND NGAYDONG = @ngay_dong
 END
 GO
+
+ALTER PROC sp_tao_tai_khoan @LGNAME VARCHAR(50), @PASS VARCHAR(50),
+                            @USERNAME VARCHAR(50), @ROLE VARCHAR(50)
+AS
+BEGIN
+    DECLARE @RET INT
+    EXEC @RET= SP_ADDLOGIN @LGNAME, @PASS, 'QLDSV_TC'
+    IF (@RET = 1) -- LOGIN NAME BI TRUNG
+        BEGIN
+            RAISERROR ('Mã tài khoản bị trùng', 16,1)
+            RETURN
+        END
+    EXEC @RET= SP_GRANTDBACCESS @LGNAME, @USERNAME
+    IF (@RET = 1) -- USER  NAME BI TRUNG
+        BEGIN
+            EXEC SP_DROPLOGIN @LGNAME
+            RAISERROR ('Giảng viên đã có tài khoản', 16,2)
+            RETURN
+        END
+    EXEC sp_addrolemember @ROLE, @USERNAME
+    EXEC sp_addsrvrolemember @LGNAME, 'SecurityAdmin'
+END
+GO
+
+ALTER PROC sp_xoa_tai_khoan @LGNAME VARCHAR(50),
+                            @USRNAME VARCHAR(50)
+AS
+BEGIN
+    DECLARE @SID INT
+    SELECT @SID = session_id
+    FROM sys.dm_exec_sessions
+    WHERE login_name = @LGNAME
+
+    DECLARE @cmd NVARCHAR(200)
+    SET @cmd = 'KILL ' + CAST(@SID AS VARCHAR(10))
+    EXEC (@cmd)
+
+    EXEC SP_DROPUSER @USRNAME
+    EXEC SP_DROPLOGIN @LGNAME
+END
+GO
+
+ALTER PROC sp_get_ds_giang_vien
+AS
+BEGIN
+    SELECT MAGV, HO + ' ' + TEN + ' - ' + MAGV AS HOTEN
+    FROM GIANGVIEN
+END
+GO
+
+ALTER PROC sp_check_tk_gv @ma_gv NCHAR(10)
+AS
+BEGIN
+    IF NOT EXISTS(SELECT SUSER_SNAME(sid)
+                  FROM sys.sysusers
+                  WHERE name = @ma_gv)
+        BEGIN
+            SELECT 0 AS result
+            RETURN
+        END
+    SELECT 1 AS result
+    RETURN
+END
+GO
+
+ALTER PROC sp_doi_mk @LOGIN NCHAR(10), @OLDPASS NVARCHAR(40), @NEWPASS NVARCHAR(40)
+AS
+BEGIN
+    BEGIN TRY
+        DECLARE @cmd NVARCHAR(200)
+        SET @cmd =
+            'ALTER LOGIN ' + @LOGIN + ' WITH PASSWORD= ' + QUOTENAME(@NEWPASS, '''') + ' OLD_PASSWORD = ' +
+            QUOTENAME(@OLDPASS, '''')
+        EXEC (@cmd)
+    END TRY
+    BEGIN CATCH
+        RAISERROR ('Sai mật khẩu',16,1)
+    END CATCH
+END
+GO
+
+ALTER PROC sp_doi_mk_sv @LOGIN NCHAR(10), @OLDPASS NVARCHAR(40), @NEWPASS NVARCHAR(40)
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM SINHVIEN WHERE SINHVIEN.MASV = @LOGIN AND SINHVIEN.PASSWORD = @OLDPASS)
+        BEGIN
+            UPDATE SINHVIEN
+            SET SINHVIEN.PASSWORD = @NEWPASS
+            WHERE SINHVIEN.MASV = @LOGIN
+            RETURN;
+        END
+    ELSE
+        RAISERROR ('Sai mật khẩu', 16, 1)
+END
+GO
+
+ALTER PROC sp_get_login_name @USERNAME NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @uname SYSNAME = @USERNAME;
+    SELECT     SUSER_SNAME(user_sid(USER_ID(@uname))) AS LOGIN,
+        ROLE = (SELECT NAME
+                FROM sys.sysusers
+                WHERE UID = (SELECT GROUPUID
+                             FROM SYS.SYSMEMBERS
+                             WHERE MEMBERUID = (SELECT UID
+                                                FROM sys.sysusers
+                                                WHERE NAME = @USERNAME)))
+END
+GO

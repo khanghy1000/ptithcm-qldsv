@@ -117,7 +117,7 @@ namespace QLDSV.Forms {
 
             Database.ServerName = comboBoxKhoa.SelectedValue.ToString();
 
-            textUsername.Text = "qm";
+            textUsername.Text = "kt";
             textPassword.Text = "1";
         }
 

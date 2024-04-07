@@ -13,6 +13,12 @@ GRANT EXECUTE ON OBJECT :: dbo.sp_update_hoc_phi TO PKT
 GRANT EXECUTE ON OBJECT :: dbo.sp_update_ct_dong_hoc_phi TO PKT
 GRANT EXECUTE ON OBJECT :: dbo.sp_delete_hoc_phi TO PKT
 GRANT EXECUTE ON OBJECT :: dbo.sp_delete_ct_dong_hoc_phi TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_tao_tai_khoan TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_xoa_tai_khoan TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_get_ds_giang_vien TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_check_tk_gv TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_doi_mk TO PKT
+GRANT EXECUTE ON OBJECT :: dbo.sp_get_login_name TO PKT
 
 GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON OBJECT :: dbo.HOCPHI TO PKT
 GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON OBJECT :: dbo.CT_DONGHOCPHI TO PKT
