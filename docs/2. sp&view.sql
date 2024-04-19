@@ -408,7 +408,7 @@ BEGIN
            NHOM,
            HO + ' ' + TEN                             AS HOTENGV,
            IIF(SOSVDADANGKY IS NULL, 0, SOSVDADANGKY) AS SOSVDADANGKY,
-           CAST(IIF(HUYDANGKY IS NULL, 0, 1) AS BIT)  AS DANGKY
+           CAST(IIF(HUYDANGKY IS NOT NULL AND HUYDANGKY = 0, 1, 0) AS BIT)  AS DANGKY
     FROM (SELECT MALTC, MAMH, NHOM, MAGV
           FROM LOPTINCHI
           WHERE NIENKHOA = @nien_khoa
@@ -423,8 +423,8 @@ BEGIN
              LEFT JOIN (SELECT MALTC, HUYDANGKY
                         FROM DANGKY
                         WHERE MASV = @ma_sinh_vien) svdk ON ltc.MALTC = svdk.MALTC
-    WHERE HUYDANGKY IS NULL
-       OR HUYDANGKY = 0
+--     WHERE HUYDANGKY IS NULL
+--        OR HUYDANGKY = 0
 
 END
 GO
