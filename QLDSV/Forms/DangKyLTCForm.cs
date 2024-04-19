@@ -90,6 +90,7 @@ namespace QLDSV.Forms {
             btnSaveDK.Enabled = false;
             btnLoadLTC.Enabled = btnDangKy.Enabled = true;
             MessageBox.Show("Đăng ký lớp tín chỉ thành công", "Thành công", MessageBoxButtons.OK);
+            btnLoadLTC_Click(sender, e);
         }
 
         private void btnExit_Click(object sender, EventArgs e) {

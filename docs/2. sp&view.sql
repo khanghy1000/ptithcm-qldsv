@@ -406,9 +406,9 @@ BEGIN
            mh.MAMH,
            TENMH,
            NHOM,
-           HO + ' ' + TEN                                                AS HOTENGV,
-           IIF(SOSVDADANGKY IS NULL, 0, SOSVDADANGKY)                    AS SOSVDADANGKY,
-           CAST(IIF(DADANGKY IS NOT NULL AND DADANGKY > 0, 1, 0) AS BIT) AS DANGKY
+           HO + ' ' + TEN                             AS HOTENGV,
+           IIF(SOSVDADANGKY IS NULL, 0, SOSVDADANGKY) AS SOSVDADANGKY,
+           CAST(IIF(HUYDANGKY IS NULL, 0, 1) AS BIT)  AS DANGKY
     FROM (SELECT MALTC, MAMH, NHOM, MAGV
           FROM LOPTINCHI
           WHERE NIENKHOA = @nien_khoa
@@ -420,11 +420,12 @@ BEGIN
                         FROM DANGKY
                         WHERE (HUYDANGKY = 0 OR HUYDANGKY IS NULL)
                         GROUP BY MALTC) dk ON ltc.MALTC = dk.MALTC
-             LEFT JOIN (SELECT MALTC, COUNT(*) AS DADANGKY
+             LEFT JOIN (SELECT MALTC, HUYDANGKY
                         FROM DANGKY
-                        WHERE MASV = @ma_sinh_vien
-                          AND (HUYDANGKY = 0 OR HUYDANGKY IS NULL)
-                        GROUP BY MALTC) svdk ON ltc.MALTC = svdk.MALTC
+                        WHERE MASV = @ma_sinh_vien) svdk ON ltc.MALTC = svdk.MALTC
+    WHERE HUYDANGKY IS NULL
+       OR HUYDANGKY = 0
+
 END
 GO
 
