@@ -84,7 +84,7 @@ namespace QLDSV.Forms {
                 MessageBox.Show("Lỗi đăng ký lớp tín chỉ\n" + ex.Message, "Lỗi", MessageBoxButtons.OK);
             }
 
-            colDANGKY.OptionsColumn.ReadOnly = false;
+            colDANGKY.OptionsColumn.ReadOnly = true;
             cmbNienKhoa.Enabled = true;
             cmbHocKy.Enabled = true;
             btnSaveDK.Enabled = false;
