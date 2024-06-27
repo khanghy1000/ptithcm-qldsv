@@ -57,8 +57,8 @@ namespace QLDSV.Forms {
             }
 
             var getUserInfoStatement = checkIsSinhVien.Checked
-                ? $"EXEC sp_get_sinh_vien_info {Database.SinhVienInputMSSV}, {Database.SinhVienInputPassword}"
-                : $"EXEC sp_get_login_info {Database.LoginName}";
+                ? $"EXEC sp_get_sinh_vien_info N'{Database.SinhVienInputMSSV}', N'{Database.SinhVienInputPassword}'"
+                : $"EXEC sp_get_login_info N'{Database.LoginName}'";
 
             Database.DataReader = Database.ExecSqlDataReader(getUserInfoStatement);
 
